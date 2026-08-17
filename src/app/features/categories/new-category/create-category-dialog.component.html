@@ -1,0 +1,35 @@
+<div class="dialog-window">
+  <div class="dialog-header">
+    <h2>New category</h2>
+  </div>
+  <br />
+  <div class="dialog-content">
+    <div class="form-field full-width d-flex flex-column">
+      <label for="name">Category name</label>
+      <input id="name" type="text" [(ngModel)]="name" placeholder="pl. Sport" />
+    </div>
+    <br />
+    <label>Color picker</label>
+    <div class="color-picker">
+      @for (color of colors; track color) {
+        <button
+          type="button"
+          class="color-btn"
+          [style.background-color]="color"
+          [class.selected]="selectedColor === color"
+          (click)="selectedColor = color"
+        ></button>
+      }
+    </div>
+    <br />
+    <div class="form-field full-width d-flex flex-column" id="colorPicker">
+      <label for="customColor">Or use unique hex code</label>
+      <input id="customColor" type="text" [(ngModel)]="selectedColor" placeholder="#00BCD4" />
+    </div>
+  </div>
+  <br />
+  <div class="dialog-footer">
+    <button class="btn btn-warning" (click)="cancel()">Cancel</button>
+    <button class="btn btn-primary" (click)="create()">Ok</button>
+  </div>
+</div>

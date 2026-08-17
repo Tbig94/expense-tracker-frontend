@@ -1,0 +1,41 @@
+<nav id="sidebar" class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px; height: 100vh">
+  <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+    <span class="navbar-brand">Expense Tracker</span>
+  </a>
+
+  <hr style="border-color: rgba(255, 255, 255, 0.15)" />
+
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item navbar-item mb-2">
+      <a
+        class="nav-link"
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <p><span class="navbar-dot dot1"></span>Dashboard</p>
+      </a>
+    </li>
+    <li class="nav-item navbar-item mb-2">
+      <a class="nav-link" routerLink="/expenses" routerLinkActive="active"
+        ><p><span class="navbar-dot dot2"></span>Expenses</p></a
+      >
+    </li>
+
+    <li class="nav-item navbar-item mb-2">
+      <a class="nav-link" routerLink="/categories" routerLinkActive="active"
+        ><p><span class="navbar-dot dot3"></span>Categories</p></a
+      >
+    </li>
+    <li class="nav-item navbar-item mb-2">
+      <a class="nav-link" routerLink="/budgets" routerLinkActive="active"
+        ><p><span class="navbar-dot dot4"></span>Budgets</p></a
+      >
+    </li>
+    <!-- <li class="nav-item navbar-item mb-2">
+      <a class="nav-link" routerLink="/statistics" routerLinkActive="active"
+        ><p><span class="navbar-dot dot5"></span>Statistics</p></a
+      >
+    </li> -->
+  </ul>
+</nav>

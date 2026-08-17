@@ -1,0 +1,72 @@
+.dialog-window {
+  background-color: rgb(31, 30, 30);
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgb(100, 100, 100);
+  min-height: 300px;
+  width: 80%;
+  padding: 20px;
+  align-items: center;
+}
+
+.dialog-header {
+  margin: auto;
+  width: 50%;
+  justify-content: center;
+}
+
+.dialog-content {
+  width: 50%;
+  margin: auto;
+  justify-content: center;
+}
+
+.dialog-footer {
+  margin: auto;
+  width: 50%;
+  justify-content: center;
+}
+
+.dialog-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.color-picker {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.color-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-btn.selected {
+  border-color: #4d8fc9;
+  box-shadow: 0 0 8px rgba(77, 143, 201, 0.5);
+}
+
+.dialog-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #2a2a2a;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

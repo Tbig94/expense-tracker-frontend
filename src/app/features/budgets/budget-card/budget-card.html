@@ -1,0 +1,10 @@
+<div class="" id="budget-card">
+  @if (budgetItem(); as budget) {
+    <div class="budget-card">
+      <p>Limit: {{ budgetItem()?.limitAmount }}</p>
+      <p>Category: {{ categoryName() }}</p>
+      <p>Month: {{ budgetItem()?.year }}-{{ budgetItem()?.month }}</p>
+    </div>
+    <button class="btn btn-danger" (click)="deleteBudget(budget.id)">X</button>
+  }
+</div>

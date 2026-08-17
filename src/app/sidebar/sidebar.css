@@ -1,0 +1,59 @@
+#sidebar {
+  background-color: rgb(49, 49, 49);
+  width: 280px;
+  height: 100vh;
+  flex-shrink: 0;
+}
+
+.navbar-brand {
+  color: rgb(240, 230, 230) !important;
+  font-size: 26px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.navbar-item .nav-link {
+  color: rgb(201, 201, 201) !important;
+  font-size: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar-item .nav-link:hover {
+  color: rgb(240, 230, 230) !important;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.navbar-item .nav-link.active {
+  color: rgb(255, 255, 255) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  font-weight: 600;
+}
+
+.navbar-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.dot1 {
+  background-color: #4caf50;
+}
+
+.dot2 {
+  background-color: #9c27b0;
+}
+
+.dot3 {
+  background-color: #ff7043;
+}
+
+.dot4 {
+  background-color: #26a69a;
+}
+
+.dot5 {
+  background-color: #f44336;
+}

@@ -1,0 +1,41 @@
+<div class="dialog-window">
+  <div class="dialog-header">
+    <h2>New expense</h2>
+  </div>
+  <br />
+  <div class="dialog-content">
+    <div class="form-field full-width d-flex flex-column">
+      <label for="amount">Amount</label>
+      <input
+        id="amount"
+        type="number"
+        minlength="1"
+        maxlength="8"
+        min="1"
+        [(ngModel)]="amount"
+        placeholder="Pl. 10 000"
+      />
+    </div>
+    <br />
+    <div class="form-field full-width d-flex flex-column">
+      <label for="description">Description</label>
+      <input id="description" type="text" [(ngModel)]="description" placeholder="Pl. számla" />
+    </div>
+    <br />
+    <div class="form-field full-width d-flex flex-column">
+      <label for="category">Category</label>
+      <select id="category" [(ngModel)]="selectedCategory">
+        @for (category of categories; track category.id) {
+          <option [ngValue]="category">
+            {{ category.name }}
+          </option>
+        }
+      </select>
+    </div>
+  </div>
+  <br />
+  <div class="dialog-footer">
+    <button class="btn btn-warning" (click)="cancel()">Cancel</button>
+    <button class="btn btn-primary" (click)="create()">Ok</button>
+  </div>
+</div>

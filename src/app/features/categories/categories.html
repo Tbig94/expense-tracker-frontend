@@ -1,0 +1,31 @@
+<br />
+<div class="systemCategories">
+  <p>System categories</p>
+  <div class="d-flex flex-columns">
+    @for (item of systemCategories; track item.id) {
+      <app-category-card
+        [categoryItem]="item"
+        [isSystemCategory]="true"
+        (onDelete)="handleDeleteCategory($event)"
+      ></app-category-card>
+    }
+  </div>
+</div>
+<br />
+<div class="userCategories">
+  <p>User categories</p>
+  <div class="d-flex flex-columns">
+    @for (item of userCategories; track item.id) {
+      <app-category-card
+        [categoryItem]="item"
+        [isSystemCategory]="false"
+        (onDelete)="handleDeleteCategory($event)"
+      ></app-category-card>
+    }
+    <div class="newbuttonDiv">
+      <button class="btn btn-primary" id="newButton" (click)="openCreateDialog()">
+        New category
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div id="expenseFilters" style="margin-bottom: 20px">
+  <form [formGroup]="form" class="d-flex flex-row">
+    <div style="width: 200px">
+      <label for="description">Description</label>
+      <input id="description" type="text" formControlName="description" />
+    </div>
+
+    <div style="width: 200px">
+      <label for="minDate">Date from</label>
+      <input id="minDate" type="date" formControlName="minDate" />
+    </div>
+
+    <div style="width: 200px">
+      <label for="maxDate">Date to</label>
+      <input id="maxDate" type="date" formControlName="maxDate" />
+    </div>
+
+    <div style="width: 200px">
+      <label for="minAmount">Min. amount</label>
+      <input id="minAmount" type="number" formControlName="minAmount" />
+    </div>
+
+    <div style="width: 200px">
+      <label for="maxAmount">Max. amount</label>
+      <input id="maxAmount" type="number" formControlName="maxAmount" />
+    </div>
+    <div style="width: 200px">
+      <label for="categoryName">Category</label>
+      <select id="categoryName" formControlName="categoryName">
+        <option>(choose category...)</option>
+        @for (item of categories; track item.id) {
+          <option>{{ item.name }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="">
+      <button class="btn btn-primary" type="submit" (click)="onSubmit()">Search</button>
+    </div>
+  </form>
+  <div class="">
+    <button class="btn btn-primary" id="newButton" (click)="openCreateDialog()">New expense</button>
+    <button class="btn btn-secondary" type="button" (click)="onExport()">Export</button>
+  </div>
+</div>
+<br />
+
+<div id="expenses">
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (element of expenses; track element.id) {
+        <tr>
+          <td>{{ element.date | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ element.description }}</td>
+          <td>{{ element.categoryName }}</td>
+          <td>{{ element.amount | currency: 'HUF' : 'code' : '1.0-0' }}</td>
+          <td>
+            <p>
+              <button class="btn btn-danger" (click)="handleDeleteExpense(element.id)">X</button>
+            </p>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="6" style="text-align: center">No data available.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,23 @@
+* {
+  color: white;
+}
+
+.systemCategories,
+.userCategories {
+  width: 100%;
+  justify-content: left;
+  flex-wrap: wrap;
+  background: rgb(25, 25, 25);
+  padding: 15px;
+}
+
+#newButton {
+  height: 40px;
+  width: 130px;
+}
+
+.newbuttonDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

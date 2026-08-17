@@ -1,0 +1,16 @@
+header {
+  color: white;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  background-color: rgb(25, 25, 25);
+  padding: 15px;
+  /* border-radius: 15px; */
+  align-items: center;
+  height: 50px;
+}
+
+.header-right {
+  max-width: 450px;
+  min-width: 350px;
+  justify-content: space-between;
+}

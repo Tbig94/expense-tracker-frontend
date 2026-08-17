@@ -1,0 +1,25 @@
+.login-form {
+  width: 30%;
+  height: 400px;
+  margin: auto;
+  background-color: rgb(25, 25, 25);
+  padding: 15px;
+  border-radius: 15px;
+}
+
+button {
+  width: 100px;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+.bottom {
+  justify-content: space-between;
+  align-items: center;
+}

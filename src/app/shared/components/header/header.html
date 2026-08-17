@@ -1,0 +1,13 @@
+<header class="main-header d-flex flex-rows">
+  <h4>{{ title() }}</h4>
+  @if (authService.isLoggedIn()) {
+    <div class="header-right d-flex flex-rows">
+      <h4>{{ authService.userEmail() }}</h4>
+      <button type="button" class="btn btn-danger btn-logout" (click)="onLogout()">Sign out</button>
+    </div>
+  } @else {
+    <div class="header-right d-flex flex-rows">
+      <a [routerLink]="['/login']">Log in</a>
+    </div>
+  }
+</header>

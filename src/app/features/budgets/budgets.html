@@ -1,0 +1,25 @@
+<div class="budgetsPage">
+  <div class="d-flex flex-columns" id="budgetsTop">
+    <div class="d-flex flex-columns" id="budgetsTopLeft">
+      <p>Budgets</p>
+    </div>
+
+    <div class="d-flex flex-columns" id="budgetsTopRight">
+      <p>
+        <button class="btn btn-primary" id="newButton" (click)="openCreateDialog()">
+          New budget
+        </button>
+      </p>
+    </div>
+  </div>
+
+  <div class="d-flex flex-columns" id="budgetCards">
+    @for (item of budgets; track item.id) {
+      <app-budget-card
+        [budgetItem]="item"
+        [categoryName]="categories.find((x) => x.id === item.categoryId)?.name"
+        (onDelete)="handleDeleteBudget($event)"
+      ></app-budget-card>
+    }
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div id="small-cards" class="d-flex flex-rows">
+  <div id="dashboard-small-card">
+    <h6>Current month expenses</h6>
+    <h3>{{ hufFormazo.format(dashboardData()?.monthlySummary?.totalAmount!) }}</h3>
+  </div>
+  <div id="dashboard-small-card">
+    <h6>Last month expenses</h6>
+    <h3>{{ hufFormazo.format(dashboardData()?.monthlySummary?.previousMonthAmount!) }}</h3>
+  </div>
+  <div id="dashboard-small-card">
+    <h6>Active budgets</h6>
+    <h3>{{ dashboardData()?.budgets?.length }}</h3>
+  </div>
+  <div id="dashboard-small-card">
+    <h6>Number of transactions</h6>
+    <h3>{{ dashboardData()?.numberOfTransactions }}</h3>
+    <h3></h3>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+import { Component, inject } from '@angular/core';
+import { CategoriesService } from '../categories.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DialogRef } from '@angular/cdk/dialog';
+
+@Component({
+  selector: 'app-create-category-dialog',
+  imports: [CommonModule, FormsModule],
+  templateUrl: './create-category-dialog.component.html',
+  styleUrl: './create-category-dialog.component.css',
+})
+export class CreateCategoryDialogComponent {
+  private dialogRef = inject(DialogRef<CreateCategoryDialogComponent>);
+  private categoriesService = inject(CategoriesService);
+
+  name = '';
+  selectedColor = '#00BCD4';
+
+  colors = [
+    '#4CAF50',
+    '#2196F3',
+    '#9C27B0',
+    '#F44336',
+    '#FF9800',
+    '#00BCD4',
+    '#E91E63',
+    '#607D8B',
+    '#8BC34A',
+    '#3F51B5',
+    '#009688',
+    '#FFEB3B',
+    '#795548',
+    '#5C6BC0',
+    '#00ACC1',
+    '#FF7043',
+    '#26A69A',
+    '#AB47BC',
+  ];
+
+  create(): void {
+    if (!this.name.trim()) {
+      alert('A kategória neve kötelező!');
+      return;
+    }
+
+    this.categoriesService.createCategory(this.name, this.selectedColor).subscribe({
+      next: (result) => {
+        this.dialogRef.close(result);
+      },
+      error: (err) => {
+        console.error('Hiba:', err);
+        alert('Nem sikerült a kategória létrehozása.');
+      },
+    });
+  }
+
+  cancel(): void {
+    this.dialogRef.close();
+  }
+}

@@ -1,0 +1,16 @@
+#small-cards {
+  margin: 30px 50px 0px 50px;
+  padding: 0px 50px;
+  justify-content: space-between;
+}
+
+#dashboard-small-card {
+  height: 100px;
+  width: 20%;
+  border-style: solid;
+  border-radius: 25px;
+  border-width: 2px;
+  border-color: rgb(100, 100, 100);
+  background-color: #2b2a2a;
+  padding: 20px;
+}

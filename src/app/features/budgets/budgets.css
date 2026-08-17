@@ -1,0 +1,31 @@
+#budgetsTop {
+  justify-content: space-between;
+}
+
+#budgetsTopLeft {
+  width: 75%;
+}
+
+#budgetsTopRight {
+  width: 25%;
+  justify-content: space-between;
+}
+
+#budgetCards {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.budgetsPage {
+  background-color: rgb(25, 25, 25);
+  padding: 15px;
+}
+
+#newButton {
+  height: 40px;
+  width: 120px;
+}
+
+.my-dark-backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}

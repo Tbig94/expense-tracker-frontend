@@ -1,0 +1,25 @@
+.dialog-window {
+  background-color: rgb(31, 30, 30);
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgb(100, 100, 100);
+  min-height: 300px;
+  width: 80%;
+  padding: 20px;
+  align-items: center;
+}
+
+.dialog-header {
+  margin: auto;
+  width: 40%;
+}
+
+.dialog-content {
+  width: 40%;
+  margin: auto;
+}
+
+.dialog-footer {
+  margin: auto;
+  width: 40%;
+}

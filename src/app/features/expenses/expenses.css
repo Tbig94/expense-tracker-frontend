@@ -1,0 +1,39 @@
+#expenses {
+  width: 70%;
+  margin: 0 auto;
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+table {
+  background-color: rgb(41, 41, 41);
+  width: 80%;
+  border-radius: 15px;
+  border-spacing: 30px;
+}
+
+form {
+  color: white;
+  justify-content: space-between;
+}
+
+thead,
+tbody {
+  margin: 20px;
+}
+
+/* th,
+td {
+  padding: 15px 20px;
+} 
+*/
+
+th {
+  padding-top: 20px;
+}
+
+th,
+td {
+  padding-left: 20px;
+  padding-right: 20px;
+}

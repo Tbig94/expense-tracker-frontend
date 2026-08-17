@@ -1,0 +1,16 @@
+/* Az egész alkalmazást összefogó rugalmas keret */
+.app-layout {
+  display: flex;
+  height: 100vh; /* Pontosan kitölti a képernyőt függőlegesen */
+  /* width: 100vw; Pontosan kitölti a képernyőt vízszintesen */
+  overflow: hidden; /* Megtiltja, hogy az egész oldal (és vele a sidebar) elgörgessen */
+}
+
+/* A dinamikus tartalom doboza */
+.main-content {
+  flex-grow: 1; /* Kitölti az összes fennmaradó vízszintes helyet */
+  height: 100vh; /* Szintén pontosan képernyőmagasságú */
+  overflow-y: auto; /* Ha a tartalom hosszabb, csak ezen a részen jelenik meg görgetősáv! */
+  padding: 24px; /* Egy kis kényelmes belső távolság a tartalomnak */
+  padding: 10px 20px 10px 20px;
+}
