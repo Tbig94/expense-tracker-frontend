@@ -1,0 +1,36 @@
+## Csomagfüggőségek
+node_modules/
+
+## Fordítási kimenetek és Angular cache
+dist/
+.angular/
+.sass-cache/
+
+## Naplófájlok (Logs)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+## IDE és szerkesztő beállítások
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/
+*.swp
+
+## Helyi környezeti változók és titkok (ha használsz .env fájlt)
+.env
+.env.local
+.env.development.local
+
+## Tesztelési és lefedettségi riportok
+/coverage
+/e2e/*.javascript
+/e2e/*.js.map
+
+## Operációs rendszer fájlok
+.DS_Store
+Thumbs.db
+
+.prettierrc
