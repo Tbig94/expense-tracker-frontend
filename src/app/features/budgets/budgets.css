@@ -1,24 +1,24 @@
+.budgetsPage {
+  background-color: rgb(25, 25, 25);
+  padding: 15px;
+}
+
 #budgetsTop {
   justify-content: space-between;
 }
 
 #budgetsTopLeft {
-  width: 75%;
+  /* width: 75%; */
 }
 
 #budgetsTopRight {
-  width: 25%;
+  /* width: 25%; */
   justify-content: space-between;
 }
 
 #budgetCards {
   justify-content: space-between;
   flex-wrap: wrap;
-}
-
-.budgetsPage {
-  background-color: rgb(25, 25, 25);
-  padding: 15px;
 }
 
 #newButton {
