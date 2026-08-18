@@ -1,5 +1,7 @@
-<app-dashboard-small-cards [dashboardData]="dashboardData"></app-dashboard-small-cards>
+<div class="dashboardPage">
+  <app-dashboard-small-cards [dashboardData]="dashboardData"></app-dashboard-small-cards>
 
-@if (dashboardData) {
-  <app-dashboard-large-cards [dashboardData]="dashboardData"></app-dashboard-large-cards>
-}
+  @if (dashboardData) {
+    <app-dashboard-large-cards [dashboardData]="dashboardData"></app-dashboard-large-cards>
+  }
+</div>

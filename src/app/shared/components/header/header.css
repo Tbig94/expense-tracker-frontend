@@ -1,10 +1,9 @@
 header {
   color: white;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   background-color: rgb(25, 25, 25);
   padding: 15px;
-  /* border-radius: 15px; */
   align-items: center;
   height: 50px;
 }

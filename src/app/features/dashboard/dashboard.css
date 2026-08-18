@@ -1,3 +1,7 @@
 * {
-  color: white;
+}
+
+.dashboardPage {
+  background-color: rgb(25, 25, 25);
+  padding: 25px;
 }

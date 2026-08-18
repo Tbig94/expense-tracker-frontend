@@ -1,18 +1,13 @@
 .budgetsPage {
   background-color: rgb(25, 25, 25);
-  padding: 15px;
+  padding: 25px;
 }
 
 #budgetsTop {
   justify-content: space-between;
 }
 
-#budgetsTopLeft {
-  /* width: 75%; */
-}
-
 #budgetsTopRight {
-  /* width: 25%; */
   justify-content: space-between;
 }
 

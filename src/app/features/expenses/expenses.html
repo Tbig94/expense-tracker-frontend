@@ -34,21 +34,21 @@
           }
         </select>
       </div>
-
-      <div class="">
+      <div class="searchButton d-flex">
         <button class="btn btn-primary" type="submit" (click)="onSubmit()">Search</button>
       </div>
     </form>
+  </div>
+  <br />
+
+  <div class="d-flex" id="expenses">
     <div class="">
       <button class="btn btn-primary" id="newButton" (click)="openCreateDialog()">
         New expense
       </button>
+      <br />
       <button class="btn btn-secondary" type="button" (click)="onExport()">Export</button>
     </div>
-  </div>
-  <br />
-
-  <div id="expenses">
     <table class="table table-dark table-hover">
       <thead>
         <tr>

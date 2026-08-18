@@ -2,13 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 10px 10px 10px;
   width: 200px;
   height: 120px;
   background-color: #2b2a2a;
-  border-style: solid;
   border-radius: 15px;
-  border-color: rgb(100, 100, 100);
   padding: 20px;
   font-size: 22px;
 }

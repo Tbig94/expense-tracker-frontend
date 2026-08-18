@@ -24,8 +24,8 @@ export class Expenses implements OnInit {
 
   form = new FormGroup({
     description: new FormControl(''),
-    minDate: new FormControl(''),
-    maxDate: new FormControl(''),
+    minDate: new FormControl('2026-01-01'),
+    maxDate: new FormControl('2026-12-31'),
     minAmount: new FormControl(''),
     maxAmount: new FormControl(''),
     categoryName: new FormControl(''),

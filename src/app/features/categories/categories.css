@@ -1,14 +1,15 @@
-* {
-  color: white;
+.categoriesPage {
+  background: rgb(25, 25, 25);
+  height: 90%;
+  padding: 25px;
 }
 
-.systemCategories,
-.userCategories {
+#systemCategories,
+#userCategories {
   width: 100%;
   justify-content: left;
+  gap: 20px;
   flex-wrap: wrap;
-  background: rgb(25, 25, 25);
-  padding: 15px;
 }
 
 #newButton {

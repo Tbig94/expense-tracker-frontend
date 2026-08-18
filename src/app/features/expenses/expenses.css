@@ -1,15 +1,18 @@
-#expensesPage {
-  height: 100vh;
+.expensesPage {
+  height: 90%;
+  background-color: rgb(25, 25, 25);
+  padding: 25px;
 }
 
 #expenses {
-  width: 60%;
-  margin: 0 auto;
+  width: 80%;
   max-height: 650px;
   overflow-y: auto;
+  justify-content: space-between;
 }
 
 table {
+  width: 70%;
   background-color: rgb(41, 41, 41);
   border-radius: 15px;
   border-spacing: 30px;
@@ -36,4 +39,19 @@ td {
   position: sticky;
   top: 0;
   z-index: 2;
+}
+
+label {
+  color: darkgrey;
+}
+
+input,
+select {
+  background-color: rgb(66, 66, 66);
+  color: white;
+}
+
+.searchButton {
+  justify-content: end;
+  align-items: center;
 }
