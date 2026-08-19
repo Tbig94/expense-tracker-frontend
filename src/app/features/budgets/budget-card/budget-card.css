@@ -9,8 +9,12 @@
 }
 
 .cardInfo {
+  width: 75%;
   justify-content: center;
   align-items: center;
+  border-style: solid;
+  border-color: rgb(100, 100, 100);
+  border-width: 2px;
 }
 
 .removeButton {

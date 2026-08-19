@@ -2,13 +2,34 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="d-flex flex-column">
     <label for="email">Email</label>
     <input id="email" type="email" formControlName="email" />
+    @if (email?.invalid && (email?.dirty || email?.touched)) {
+      <div class="error-message text-danger">
+        @if (email?.errors?.['required']) {
+          <small>Email is required.</small>
+        }
+        @if (email?.errors?.['email']) {
+          <small>Invalid email format.</small>
+        }
+      </div>
+    }
 
     <label for="password">Password</label>
     <input id="password" type="password" formControlName="password" />
+    @if (password?.invalid && (password?.dirty || password?.touched)) {
+      <div class="error-message text-danger">
+        @if (password?.errors?.['required']) {
+          <small>Password is required.</small>
+        }
+        @if (password?.errors?.['minlength']) {
+          <small>Password need to be at least 4 characters.</small>
+        }
+      </div>
+    }
 
     <div class="bottom d-flex flex-rows">
       <a routerLink="/signup">Register</a>
-      <button class="btn btn-primary" type="submit">Ok</button>
+      <!-- A gomb letiltása érvénytelen űrlap esetén -->
+      <button class="btn btn-primary" type="submit" [disabled]="loginForm.invalid">Ok</button>
     </div>
   </form>
 </div>
