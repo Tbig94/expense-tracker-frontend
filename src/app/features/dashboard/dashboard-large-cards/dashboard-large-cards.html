@@ -4,6 +4,7 @@
     <div class="budgetChart-container">
       <canvas id="BudgetChart">{{ budgetChart }}</canvas>
     </div>
+    <hr />
     <h4>Recent expenses</h4>
     <table>
       <thead>
@@ -37,7 +38,7 @@
       <div class="categoryChart-container">
         <canvas id="CategoryChart">{{ categoryChart }}</canvas>
       </div>
-      <div class="">
+      <div class="categoryList">
         @for (item of dashboardData()?.categoryBreakdowns; track item.categoryName) {
           <p>
             <span class="category-dot" [style.background-color]="item.categoryColor"> </span>

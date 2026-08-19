@@ -13,7 +13,6 @@
 
 table {
   width: 70%;
-  background-color: rgb(41, 41, 41);
   border-radius: 15px;
   border-spacing: 30px;
 }
@@ -42,7 +41,7 @@ td {
 }
 
 label {
-  color: darkgrey;
+  color: rgb(201, 201, 201);
 }
 
 input,
@@ -54,4 +53,10 @@ select {
 .searchButton {
   justify-content: end;
   align-items: center;
+}
+
+.sideButtons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }

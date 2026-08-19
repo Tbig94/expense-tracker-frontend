@@ -1,31 +1,31 @@
 <div class="expensesPage">
   <div id="expenseFilters" style="margin-bottom: 20px">
     <form [formGroup]="form" class="d-flex flex-row">
-      <div style="width: 200px">
+      <div class="d-flex flex-column">
         <label for="description">Description</label>
         <input id="description" type="text" formControlName="description" />
       </div>
 
-      <div style="width: 200px">
+      <div class="d-flex flex-column">
         <label for="minDate">Date from</label>
         <input id="minDate" type="date" formControlName="minDate" />
       </div>
 
-      <div style="width: 200px">
+      <div class="d-flex flex-column">
         <label for="maxDate">Date to</label>
         <input id="maxDate" type="date" formControlName="maxDate" />
       </div>
 
-      <div style="width: 200px">
+      <div class="d-flex flex-column">
         <label for="minAmount">Min. amount</label>
         <input id="minAmount" type="number" formControlName="minAmount" />
       </div>
 
-      <div style="width: 200px">
+      <div class="d-flex flex-column">
         <label for="maxAmount">Max. amount</label>
         <input id="maxAmount" type="number" formControlName="maxAmount" />
       </div>
-      <div style="width: 200px">
+      <div class="d-flex flex-column">
         <label for="categoryName">Category</label>
         <select id="categoryName" formControlName="categoryName">
           <option>(choose category...)</option>
@@ -42,10 +42,11 @@
   <br />
 
   <div class="d-flex" id="expenses">
-    <div class="">
+    <div class="sideButtons">
       <button class="btn btn-primary" id="newButton" (click)="openCreateDialog()">
         New expense
       </button>
+      <br />
       <br />
       <button class="btn btn-secondary" type="button" (click)="onExport()">Export</button>
     </div>

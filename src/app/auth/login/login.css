@@ -13,10 +13,13 @@ button {
 
 label {
   margin-top: 10px;
+  color: rgb(201, 201, 201);
 }
 
 input {
   margin-bottom: 10px;
+  background-color: rgb(66, 66, 66);
+  color: white;
 }
 
 .bottom {

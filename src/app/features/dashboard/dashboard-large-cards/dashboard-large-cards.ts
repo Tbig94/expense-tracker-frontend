@@ -59,16 +59,16 @@ export class DashboardLargeCards implements OnInit {
       id: 'customLabelsPlugin',
       afterDatasetsDraw: (chart: any) => {
         const { ctx } = chart;
-        const meta = chart.getDatasetMeta(0);
+        const meta = chart.getDatasetMeta(1);
 
         meta.data.forEach((bar: any, index: number) => {
           const item = this.dashboardChartData[index];
           if (!item) return;
 
           const { y, base } = bar;
-          const barHeight = bar.height || 8;
+          const barThickness = bar.height ?? 6;
 
-          const textY = y - barHeight / 2 - 10;
+          const textY = y - barThickness / 2 - 12;
           const textX = base;
 
           ctx.save();
@@ -80,16 +80,16 @@ export class DashboardLargeCards implements OnInit {
 
           ctx.beginPath();
           ctx.arc(dotX, dotY, radius, 0, 2 * Math.PI);
-          ctx.fillStyle = item.categoryColor;
+          ctx.fillStyle = item.categoryColor || '#FFFFFF';
           ctx.fill();
 
-          // 2. FEHÉR SZÖVEG RAJZOLÁSA
+          // 2. FEHÉR SZÖVEG RAJZOLÁSA (Megmaradnak a valós Ft értékek)
           ctx.fillStyle = '#FFFFFF';
-          ctx.font = '17px sans-serif';
+          ctx.font = '16px sans-serif';
           ctx.textAlign = 'left';
           ctx.textBaseline = 'middle';
 
-          const labelPadding = 10;
+          const labelPadding = 8;
           ctx.fillText(
             `${item.categoryName} (${item.categorySpent} Ft / ${item.categoryLimit} Ft)`,
             dotX + radius + labelPadding,
@@ -104,12 +104,27 @@ export class DashboardLargeCards implements OnInit {
     this.budgetChart = new Chart(canvas, {
       type: 'bar',
       data: {
-        labels: this.dashboardChartData.map(
-          (b) => `${b.categoryName} (${b.categorySpent} Ft / ${b.categoryLimit} Ft)`,
-        ),
+        labels: this.dashboardChartData.map((b) => b.categoryName),
         datasets: [
+          // 1. DATASET: Szürke háttérsáv (Fix 100% szélesség)
           {
-            data: this.dashboardChartData.map((b) => b.categorySpent),
+            label: 'Limit',
+            data: this.dashboardChartData.map(() => 100),
+            backgroundColor: '#4A4A4A',
+            barThickness: 6,
+            categoryPercentage: 0.5,
+            barPercentage: 0.8,
+            grouped: false,
+            order: 2,
+          },
+          // 2. DATASET: Színes sáv (Arányos kitöltés, max 100%)
+          {
+            label: 'Spent',
+            data: this.dashboardChartData.map((b) => {
+              if (!b.categoryLimit || b.categoryLimit === 0) return 0;
+              const percentage = (b.categorySpent / b.categoryLimit) * 100;
+              return Math.min(percentage, 100); // Ne lépje túl a 100%-ot
+            }),
             backgroundColor: this.dashboardChartData.map((b) =>
               b.categoryLimit - b.categorySpent <= 0
                 ? 'red'
@@ -117,10 +132,11 @@ export class DashboardLargeCards implements OnInit {
                   ? 'yellow'
                   : 'green',
             ),
-            barThickness: 6,
-            // A sorköz növelése itt marad
+            barThickness: 8,
             categoryPercentage: 0.5,
             barPercentage: 0.8,
+            grouped: false,
+            order: 1,
           },
         ],
       },
@@ -130,21 +146,24 @@ export class DashboardLargeCards implements OnInit {
         indexAxis: 'y',
         layout: {
           padding: {
-            top: 25,
+            top: 10,
           },
         },
         plugins: {
           legend: { display: false },
+          tooltip: { enabled: false },
         },
         scales: {
           x: {
+            min: 0,
+            max: 100, // Rögzített skála 0-tól 100%-ig
             grid: { display: false },
-            //ticks: { color: '#aaa' },
             display: false,
           },
           y: {
             grid: { display: false },
             display: false,
+            stacked: true,
           },
         },
       },
@@ -182,6 +201,11 @@ export class DashboardLargeCards implements OnInit {
         plugins: {
           legend: {
             display: false,
+          },
+          tooltip: {
+            bodyFont: {
+              size: 16,
+            },
           },
         },
       },

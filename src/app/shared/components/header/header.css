@@ -13,3 +13,8 @@ header {
   min-width: 350px;
   justify-content: space-between;
 }
+
+.header-right-simple {
+  width: 250px;
+  justify-content: right;
+}

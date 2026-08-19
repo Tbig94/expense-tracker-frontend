@@ -1,7 +1,5 @@
-* {
-}
-
 .dashboardPage {
+  height: 90%;
   background-color: rgb(25, 25, 25);
   padding: 25px;
 }

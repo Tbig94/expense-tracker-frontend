@@ -2,7 +2,8 @@
   background-color: rgb(31, 30, 30);
   border-style: solid;
   border-radius: 10px;
-  border-color: rgb(100, 100, 100);
+  border-color: rgb(70, 70, 70);
+  border-width: 2px;
   min-height: 300px;
   width: 80%;
   padding: 20px;
@@ -11,15 +12,31 @@
 
 .dialog-header {
   margin: auto;
-  width: 30%;
+  width: 40%;
 }
 
 .dialog-content {
-  width: 30%;
+  width: 40%;
   margin: auto;
+  padding: 10px;
+  border-style: solid;
+  border-color: rgb(100, 100, 100);
+  border-width: 2px;
 }
 
 .dialog-footer {
   margin: auto;
-  width: 30%;
+  margin-top: 40px;
+  width: 40%;
+  justify-content: space-between;
+}
+
+label {
+  color: rgb(201, 201, 201);
+}
+
+input,
+select {
+  background-color: rgb(66, 66, 66);
+  color: white;
 }
