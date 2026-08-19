@@ -49,4 +49,8 @@ export class Header implements OnInit {
 
   // Ebből csinálunk egy reaktív Signalt, amit a HTML-ben meg tudunk jeleníteni
   protected title = toSignal(this.title$, { initialValue: 'Betöltés...' });
+
+  btnClick(): any {
+    this.router.navigateByUrl('/login');
+  }
 }

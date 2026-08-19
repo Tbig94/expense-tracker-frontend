@@ -7,6 +7,7 @@ import { Categories } from './features/categories/categories';
 import { Signup } from './auth/signup/signup';
 import { Login } from './auth/login/login';
 import { authGuard } from './core/guards/auth.guard';
+import { Account } from './features/account/account';
 
 export const routes: Routes = [
   {
@@ -42,6 +43,12 @@ export const routes: Routes = [
     path: 'statistics',
     component: Statistics,
     data: { headerText: 'Statistics' },
+    canActivate: [authGuard],
+  },
+  {
+    path: 'account',
+    component: Account,
+    data: { headerText: 'Account' },
     canActivate: [authGuard],
   },
   {
