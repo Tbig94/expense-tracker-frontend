@@ -1,10 +1,11 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, output } from '@angular/core';
 import { BudgetService } from '../budget.service';
 import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../../models/Category.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Budget } from '../../../models/Budget.model';
 
 @Component({
   selector: 'app-create-budget-dialog',

@@ -29,17 +29,18 @@ export class Budgets implements OnInit {
       next: (data) => {
         this.budgets = data;
         this.cdr.detectChanges();
-        this.isLoading = false;
       },
     });
     this.categoriesService.getCategories().subscribe({
       next: (data) => {
         this.categories = data;
+        this.isLoading = false;
       },
     });
   }
 
   openCreateDialog(): void {
+    console.log(`budget count before dialog closed: ${this.budgets.length}`);
     const dialogRef = this.dialog.open(CreateBudgetDialogComponent, {
       width: '900px',
       panelClass: 'custom-dialog',
@@ -47,10 +48,7 @@ export class Budgets implements OnInit {
     });
 
     dialogRef.closed.subscribe((result) => {
-      if (result) {
-        this.loadBudgets();
-        this.cdr.detectChanges();
-      }
+      this.loadBudgets();
     });
   }
 
@@ -58,7 +56,6 @@ export class Budgets implements OnInit {
     this.budgetsService.deleteBudget(id).subscribe({
       next: (data) => {
         this.loadBudgets();
-        this.cdr.detectChanges();
       },
     });
   }
@@ -67,6 +64,7 @@ export class Budgets implements OnInit {
     this.budgetsService.getBudgets().subscribe({
       next: (data) => {
         this.budgets = data;
+        this.cdr.detectChanges();
       },
     });
   }

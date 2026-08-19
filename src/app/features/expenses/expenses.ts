@@ -11,7 +11,7 @@ import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-expenses',
-  imports: [DatePipe, CurrencyPipe, ReactiveFormsModule], // MatTableModule eltávolítva
+  imports: [DatePipe, CurrencyPipe, ReactiveFormsModule],
   templateUrl: './expenses.html',
   styleUrl: './expenses.css',
 })
@@ -43,7 +43,6 @@ export class Expenses implements OnInit {
     this.expensesService.getExpenses().subscribe({
       next: (data) => {
         this.expenses = data;
-        this.cdr.detectChanges();
       },
     });
     this.categoriesService.getCategories().subscribe({
@@ -109,18 +108,9 @@ export class Expenses implements OnInit {
     });
 
     dialogRef.closed.subscribe((result) => {
-      if (result) {
-        this.expensesService.getExpenses().subscribe({
-          next: (data) => {
-            this.expenses = data;
-            this.cdr.detectChanges();
-          },
-        });
-      }
+      this.loadExpenses();
     });
   }
-
-  onEditExpense(id: string) {}
 
   handleDeleteExpense(id: string) {
     this.expensesService.deleteExpense(id).subscribe({
@@ -131,7 +121,7 @@ export class Expenses implements OnInit {
   }
 
   loadExpenses(): void {
-    this.expensesService.getExpensesByFilter((this.expenseFilter = new ExpenseFilter())).subscribe({
+    this.expensesService.getExpenses().subscribe({
       next: (data) => {
         this.expenses = data;
         this.cdr.detectChanges();

@@ -27,6 +27,7 @@ export class Categories implements OnInit {
         this.systemCategories = data.filter((x) => x.userId === null);
         this.userCategories = data.filter((x) => x.userId !== null);
         this.cdr.detectChanges();
+        this.isLoading = false;
       },
     });
   }
@@ -39,10 +40,7 @@ export class Categories implements OnInit {
     });
 
     dialogRef.closed.subscribe((result) => {
-      if (result) {
-        this.loadCategories();
-        this.cdr.detectChanges();
-      }
+      this.loadCategories();
     });
   }
 
