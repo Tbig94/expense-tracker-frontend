@@ -1,59 +1,60 @@
-# ExpenseTrackerUi
+# Expense Tracker – Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+An Angular-based single-page application that serves as the client-side (frontend) of the [Expense Tracker](https://github.com/Tbig94/ExpenseTracker) application. It consumes the [expense-tracker-backend](https://github.com/Tbig94/expense-tracker-backend) REST API to provide users with a way to manage and visualize their income and expenses.
 
-## Development server
+> **Related repositories**
+>
+> - Backend: [Tbig94/expense-tracker-backend](https://github.com/Tbig94/expense-tracker-backend)
+> - Frontend (this repo): [Tbig94/expense-tracker-frontend](https://github.com/Tbig94/expense-tracker-frontend)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Authentication** – login and registration screens, JWT token handling (storage, attaching to API requests, refresh)
+- **Route protection** – guarded routes so only authenticated users can access private pages
+- **Expense management** – create, view, edit, and delete expenses through a clean UI
+- **Income management** – create, view, edit, and delete income entries
+- **Category management** – manage custom categories used to classify transactions
+- **Filtering and search** – filter transactions by date range, category, and type (income/expense)
+- **Dashboard / summary view** – overview of balance, totals, and category breakdown, optionally visualized with charts
+- **Responsive design** – usable on both desktop and mobile screen sizes
+- **Form validation** – client-side validation with clear error feedback before hitting the API
+- **Centralized API/error handling** – shared HTTP interceptor(s) for attaching auth tokens and handling API errors consistently
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Tech Stack
 
-```bash
-ng generate component component-name
-```
+| Layer              | Technology                                                 |
+| ------------------ | ---------------------------------------------------------- |
+| Framework          | Angular (CLI-generated project)                            |
+| Language           | TypeScript                                                 |
+| Styling            | CSS / SCSS (Angular component styles)                      |
+| State/Data flow    | Angular services + RxJS (Observables)                      |
+| HTTP client        | Angular `HttpClient`, with interceptors for JWT auth       |
+| Routing            | Angular Router, with route guards for protected pages      |
+| Testing            | Vitest (unit tests), configurable e2e framework            |
+| Build tool         | Angular CLI / Angular build system                         |
+| Hosting/Deployment | Azure Static Web Apps (`staticwebapp.config.json`)         |
+| CI                 | GitHub Actions (automated build and test on every push/PR) |
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## Main Pages / Routes
 
-## Building
+| Route         | Description                                   | Auth required |
+| ------------- | --------------------------------------------- | ------------- |
+| `/login`      | User login page                               | No            |
+| `/register`   | User registration page                        | No            |
+| `/dashboard`  | Overview of balance, totals, and summaries    | Yes           |
+| `/expenses`   | List, create, edit, and delete expenses       | Yes           |
+| `/incomes`    | List, create, edit, and delete income entries | Yes           |
+| `/categories` | Manage transaction categories                 | Yes           |
+| `/profile`    | View/update user account details              | Yes           |
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## License
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The license terms of the project are defined in the `LICENSE` file in the repository (if present). If the file is not currently included in the repository, it is advisable to add a suitable open-source license (e.g., MIT).
