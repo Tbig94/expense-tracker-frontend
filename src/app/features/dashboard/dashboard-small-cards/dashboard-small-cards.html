@@ -5,7 +5,11 @@
   </div>
   <div id="dashboard-small-card">
     <h6>Last month expenses</h6>
-    <h3>{{ hufFormazo.format(dashboardData()?.monthlySummary?.previousMonthAmount!) }}</h3>
+    <h3>
+      {{
+        dashboardData()?.monthlySummary?.previousMonthAmount! | currency: 'Ft' : 'code' : '1.0-0'
+      }}
+    </h3>
   </div>
   <div id="dashboard-small-card">
     <h6>Active budgets</h6>

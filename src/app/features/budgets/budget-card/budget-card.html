@@ -1,11 +1,9 @@
 <div class="d-flex flex-columns" id="budget-card">
   @if (budgetItem(); as budget) {
-    <div class="cardInfo d-flex">
-      <div class="">
-        <p>Limit: {{ budgetItem()?.limitAmount }}</p>
-        <p>Category: {{ categoryName() }}</p>
-        <p>Month: {{ budgetItem()?.year }}-{{ budgetItem()?.month }}</p>
-      </div>
+    <div class="cardInfo d-flex flex-column">
+      <span>{{ budgetItem()?.limitAmount | currency: 'Ft' : 'symbol' : '1.0-0' }}</span>
+      <span>{{ categoryName() }}</span>
+      <span>{{ budgetItem()?.year }}.{{ budgetItem()?.month }}</span>
     </div>
     <div class="removeButton d-flex">
       <button class="btn btn-danger" (click)="deleteBudget(budget.id)">X</button>

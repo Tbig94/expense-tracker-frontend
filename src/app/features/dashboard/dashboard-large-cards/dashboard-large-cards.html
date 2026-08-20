@@ -18,10 +18,10 @@
       <tbody>
         @for (item of dashboardData()?.topExpenses; track item.date; let i = $index) {
           <tr>
-            <td>{{ item.date | date: 'yyyy-MM-dd' }}</td>
+            <td>{{ item.date | date: 'yyyy.MM.dd' }}</td>
             <td>{{ item.description }}</td>
             <td>{{ item.categoryName }}</td>
-            <td>{{ item.amount | currency: 'HUF' : 'code' : '1.0-0' }}</td>
+            <td>{{ item.amount | currency: 'Ft' : 'code' : '1.0-0' }}</td>
           </tr>
         } @empty {
           <tr>

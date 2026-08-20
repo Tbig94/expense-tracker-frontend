@@ -63,10 +63,10 @@
       <tbody>
         @for (element of expenses; track element.id) {
           <tr>
-            <td>{{ element.date | date: 'yyyy-MM-dd' }}</td>
+            <td>{{ element.date | date: 'yyyy.MM.dd' }}</td>
             <td>{{ element.description }}</td>
             <td>{{ element.categoryName }}</td>
-            <td>{{ element.amount | currency: 'HUF' : 'code' : '1.0-0' }}</td>
+            <td>{{ element.amount | currency: 'Ft' : 'code' : '1.0-0' }}</td>
             <td>
               <p>
                 <button class="btn btn-danger" (click)="handleDeleteExpense(element.id)">X</button>

@@ -12,7 +12,7 @@ import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-expenses',
-  imports: [DatePipe, CurrencyPipe, ReactiveFormsModule],
+  imports: [DatePipe, CurrencyPipe, ReactiveFormsModule, CurrencyPipe],
   templateUrl: './expenses.html',
   styleUrl: './expenses.css',
 })

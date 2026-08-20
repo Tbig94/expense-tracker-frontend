@@ -13,8 +13,9 @@
 }
 
 #budgetCards {
-  justify-content: space-between;
+  justify-content: left;
   flex-wrap: wrap;
+  gap: 40px;
 }
 
 #newButton {

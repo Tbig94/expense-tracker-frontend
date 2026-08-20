@@ -1,7 +1,6 @@
 #budget-card {
   width: 330px;
   height: 165px;
-  margin: 10px 10px 10px 10px;
   justify-content: space-between;
   background-color: #2b2a2a;
   border-radius: 15px;
@@ -9,12 +8,15 @@
 }
 
 .cardInfo {
-  width: 75%;
+  width: 80%;
+  padding: 20px;
   justify-content: center;
   align-items: center;
+  border-radius: 5px;
   border-style: solid;
   border-color: rgb(100, 100, 100);
   border-width: 2px;
+  font-size: 18px;
 }
 
 .removeButton {

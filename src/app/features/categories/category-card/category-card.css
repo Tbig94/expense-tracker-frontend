@@ -15,12 +15,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  min-width: 0; /* EZ A KULCS: enélkül a flex elem kinyúlik a kártyából! */
+  min-width: 0;
   overflow: hidden;
 }
 
 .category-dot {
-  flex-shrink: 0; /* A pötty nem nyomódhat össze */
+  flex-shrink: 0;
   width: 12px;
   height: 12px;
   border-radius: 50%;

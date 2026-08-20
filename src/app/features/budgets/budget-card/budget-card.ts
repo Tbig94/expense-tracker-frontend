@@ -1,9 +1,10 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { Budget } from '../../../models/Budget.model';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-budget-card',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './budget-card.html',
   styleUrl: './budget-card.css',
 })
