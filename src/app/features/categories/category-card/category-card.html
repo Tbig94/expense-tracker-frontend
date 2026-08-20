@@ -2,7 +2,7 @@
   <div class="categoryCard">
     <div class="card-left">
       <span class="category-dot" [style.background-color]="category.color"></span>
-      {{ category.name }}
+      <span [title]="category.name" class="category-name">{{ category.name }}</span>
     </div>
     <div class="card-right">
       @if (!isSystemCategory()) {

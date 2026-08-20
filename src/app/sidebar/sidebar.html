@@ -1,7 +1,8 @@
 @if (authService.isLoggedIn()) {
   <nav id="sidebar" class="d-flex flex-column flex-shrink-0 p-3">
     <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-      <span class="navbar-brand">Expense Tracker</span>
+      <!-- <span class="navbar-brand">Expense Tracker</span> -->
+      <a class="navbar-brand" routerLink="/dashboard">Expense Tracker</a>
     </a>
 
     <hr style="border-color: rgba(255, 255, 255, 0.15)" />
@@ -38,11 +39,11 @@
         ><p><span class="navbar-dot dot5"></span>Statistics</p></a
       >
     </li> -->
-      <li class="nav-item navbar-item mb-2">
+      <!-- <li class="nav-item navbar-item mb-2">
         <a class="nav-link" routerLink="/account" routerLinkActive="active"
           ><p><span class="navbar-dot dot6"></span>Account</p></a
         >
-      </li>
+      </li> -->
     </ul>
   </nav>
 }
