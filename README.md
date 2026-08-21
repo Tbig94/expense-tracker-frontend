@@ -9,6 +9,18 @@ An Angular-based single-page application that serves as the client-side (fronten
 
 ---
 
+## The UI
+
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" width="45%" />
+  <img src="docs/screenshots/expenses.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/categories.png" width="45%" />
+  <img src="docs/screenshots/budgets.png" width="45%" />
+</p>
+
 ## Features
 
 - **Authentication** – login and registration screens, JWT token handling (storage, attaching to API requests, refresh)

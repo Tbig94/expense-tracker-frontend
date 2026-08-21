@@ -13,13 +13,17 @@
     </div>
   </div>
 
-  <div class="d-flex flex-columns" id="budgetCards">
-    @for (item of budgets; track item.id) {
-      <app-budget-card
-        [budgetItem]="item"
-        [categoryName]="categories.find((x) => x.id === item.categoryId)?.name"
-        (onDelete)="handleDeleteBudget($event)"
-      ></app-budget-card>
-    }
-  </div>
+  @if (budgets.length > 0) {
+    <div class="d-flex flex-columns" id="budgetCards">
+      @for (item of budgets; track item.id) {
+        <app-budget-card
+          [budgetItem]="item"
+          [categoryName]="categories.find((x) => x.id === item.categoryId)?.name"
+          (onDelete)="handleDeleteBudget($event)"
+        ></app-budget-card>
+      }
+    </div>
+  } @else {
+    <p>No data available.</p>
+  }
 </div>
