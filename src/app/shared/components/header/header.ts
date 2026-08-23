@@ -46,7 +46,6 @@ export class Header implements OnInit {
     this.authService.logout();
   }
 
-  // Ebből csinálunk egy reaktív Signalt, amit a HTML-ben meg tudunk jeleníteni
   protected title = toSignal(this.title$, { initialValue: 'Betöltés...' });
 
   btnClick(): any {

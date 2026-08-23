@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { jwtDecode } from 'jwt-decode';
 
@@ -24,8 +24,11 @@ export class AuthService {
   userEmail = signal<string | null>(localStorage.getItem(this.EMAIL_KEY));
 
   public login(email: string, password: string): Observable<any> {
-    this.isLoggedIn.set(true);
-    return this.http.post(`${environment.apiUrl}/Auth/Login`, { email, password });
+    return this.http.post(`${environment.apiUrl}/Auth/Login`, { email, password }).pipe(
+      tap(() => {
+        this.isLoggedIn.set(true);
+      }),
+    );
   }
 
   public register(name: string, email: string, password: string): Observable<any> {
@@ -64,12 +67,7 @@ export class AuthService {
       const nowInSeconds = Date.now() / 1000;
       return decoded.exp > nowInSeconds;
     } catch {
-      // Ha a token nem dekódolható (érvénytelen formátum), tekintsük érvénytelennek
       return false;
     }
   }
-
-  // isLoggedIn(): boolean {
-  //   return !!this.getToken();
-  // }
 }

@@ -29,7 +29,6 @@ export class Dashboard implements OnInit {
         this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Hiba:', err);
         this.isLoading = false;
       },
     });

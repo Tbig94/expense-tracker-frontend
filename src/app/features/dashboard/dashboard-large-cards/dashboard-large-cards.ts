@@ -47,7 +47,6 @@ export class DashboardLargeCards implements OnInit {
   private createBudgetChart(): void {
     const canvas = document.getElementById('BudgetChart') as HTMLCanvasElement;
     if (!canvas) {
-      console.error('Canvas nem található');
       return;
     }
 
@@ -174,7 +173,6 @@ export class DashboardLargeCards implements OnInit {
   private createCategoryChart(): void {
     const canvas = document.getElementById('CategoryChart') as HTMLCanvasElement;
     if (!canvas) {
-      console.error('Canvas nem található');
       return;
     }
     if (this.categoryChart) {

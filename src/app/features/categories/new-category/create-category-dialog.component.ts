@@ -40,7 +40,7 @@ export class CreateCategoryDialogComponent {
 
   create(): void {
     if (!this.name.trim()) {
-      alert('A kategória neve kötelező!');
+      alert('Category name is mandatory!');
       return;
     }
 
@@ -49,8 +49,7 @@ export class CreateCategoryDialogComponent {
         this.dialogRef.close(result);
       },
       error: (err) => {
-        console.error('Hiba:', err);
-        alert('Nem sikerült a kategória létrehozása.');
+        alert('Failed to create category!');
       },
     });
   }

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class Signup {
   private readonly authService = inject(AuthService);
+  private router = inject(Router);
 
   loginResult?: LoginResultDto;
 
@@ -46,7 +47,10 @@ export class Signup {
       )
       .subscribe({
         next: (data) => {
-          //this.loginResult = data;
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          alert('Failed to register!');
         },
       });
   }

@@ -5,7 +5,6 @@ import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../../models/Category.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Budget } from '../../../models/Budget.model';
 
 @Component({
   selector: 'app-create-budget-dialog',
@@ -36,8 +35,7 @@ export class CreateBudgetDialogComponent implements OnInit {
         this.dialogRef.close();
       },
       error: (err) => {
-        console.error('Hiba:', err);
-        alert('Nem sikerült a büdzsé létrehozása.');
+        alert('Failed to create budget!');
       },
     });
   }

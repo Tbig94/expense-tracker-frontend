@@ -46,6 +46,9 @@ export class Login {
           this.router.navigate(['/dashboard']);
         }
       },
+      error: (err: any) => {
+        alert('Failed to log in!');
+      },
     });
   }
 }

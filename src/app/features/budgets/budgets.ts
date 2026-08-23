@@ -40,7 +40,6 @@ export class Budgets implements OnInit {
   }
 
   openCreateDialog(): void {
-    console.log(`budget count before dialog closed: ${this.budgets.length}`);
     const dialogRef = this.dialog.open(CreateBudgetDialogComponent, {
       width: '900px',
       panelClass: 'custom-dialog',

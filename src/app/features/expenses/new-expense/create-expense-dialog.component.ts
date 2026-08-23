@@ -41,8 +41,7 @@ export class CreateExpenseDialogComponent implements OnInit {
           this.dialogRef.close(result);
         },
         error: (err) => {
-          console.error('Hiba:', err);
-          alert('Nem sikerült a kiadás létrehozása.');
+          alert('Failed to create expense!.');
         },
       });
   }
