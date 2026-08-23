@@ -38,8 +38,15 @@ export class AuthService {
   public logout(): void {
     this.clearToken();
     this.isLoggedIn.set(false);
-
     this.router.navigate(['/login']);
+  }
+
+  public deleteAccount(): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/Auth/DeleteAccount`, {});
+  }
+
+  public getAccountInfo(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/Auth/GetAccountInfo`);
   }
 
   getToken(): string | null {

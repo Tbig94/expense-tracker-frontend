@@ -64,3 +64,8 @@ interface LoginResultDto {
   userId: string;
   email: string;
 }
+
+export interface AccountDto {
+  email: string | null | undefined;
+  name: string | null | undefined;
+}

@@ -1,0 +1,38 @@
+.accountPage {
+  height: 90%;
+  background-color: rgb(25, 25, 25);
+  padding: 25px;
+  justify-content: space-between;
+}
+
+.personalInfoCard {
+  border-radius: 15px;
+  padding: 25px;
+  width: 48%;
+  height: 45%;
+  background-color: #2b2a2a;
+}
+
+.accountInfoMain {
+  margin-top: 30px;
+}
+
+.accountActionsCard {
+  border-radius: 15px;
+  padding: 25px;
+  width: 48%;
+  height: 45%;
+  background-color: #2b2a2a;
+}
+
+.deleteAccountCard {
+  margin-top: 30px;
+  border-radius: 15px;
+  background-color: rgb(25, 25, 25);
+  padding: 15px;
+  width: 50%;
+}
+
+h4 {
+  font-style: italic;
+}
