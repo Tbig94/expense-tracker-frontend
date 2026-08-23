@@ -3,6 +3,7 @@ export class DashboardDto {
   monthlySummary: MonthlySummary = new MonthlySummary();
   categoryBreakdowns: CategoryBreakdownDto[] = [];
   budgets: BudgetDashboardDto[] = [];
+  recentExpenses: Expense[] = [];
   topExpenses: Expense[] = [];
   budgetWarnings: BudgetDashboardDto[] = [];
   numberOfTransactions: number = 0;

@@ -2,10 +2,14 @@
 
 An Angular-based single-page application that serves as the client-side (frontend) of the [Expense Tracker](https://github.com/Tbig94/ExpenseTracker) application. It consumes the [expense-tracker-backend](https://github.com/Tbig94/expense-tracker-backend) REST API to provide users with a way to manage and visualize their income and expenses.
 
+> **Demo credentials**
+>
+> - Email: user@example.com
+> - Password: password
+
 > **Related repositories**
 >
 > - Backend: [Tbig94/expense-tracker-backend](https://github.com/Tbig94/expense-tracker-backend)
-> - Frontend (this repo): [Tbig94/expense-tracker-frontend](https://github.com/Tbig94/expense-tracker-frontend)
 
 ---
 
