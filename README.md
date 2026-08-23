@@ -7,6 +7,9 @@ An Angular-based single-page application that serves as the client-side (fronten
 > - Email: user@example.com
 > - Password: password
 
+> **The application**
+> - https://lemon-water-09d9d280f.7.azurestaticapps.net
+
 > **Related repositories**
 >
 > - Backend: [Tbig94/expense-tracker-backend](https://github.com/Tbig94/expense-tracker-backend)
