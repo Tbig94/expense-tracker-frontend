@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -12,6 +13,7 @@ import { AuthService } from '../services/auth.service';
 export class Signup {
   private readonly authService = inject(AuthService);
   private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
   loginResult?: LoginResultDto;
 
@@ -47,10 +49,21 @@ export class Signup {
       )
       .subscribe({
         next: (data) => {
+          this.snackBar.open('Registered successfully', 'X', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+            panelClass: ['snackbar-success'],
+          });
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          alert('Failed to register!');
+          this.snackBar.open('Failed to sign up!', 'X', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+            panelClass: ['snackbar-error'],
+          });
         },
       });
   }

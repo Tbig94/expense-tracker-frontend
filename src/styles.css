@@ -23,3 +23,33 @@ app-root {
 .my-dark-backdrop {
   background: rgba(0, 0, 0, 0.6);
 }
+
+.snackbar-success .mdc-snackbar__surface,
+.snackbar-success .mat-snack-bar-container {
+  background-color: #2e7d32 !important;
+  color: #ffffff !important;
+}
+.snackbar-success .mdc-snackbar__label,
+.snackbar-success .mat-simple-snackbar {
+  color: #ffffff !important;
+}
+
+.snackbar-error .mdc-snackbar__surface,
+.snackbar-error .mat-snack-bar-container {
+  background-color: #d32f2f !important;
+  color: #ffffff !important;
+}
+.snackbar-error .mdc-snackbar__label,
+.snackbar-error .mat-simple-snackbar {
+  color: #ffffff !important;
+}
+
+.snackbar-info .mdc-snackbar__surface,
+.snackbar-info .mat-snack-bar-container {
+  background-color: #0288d1 !important;
+  color: #ffffff !important;
+}
+.snackbar-info .mdc-snackbar__label,
+.snackbar-info .mat-simple-snackbar {
+  color: #ffffff !important;
+}

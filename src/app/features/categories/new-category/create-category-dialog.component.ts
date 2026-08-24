@@ -3,6 +3,7 @@ import { CategoriesService } from '../categories.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-category-dialog',
@@ -13,6 +14,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 export class CreateCategoryDialogComponent {
   private dialogRef = inject(DialogRef<CreateCategoryDialogComponent>);
   private categoriesService = inject(CategoriesService);
+  private snackBar = inject(MatSnackBar);
 
   name = '';
   selectedColor = '#00BCD4';
@@ -46,10 +48,22 @@ export class CreateCategoryDialogComponent {
 
     this.categoriesService.createCategory(this.name, this.selectedColor).subscribe({
       next: (result) => {
+        this.snackBar.open('Category created successfully', 'X', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'bottom',
+          panelClass: ['snackbar-success'],
+        });
+
         this.dialogRef.close(result);
       },
       error: (err) => {
-        alert('Failed to create category!');
+        this.snackBar.open('Failed to create category!', 'X', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'bottom',
+          panelClass: ['snackbar-error'],
+        });
       },
     });
   }

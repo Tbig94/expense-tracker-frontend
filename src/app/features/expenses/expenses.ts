@@ -9,6 +9,7 @@ import { CsvExportService } from '../../shared/services/csvExport.service';
 import { CreateExpenseDialogComponent } from './new-expense/create-expense-dialog.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { forkJoin } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-expenses',
@@ -23,6 +24,7 @@ export class Expenses implements OnInit {
   private dialog = inject(Dialog);
   private cdr = inject(ChangeDetectorRef);
   private ngZone = inject(NgZone);
+  private snackBar = inject(MatSnackBar);
 
   form = new FormGroup({
     description: new FormControl(''),
@@ -128,7 +130,21 @@ export class Expenses implements OnInit {
   handleDeleteExpense(id: string): void {
     this.expensesService.deleteExpense(id).subscribe({
       next: () => {
+        this.snackBar.open('Expense deleted successfully', 'X', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'bottom',
+          panelClass: ['snackbar-success'],
+        });
         this.loadExpenses();
+      },
+      error: (err) => {
+        this.snackBar.open('Failed to delete expense!', 'X', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'bottom',
+          panelClass: ['snackbar-error'],
+        });
       },
     });
   }

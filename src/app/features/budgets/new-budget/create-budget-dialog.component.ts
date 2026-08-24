@@ -1,13 +1,15 @@
 import { DialogRef } from '@angular/cdk/dialog';
-import { Component, inject, OnInit, output } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BudgetService } from '../budget.service';
 import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../../models/Category.model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-budget-dialog',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './create-budget-dialog.component.html',
   styleUrl: './create-budget-dialog.component.css',
@@ -16,6 +18,7 @@ export class CreateBudgetDialogComponent implements OnInit {
   private dialogRef = inject(DialogRef<CreateBudgetDialogComponent>);
   private budgetsService = inject(BudgetService);
   private categoriesService = inject(CategoriesService);
+  private snackBar = inject(MatSnackBar);
 
   limit = 0;
   categories: Category[] = [];
@@ -32,10 +35,21 @@ export class CreateBudgetDialogComponent implements OnInit {
   create(): void {
     this.budgetsService.createBudget(this.selectedCategory!.id, this.limit).subscribe({
       next: (result) => {
+        this.snackBar.open('Budget created successfully', 'X', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'bottom',
+          panelClass: ['snackbar-success'],
+        });
         this.dialogRef.close();
       },
       error: (err) => {
-        alert('Failed to create budget!');
+        this.snackBar.open('Failed to create budget!', 'X', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'bottom',
+          panelClass: ['snackbar-error'],
+        });
       },
     });
   }

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class Login {
 
   private readonly authService = inject(AuthService);
   private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
   loginResult?: LoginResultDto;
 
@@ -41,13 +43,24 @@ export class Login {
       next: (data) => {
         this.loginResult = data;
         if (this.loginResult?.token !== null) {
+          this.snackBar.open('Logged in successfully', 'X', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+            panelClass: ['snackbar-success'],
+          });
           localStorage.setItem(this.TOKEN_KEY, this.loginResult?.token!);
           localStorage.setItem(this.EMAIL_KEY, this.loginResult?.email!);
           this.router.navigate(['/dashboard']);
         }
       },
       error: (err: any) => {
-        alert('Failed to log in!');
+        this.snackBar.open('Failed to log in!', 'X', {
+          duration: 5000,
+          horizontalPosition: 'end',
+          verticalPosition: 'bottom',
+          panelClass: ['snackbar-error'],
+        });
       },
     });
   }

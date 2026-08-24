@@ -1,5 +1,6 @@
 .signup-form {
-  width: 30%;
+  width: 100%;
+  max-width: 550px;
   height: 400px;
   margin: auto;
   background-color: rgb(25, 25, 25);

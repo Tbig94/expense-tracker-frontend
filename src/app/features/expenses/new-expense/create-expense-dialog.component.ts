@@ -5,9 +5,11 @@ import { FormControl, FormsModule } from '@angular/forms';
 import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../../models/Category.model';
 import { DialogRef } from '@angular/cdk/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-new-expense',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './create-expense-dialog.component.html',
   styleUrl: './create-expense-dialog.component.css',
@@ -16,6 +18,7 @@ export class CreateExpenseDialogComponent implements OnInit {
   private dialogRef = inject(DialogRef<CreateExpenseDialogComponent>);
   private expensesService = inject(ExpensesService);
   private categoriesService = inject(CategoriesService);
+  private snackBar = inject(MatSnackBar);
 
   categoryControl = new FormControl<string | Category>('');
 
@@ -38,10 +41,22 @@ export class CreateExpenseDialogComponent implements OnInit {
       .createExpense(this.selectedCategory!.id, new Date(), this.amount, this.description)
       .subscribe({
         next: (result) => {
+          this.snackBar.open('Expense created successfully', 'X', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+            panelClass: ['snackbar-success'],
+          });
+
           this.dialogRef.close(result);
         },
         error: (err) => {
-          alert('Failed to create expense!.');
+          this.snackBar.open('Failed to create expense!', 'X', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+            panelClass: ['snackbar-error'],
+          });
         },
       });
   }
