@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { jwtDecode } from 'jwt-decode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface JwtPayload {
   exp: number; // Unix timestamp (másodperc)
@@ -19,6 +20,7 @@ export class AuthService {
 
   private http = inject(HttpClient);
   private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
   isLoggedIn = signal<boolean>(!!localStorage.getItem(this.TOKEN_KEY));
   userEmail = signal<string | null>(localStorage.getItem(this.EMAIL_KEY));
@@ -38,6 +40,12 @@ export class AuthService {
   public logout(): void {
     this.clearToken();
     this.isLoggedIn.set(false);
+    this.snackBar.open('Logged out successfully', 'X', {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+      panelClass: ['snackbar-success'],
+    });
     this.router.navigate(['/login']);
   }
 
