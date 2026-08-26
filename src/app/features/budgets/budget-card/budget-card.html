@@ -6,7 +6,9 @@
       <span>{{ budgetItem()?.year }}.{{ budgetItem()?.month }}</span>
     </div>
     <div class="removeButton d-flex">
-      <button class="btn btn-danger" (click)="deleteBudget(budget.id)">X</button>
+      <button mat-mini-fab color="warn" (click)="deleteBudget(budget.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   }
 </div>

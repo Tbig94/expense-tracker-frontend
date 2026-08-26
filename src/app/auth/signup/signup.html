@@ -1,44 +1,61 @@
 <div class="signup-form">
+  <h4>Sign Up</h4>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="d-flex flex-column">
-    <label for="name">Name</label>
-    <input id="name" type="text" formControlName="name" />
-    @if (name?.invalid && (name?.dirty || name?.touched)) {
-      <div class="error-message text-danger">
-        @if (email?.errors?.['required']) {
-          <small>Name is required.</small>
-        }
-      </div>
-    }
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" />
+      @if (name?.invalid && (name?.dirty || name?.touched)) {
+        <div class="error-message text-danger">
+          @if (email?.errors?.['required']) {
+            <small>Name is required.</small>
+          }
+        </div>
+      }
+    </mat-form-field>
 
-    <label for="email">Email</label>
-    <input id="email" type="email" formControlName="email" />
-    @if (email?.invalid && (email?.dirty || email?.touched)) {
-      <div class="error-message text-danger">
-        @if (email?.errors?.['required']) {
-          <small>Email is required.</small>
-        }
-        @if (email?.errors?.['email']) {
-          <small>Invalid email format.</small>
-        }
-      </div>
-    }
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+      @if (email?.invalid && (email?.dirty || email?.touched)) {
+        <div class="error-message text-danger">
+          @if (email?.errors?.['required']) {
+            <small>Email is required.</small>
+          }
+          @if (email?.errors?.['email']) {
+            <small>Invalid email format.</small>
+          }
+        </div>
+      }
+    </mat-form-field>
 
-    <label for="password">Password</label>
-    <input id="password" type="password" formControlName="password" />
-    @if (password?.invalid && (password?.dirty || password?.touched)) {
-      <div class="error-message text-danger">
-        @if (password?.errors?.['required']) {
-          <small>Password is required.</small>
-        }
-        @if (password?.errors?.['minlength']) {
-          <small>Password need to be at least 4 characters.</small>
-        }
-      </div>
-    }
+    <mat-form-field
+      ><mat-label>Password</mat-label>
+      <input matInput [type]="hide() ? 'password' : 'text'" required />
+      <button
+        matIconButton
+        matSuffix
+        (click)="clickEvent($event)"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide()"
+        type="button"
+      >
+        <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      @if (password?.invalid && (password?.dirty || password?.touched)) {
+        <div class="error-message text-danger">
+          @if (password?.errors?.['required']) {
+            <small>Password is required.</small>
+          }
+          @if (password?.errors?.['minlength']) {
+            <small>Password need to be at least 4 characters.</small>
+          }
+        </div>
+      }
+    </mat-form-field>
 
     <div class="bottom d-flex flex-rows">
-      <a routerLink="/login">Sign In</a>
-      <button class="btn btn-primary" type="submit">Ok</button>
+      <a matButton="outlined" routerLink="/login">Sign In</a>
+      <button matButton="filled" id="okButton" type="submit">Ok</button>
     </div>
   </form>
 </div>

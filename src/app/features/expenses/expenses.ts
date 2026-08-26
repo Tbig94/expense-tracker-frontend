@@ -1,4 +1,12 @@
-import { Component, inject, NgZone, ChangeDetectorRef, OnInit } from '@angular/core';
+import {
+  Component,
+  inject,
+  NgZone,
+  ChangeDetectorRef,
+  OnInit,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { Expense } from '../../models/Expense.model';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -10,10 +18,34 @@ import { CreateExpenseDialogComponent } from './new-expense/create-expense-dialo
 import { Dialog } from '@angular/cdk/dialog';
 import { forkJoin } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-expenses',
-  imports: [DatePipe, CurrencyPipe, ReactiveFormsModule, CurrencyPipe],
+  imports: [
+    DatePipe,
+    CurrencyPipe,
+    ReactiveFormsModule,
+    CurrencyPipe,
+    MatButtonModule,
+    MatIcon,
+    MatTableModule,
+    MatLabel,
+    MatFormFieldModule,
+    MatInput,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatPaginatorModule,
+  ],
+  providers: [provideNativeDateAdapter()],
   templateUrl: './expenses.html',
   styleUrl: './expenses.css',
 })
@@ -39,7 +71,13 @@ export class Expenses implements OnInit {
 
   isLoading = false;
   expenses: Expense[] = [];
+  expensesDataSource = new MatTableDataSource<any>([]);
   categories: Category[] = [];
+  selected = signal('');
+
+  displayedColumns: string[] = ['date', 'description', 'category', 'amount', 'action'];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -49,9 +87,16 @@ export class Expenses implements OnInit {
       categories: this.categoriesService.getCategories(),
     }).subscribe({
       next: ({ expenses, categories }) => {
-        // Erőltetjük az Angular Zónán belüli frissítést
         this.ngZone.run(() => {
           this.expenses = [...expenses];
+
+          const rawData = [
+            { id: 1, date: new Date(), description: 'Kávé', categoryName: 'Étel', amount: 800 },
+            // ... többi elem
+          ];
+          this.expensesDataSource.data = expenses;
+          // this.expensesDataSource.data = rawData;
+
           this.categories = [...categories];
           this.isLoading = false;
           this.cdr.markForCheck();
@@ -64,6 +109,10 @@ export class Expenses implements OnInit {
         });
       },
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.expensesDataSource.paginator = this.paginator;
   }
 
   onSubmit(): void {
@@ -82,6 +131,7 @@ export class Expenses implements OnInit {
       next: (data) => {
         this.ngZone.run(() => {
           this.expenses = [...data];
+          this.expensesDataSource.data = data;
           this.isLoading = false;
           this.cdr.markForCheck();
         });
@@ -101,6 +151,7 @@ export class Expenses implements OnInit {
       next: (data) => {
         this.ngZone.run(() => {
           this.expenses = [...data];
+          this.expensesDataSource.data = data;
           this.isLoading = false;
           this.cdr.markForCheck();
         });

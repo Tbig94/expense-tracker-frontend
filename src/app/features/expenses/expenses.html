@@ -1,41 +1,65 @@
 <div class="expensesPage">
-  <div id="expenseFilters" style="margin-bottom: 20px">
+  <div id="expenseFilters">
     <form [formGroup]="form" class="d-flex flex-row">
-      <div class="d-flex flex-column">
-        <label for="description">Description</label>
-        <input id="description" type="text" formControlName="description" />
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          id="description"
+          type="text"
+          placeholder="Description"
+          formControlName="description"
+        />
+      </mat-form-field>
 
-      <div class="d-flex flex-column">
-        <label for="minDate">Date from</label>
-        <input id="minDate" type="date" formControlName="minDate" />
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Date from</mat-label>
+        <input matInput [matDatepicker]="picker1" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
 
-      <div class="d-flex flex-column">
-        <label for="maxDate">Date to</label>
-        <input id="maxDate" type="date" formControlName="maxDate" />
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Date to</mat-label>
+        <input matInput [matDatepicker]="picker2" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
 
-      <div class="d-flex flex-column">
-        <label for="minAmount">Min. amount</label>
-        <input id="minAmount" type="number" formControlName="minAmount" />
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label for="minAmount">Min. Amount</mat-label>
+        <input
+          matInput
+          id="minAmount"
+          type="number"
+          formControlName="minAmount"
+          placeholder="Min. amount"
+          min="0"
+        />
+      </mat-form-field>
 
-      <div class="d-flex flex-column">
-        <label for="maxAmount">Max. amount</label>
-        <input id="maxAmount" type="number" formControlName="maxAmount" />
-      </div>
-      <div class="d-flex flex-column">
-        <label for="categoryName">Category</label>
-        <select id="categoryName" formControlName="categoryName">
-          <option>(choose category...)</option>
+      <mat-form-field appearance="fill">
+        <mat-label for="maxAmount">Max. amount</mat-label>
+        <input
+          matInput
+          id="maxAmount"
+          type="number"
+          formControlName="maxAmount"
+          placeholder="Max. amount"
+          min="0"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label for="categoryName">Category</mat-label>
+        <mat-select formControlName="categoryName" placeholder="Choose a category">
           @for (item of categories; track item.id) {
-            <option>{{ item.name }}</option>
+            <mat-option [value]="item.name">{{ item.name }}</mat-option>
           }
-        </select>
-      </div>
+        </mat-select>
+      </mat-form-field>
+
       <div class="searchButton d-flex">
-        <button class="btn btn-primary" type="submit" (click)="onSubmit()">Search</button>
+        <button matButton="outlined" type="submit" (click)="onSubmit()">Search</button>
       </div>
     </form>
   </div>
@@ -43,42 +67,55 @@
 
   <div class="d-flex" id="expenses">
     <div class="sideButtons">
-      <button class="btn btn-primary" id="newButton" (click)="openCreateDialog()">
-        New expense
-      </button>
+      <button matButton="filled" id="newButton" (click)="openCreateDialog()">New expense</button>
       <br />
       <br />
-      <button class="btn btn-secondary" type="button" (click)="onExport()">Export</button>
+      <button matButton="outlined" type="button" (click)="onExport()">Export</button>
     </div>
-    <table class="table table-dark table-hover">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Description</th>
-          <th>Category</th>
-          <th>Amount</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (element of expenses; track element.id) {
-          <tr>
-            <td>{{ element.date | date: 'yyyy.MM.dd' }}</td>
-            <td>{{ element.description }}</td>
-            <td>{{ element.categoryName }}</td>
-            <td>{{ element.amount | currency: 'Ft' : 'code' : '1.0-0' }}</td>
-            <td>
-              <p>
-                <button class="btn btn-danger" (click)="handleDeleteExpense(element.id)">X</button>
-              </p>
-            </td>
-          </tr>
-        } @empty {
-          <tr>
-            <td colspan="6" style="text-align: center">No data available.</td>
-          </tr>
-        }
-      </tbody>
-    </table>
+    <div id="table">
+      <table mat-table [dataSource]="expensesDataSource" class="mat-shadow-2 expensesTable">
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.date | date: 'yyyy.MM.dd' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>Category</th>
+          <td mat-cell *matCellDef="let element">{{ element.categoryName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.amount | currency: 'Ft' : 'code' : '1.0-0' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-mini-fab="outlined" type="button" (click)="handleDeleteExpense(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        pageSize="10"
+        showFirstLastButtons
+        aria-label="Válassz oldalt"
+      >
+      </mat-paginator>
+    </div>
   </div>
 </div>

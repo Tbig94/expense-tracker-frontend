@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component, inject, input, output } from '@angular/core';
 import { Category } from '../../../models/Category.model';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-category-card',
-  imports: [],
+  imports: [MatButtonModule, MatIcon],
   templateUrl: './category-card.html',
   styleUrl: './category-card.css',
 })

@@ -2,12 +2,8 @@
   <h4>{{ title() }}</h4>
   @if (authService.isLoggedIn()) {
     <div class="header-right d-flex flex-rows">
-      <h4>{{ authService.userEmail() }}</h4>
-      <button type="button" class="btn btn-danger btn-logout" (click)="onLogout()">Sign out</button>
-    </div>
-  } @else {
-    <div class="header-right-simple d-flex flex-rows">
-      <button class="btn btn-primary" type="button" (click)="btnClick()">Log In</button>
+      <h4 id="userEmail">{{ authService.userEmail() }}</h4>
+      <button matButton="outlined" type="button" (click)="onLogout()">Sign out</button>
     </div>
   }
 </header>

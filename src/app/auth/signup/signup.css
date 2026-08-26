@@ -1,26 +1,26 @@
 .signup-form {
   width: 100%;
   max-width: 550px;
-  height: 400px;
+  /* height: 400px; */
   margin: auto;
   background-color: rgb(25, 25, 25);
-  padding: 15px;
+  padding: 25px;
   border-radius: 15px;
 }
 
-button {
+form {
+  margin-top: 20px;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#okButton {
   width: 100px;
-}
-
-label {
-  margin-top: 10px;
-  color: rgb(201, 201, 201);
-}
-
-input {
-  margin-bottom: 10px;
-  background-color: rgb(66, 66, 66);
-  color: white;
+  font-size: 18px;
 }
 
 .bottom {

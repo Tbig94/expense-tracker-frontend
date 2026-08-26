@@ -5,12 +5,13 @@ import { CreateCategoryDialogComponent } from './new-category/create-category-di
 import { CategoryCard } from './category-card/category-card';
 import { Dialog } from '@angular/cdk/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.html',
   styleUrl: './categories.css',
-  imports: [CategoryCard],
+  imports: [CategoryCard, MatButton],
 })
 export class Categories implements OnInit {
   private readonly categoriesService = inject(CategoriesService);

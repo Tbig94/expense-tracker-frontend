@@ -6,11 +6,12 @@ import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../../models/Category.model';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-new-expense',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, MatButton],
   templateUrl: './create-expense-dialog.component.html',
   styleUrl: './create-expense-dialog.component.css',
 })

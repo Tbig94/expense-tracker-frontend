@@ -1,0 +1,17 @@
+#large-cards {
+  margin-top: 30px;
+  justify-content: space-between;
+}
+
+#budget-status-card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #2b2a2a;
+}
+
+.yearlyChart-container {
+  width: 75%;
+  height: 500px;
+  margin: auto;
+}

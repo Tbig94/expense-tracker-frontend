@@ -18,3 +18,7 @@ header {
   width: 250px;
   justify-content: right;
 }
+
+#userEmail {
+  font-style: italic;
+}

@@ -1,0 +1,18 @@
+<div id="small-cards" class="d-flex flex-rows">
+  <div id="dashboard-small-card">
+    <h6>Total this year</h6>
+    <h3>{{ this.yearlyStats()?.totalThisYear! | currency: 'Ft' : 'code' : '1.0-0' }}</h3>
+  </div>
+  <div id="dashboard-small-card">
+    <h6>Monthly average</h6>
+    <h3>{{ this.yearlyStats()?.monthlyAverage! | currency: 'Ft' : 'code' : '1.0-0' }}</h3>
+  </div>
+  <div id="dashboard-small-card">
+    <h6>Peak month</h6>
+    <h3>{{ this.yearlyStats()?.peakMonth?.month! }}</h3>
+  </div>
+  <div id="dashboard-small-card">
+    <h6>Quietest month</h6>
+    <h3>{{ this.yearlyStats()?.quietestMonth?.month! }}</h3>
+  </div>
+</div>

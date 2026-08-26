@@ -7,10 +7,11 @@ import { CategoriesService } from '../categories/categories.service';
 import { Category } from '../../models/Category.model';
 import { CreateBudgetDialogComponent } from './new-budget/create-budget-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-budgets',
-  imports: [BudgetCard],
+  imports: [BudgetCard, MatButton],
   templateUrl: './budgets.html',
   styleUrl: './budgets.css',
 })

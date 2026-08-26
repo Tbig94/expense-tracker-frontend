@@ -6,8 +6,8 @@
     </div>
     <div class="card-right">
       @if (!isSystemCategory()) {
-        <button id="deleteButton" class="btn btn-danger" (click)="deleteCategory(category.id)">
-          X
+        <button mat-mini-fab color="warn" id="deleteButton" (click)="deleteCategory(category.id)">
+          <mat-icon>delete</mat-icon>
         </button>
       }
     </div>

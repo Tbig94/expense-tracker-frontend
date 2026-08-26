@@ -1,0 +1,22 @@
+<div class="searchBar">
+  <h5>Monthly statistics</h5>
+  <div>
+    <form [formGroup]="form" class="d-flex flex-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Month</mat-label>
+        <mat-select formControlName="month" placeholder="Choose a month">
+          @for (item of months; track item) {
+            <mat-option [value]="selected()">{{ item }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <div class="searchButton d-flex">
+        <button matButton="filled" type="submit">Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="largeCards">
+  <app-monthly-large-cards></app-monthly-large-cards>
+</div>
