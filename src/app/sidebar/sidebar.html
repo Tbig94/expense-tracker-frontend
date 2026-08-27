@@ -15,7 +15,9 @@
       }
       <button class="toggle-btn" [class.ms-auto]="!isCollapsed" (click)="toggle()">
         <span class="material-icons">
-          @if (isCollapsed) { menu } @else { menu_open }
+          @if {
+            (isCollapsed) { menu } @else { menu_open }
+          }
         </span>
       </button>
     </div>
