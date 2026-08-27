@@ -11,6 +11,15 @@
   width: 64px;
 }
 
+/* Label-ek elrejtése CSS-sel, nem @if-fel */
+#sidebar.collapsed .nav-label {
+  display: none;
+}
+
+#sidebar.collapsed .navbar-brand {
+  display: none;
+}
+
 .sidebar-header {
   min-height: 60px;
   gap: 8px;
@@ -46,7 +55,6 @@
   font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 .navbar-item .nav-link {
@@ -95,12 +103,21 @@
 .dot5 { background-color: #f44336; }
 .dot6 { background-color: #ffeb3b; }
 
-/* ---- Mobile ---- */
-.mobile-toggle {
+/* Backdrop */
+.sidebar-backdrop {
   display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
-.sidebar-backdrop {
+.sidebar-backdrop.active {
+  display: block;
+}
+
+/* Floating gomb mobilon */
+.mobile-toggle {
   display: none;
 }
 
@@ -119,20 +136,12 @@
     width: 240px;
   }
 
-  .sidebar-backdrop {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-  }
-
   .mobile-toggle {
     display: none;
     position: fixed;
     top: 12px;
     left: 12px;
-    z-index: 998;
+    z-index: 1001;
     background-color: rgb(49, 49, 49);
     border: none;
     color: rgb(201, 201, 201);
