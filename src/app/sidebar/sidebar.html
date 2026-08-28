@@ -1,61 +1,49 @@
 @if (authService.isLoggedIn()) {
-  <button class="mobile-toggle" [class.visible]="isCollapsed" (click)="toggle()">
-    <span class="material-icons">menu</span>
-  </button>
-
-  <div class="sidebar-backdrop" [class.active]="!isCollapsed" (click)="toggle()"></div>
-
-  <nav id="sidebar" [class.collapsed]="isCollapsed" class="d-flex flex-column flex-shrink-0">
-
-    <div class="sidebar-header d-flex align-items-center p-3">
-      <a class="navbar-brand nav-label" routerLink="/dashboard">Expense Tracker</a>
-      <button class="toggle-btn ms-auto" (click)="toggle()">
-        <span class="material-icons">{{ isCollapsed ? 'menu' : 'menu_open' }}</span>
-      </button>
-    </div>
-
-    <hr class="sidebar-divider" />
-
-    <ul class="nav nav-pills flex-column mb-auto px-2">
+  <nav id="sidebar" class="d-flex flex-column flex-shrink-0 p-3">
+    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
+      <a class="navbar-brand" routerLink="/dashboard">Expense Tracker</a>
+    </a>
+    <hr style="border-color: rgba(255, 255, 255, 0.15)" />
+    <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item navbar-item mb-2">
-        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }" [title]="isCollapsed ? 'Dashboard' : ''">
-          <span class="navbar-dot dot1"></span>
-          <span class="nav-label">Dashboard</span>
+        <a
+          class="nav-link"
+          routerLink="/dashboard"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <p><span class="navbar-dot dot1"></span>Dashboard</p>
         </a>
       </li>
       <li class="nav-item navbar-item mb-2">
         <a class="nav-link" routerLink="/expenses" routerLinkActive="active"
-          [title]="isCollapsed ? 'Expenses' : ''">
-          <span class="navbar-dot dot2"></span>
-          <span class="nav-label">Expenses</span>
-        </a>
+          ><p><span class="navbar-dot dot2"></span>Expenses</p></a
+        >
       </li>
+
       <li class="nav-item navbar-item mb-2">
         <a class="nav-link" routerLink="/categories" routerLinkActive="active"
-          [title]="isCollapsed ? 'Categories' : ''">
-          <span class="navbar-dot dot3"></span>
-          <span class="nav-label">Categories</span>
-        </a>
+          ><p><span class="navbar-dot dot3"></span>Categories</p></a
+        >
       </li>
       <li class="nav-item navbar-item mb-2">
         <a class="nav-link" routerLink="/budgets" routerLinkActive="active"
-          [title]="isCollapsed ? 'Budgets' : ''">
-          <span class="navbar-dot dot4"></span>
-          <span class="nav-label">Budgets</span>
-        </a>
+          ><p><span class="navbar-dot dot4"></span>Budgets</p></a
+        >
       </li>
+      <!-- <li class="nav-item navbar-item mb-2">
+        <a class="nav-link" routerLink="/statistics" routerLinkActive="active"
+          ><p><span class="navbar-dot dot5"></span>Statistics</p></a
+        >
+      </li> -->
     </ul>
 
-    <ul class="nav nav-pills flex-column mb-0 px-2">
+    <ul class="nav nav-pills flex-column mb-0">
       <li class="nav-item navbar-item mb-2">
         <a class="nav-link" routerLink="/account" routerLinkActive="active"
-          [title]="isCollapsed ? 'Account' : ''">
-          <span class="navbar-dot dot6"></span>
-          <span class="nav-label">Account</span>
-        </a>
+          ><p><span class="navbar-dot dot6"></span>Account</p></a
+        >
       </li>
     </ul>
-
   </nav>
 }

@@ -10,9 +10,4 @@ import { AuthService } from '../auth/services/auth.service';
 })
 export class Sidebar {
   authService = inject(AuthService);
-  isCollapsed = false;
-
-  toggle(): void {
-    this.isCollapsed = !this.isCollapsed;
-  }
 }
