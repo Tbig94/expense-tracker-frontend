@@ -1,5 +1,6 @@
 #large-cards {
   margin-top: 30px;
+  min-width: 330px;
   justify-content: space-between;
 }
 

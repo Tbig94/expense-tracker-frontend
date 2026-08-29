@@ -1,11 +1,13 @@
 #small-cards {
   margin-top: 30px;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 #dashboard-small-card {
   height: 100px;
   width: 18%;
+  min-width: 220px;
   border-radius: 15px;
   background-color: #2b2a2a;
   padding: 20px;
