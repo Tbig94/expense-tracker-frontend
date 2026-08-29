@@ -27,8 +27,8 @@ export class AuthService {
 
   public login(email: string, password: string): Observable<any> {
     return this.http.post(`${environment.apiUrl}/Auth/Login`, { email, password }).pipe(
-      tap(() => {
-        this.isLoggedIn.set(true);
+      tap({
+        next: () => this.isLoggedIn.set(true), // Csak sikeres kérés esetén fut le!
       }),
     );
   }

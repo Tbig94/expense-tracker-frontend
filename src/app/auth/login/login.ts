@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatButtonModule,
     RouterLink,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -28,6 +30,10 @@ export class Login {
   private readonly authService = inject(AuthService);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
+  private cdr = inject(ChangeDetectorRef);
+
+  hide = signal(true);
+  isLoading = signal(false);
 
   loginResult?: LoginResultDto;
 
@@ -50,6 +56,8 @@ export class Login {
       return;
     }
 
+    this.isLoading.set(true);
+
     this.authService.login(this.email?.value!, this.password?.value!).subscribe({
       next: (data) => {
         this.loginResult = data;
@@ -64,8 +72,10 @@ export class Login {
           localStorage.setItem(this.EMAIL_KEY, this.loginResult?.email!);
           this.router.navigate(['/dashboard']);
         }
+        this.isLoading.set(false);
       },
       error: (err: any) => {
+        this.isLoading.set(false);
         this.snackBar.open('Failed to log in!', 'X', {
           duration: 5000,
           horizontalPosition: 'end',
@@ -76,7 +86,6 @@ export class Login {
     });
   }
 
-  hide = signal(true);
   clickEvent(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();

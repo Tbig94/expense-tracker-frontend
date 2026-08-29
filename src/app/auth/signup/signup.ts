@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-signup',
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
@@ -25,6 +27,9 @@ export class Signup {
   private readonly authService = inject(AuthService);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
+  private cdr = inject(ChangeDetectorRef);
+
+  isLoading = signal(false);
 
   loginResult?: LoginResultDto;
 
@@ -52,6 +57,8 @@ export class Signup {
       return;
     }
 
+    this.isLoading.set(true);
+
     this.authService
       .register(
         this.signupForm.value.name!,
@@ -67,8 +74,10 @@ export class Signup {
             panelClass: ['snackbar-success'],
           });
           this.router.navigate(['/login']);
+          this.isLoading.set(false);
         },
         error: (err) => {
+          this.isLoading.set(false);
           this.snackBar.open('Failed to sign up!', 'X', {
             duration: 5000,
             horizontalPosition: 'end',

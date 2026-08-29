@@ -43,5 +43,8 @@
       <a matButton="outlined" routerLink="/signup">Register</a>
       <button matButton="filled" id="okButton" type="submit">Ok</button>
     </div>
+    @if (isLoading()) {
+      <mat-spinner diameter="75"></mat-spinner>
+    }
   </form>
 </div>
