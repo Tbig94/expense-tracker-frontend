@@ -1,6 +1,7 @@
 #sidebar {
   background-color: rgb(49, 49, 49);
-  width: 280px;
+  min-width: 240px;
+  width: 14%;
   height: 100vh;
   flex-shrink: 0;
 }
