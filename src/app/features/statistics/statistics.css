@@ -3,3 +3,9 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
+.statistics-page {
+  height: 90%;
+  max-width: 2000px;
+  margin: auto;
+}
