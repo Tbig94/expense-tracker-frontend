@@ -13,6 +13,6 @@
 
 .yearlyChart-container {
   width: 75%;
-  height: 500px;
+  max-height: 450px;
   margin: auto;
 }
