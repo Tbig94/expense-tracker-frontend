@@ -8,10 +8,11 @@ import { Category } from '../../models/Category.model';
 import { CreateBudgetDialogComponent } from './new-budget/create-budget-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-budgets',
-  imports: [BudgetCard, MatButton],
+  imports: [BudgetCard, MatButton, MatIcon],
   templateUrl: './budgets.html',
   styleUrl: './budgets.css',
 })

@@ -59,7 +59,9 @@
       </mat-form-field>
 
       <div class="searchButton d-flex">
-        <button matButton="outlined" type="submit" (click)="onSubmit()">Search</button>
+        <button matButton="outlined" type="submit" (click)="onSubmit()">
+          <mat-icon>search</mat-icon>Search
+        </button>
       </div>
     </form>
   </div>
@@ -67,7 +69,9 @@
 
   <div class="d-flex" id="expenses">
     <div class="sideButtons">
-      <button matButton="filled" id="newButton" (click)="openCreateDialog()">New expense</button>
+      <button matButton="filled" id="newButton" (click)="openCreateDialog()">
+        <mat-icon>add</mat-icon>New expense
+      </button>
       <br />
       <br />
       <button matButton="outlined" type="button" (click)="onExport()">Export</button>

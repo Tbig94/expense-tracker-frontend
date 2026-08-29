@@ -6,7 +6,9 @@
 
     <div class="d-flex flex-columns" id="budgetsTopRight">
       <p>
-        <button matButton="filled" id="newButton" (click)="openCreateDialog()">New budget</button>
+        <button matButton="filled" id="newButton" (click)="openCreateDialog()">
+          <mat-icon>add</mat-icon>New budget
+        </button>
       </p>
     </div>
   </div>
@@ -21,7 +23,5 @@
         ></app-budget-card>
       }
     </div>
-  } @else {
-    <p>No data available.</p>
   }
 </div>

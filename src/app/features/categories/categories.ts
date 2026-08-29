@@ -6,12 +6,13 @@ import { CategoryCard } from './category-card/category-card';
 import { Dialog } from '@angular/cdk/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.html',
   styleUrl: './categories.css',
-  imports: [CategoryCard, MatButton],
+  imports: [CategoryCard, MatButton, MatIcon],
 })
 export class Categories implements OnInit {
   private readonly categoriesService = inject(CategoriesService);

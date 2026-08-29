@@ -4,10 +4,11 @@ import { filter, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AuthService } from '../../../auth/services/auth.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-header',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, MatIcon],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
