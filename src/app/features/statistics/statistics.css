@@ -1,11 +1,13 @@
-#buttons {
-  width: 15%;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
 .statistics-page {
   height: 90%;
   max-width: 2000px;
   margin: auto;
+  background-color: rgb(25, 25, 25);
+  padding: 25px;
+}
+
+#buttons {
+  width: 15%;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
