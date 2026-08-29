@@ -58,6 +58,7 @@ export class Signup {
     }
 
     this.isLoading.set(true);
+    this.signupForm.disable();
 
     this.authService
       .register(
@@ -75,15 +76,17 @@ export class Signup {
           });
           this.router.navigate(['/login']);
           this.isLoading.set(false);
+          this.signupForm.enable();
         },
         error: (err) => {
-          this.isLoading.set(false);
           this.snackBar.open('Failed to sign up!', 'X', {
             duration: 5000,
             horizontalPosition: 'end',
             verticalPosition: 'bottom',
             panelClass: ['snackbar-error'],
           });
+          this.isLoading.set(false);
+          this.signupForm.enable();
         },
       });
   }

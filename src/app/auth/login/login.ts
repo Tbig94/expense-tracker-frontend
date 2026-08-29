@@ -57,6 +57,7 @@ export class Login {
     }
 
     this.isLoading.set(true);
+    this.loginForm.disable();
 
     this.authService.login(this.email?.value!, this.password?.value!).subscribe({
       next: (data) => {
@@ -72,16 +73,18 @@ export class Login {
           localStorage.setItem(this.EMAIL_KEY, this.loginResult?.email!);
           this.router.navigate(['/dashboard']);
         }
+        this.loginForm.enable();
         this.isLoading.set(false);
       },
       error: (err: any) => {
-        this.isLoading.set(false);
         this.snackBar.open('Failed to log in!', 'X', {
           duration: 5000,
           horizontalPosition: 'end',
           verticalPosition: 'bottom',
           panelClass: ['snackbar-error'],
         });
+        this.isLoading.set(false);
+        this.loginForm.enable();
       },
     });
   }

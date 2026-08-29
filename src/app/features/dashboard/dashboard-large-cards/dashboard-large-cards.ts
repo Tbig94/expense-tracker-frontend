@@ -185,7 +185,7 @@ export class DashboardLargeCards implements OnInit {
         labels: this.dashboardData()?.categoryBreakdowns.map((b) => b.categoryName),
         datasets: [
           {
-            label: 'Kategóriák',
+            label: 'Categories',
             data: this.dashboardData()?.categoryBreakdowns.map((b) => b.amount),
             backgroundColor: this.dashboardData()?.categoryBreakdowns.map((b) => b.categoryColor),
             borderRadius: 0,

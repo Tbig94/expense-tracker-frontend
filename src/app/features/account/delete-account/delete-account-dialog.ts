@@ -3,10 +3,11 @@ import { Component, inject } from '@angular/core';
 import { CreateBudgetDialogComponent } from '../../budgets/new-budget/create-budget-dialog.component';
 import { AuthService } from '../../../auth/services/auth.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-delete-account-dialog',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, MatIcon],
   templateUrl: './delete-account-dialog.html',
   styleUrl: './delete-account-dialog.css',
 })

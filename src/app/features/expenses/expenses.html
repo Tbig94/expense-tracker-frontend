@@ -1,6 +1,6 @@
 <div class="expensesPage">
   <div id="expenseFilters">
-    <form [formGroup]="form" class="d-flex flex-row">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-row">
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
         <input
@@ -14,14 +14,14 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Date from</mat-label>
-        <input matInput [matDatepicker]="picker1" />
+        <input matInput [matDatepicker]="picker1" formControlName="minDate" />
         <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Date to</mat-label>
-        <input matInput [matDatepicker]="picker2" />
+        <input matInput [matDatepicker]="picker2" formControlName="maxDate" />
         <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
@@ -59,9 +59,7 @@
       </mat-form-field>
 
       <div class="searchButton d-flex">
-        <button matButton="outlined" type="submit" (click)="onSubmit()">
-          <mat-icon>search</mat-icon>Search
-        </button>
+        <button matButton="outlined"><mat-icon>search</mat-icon>Search</button>
       </div>
     </form>
   </div>
@@ -74,7 +72,9 @@
       </button>
       <br />
       <br />
-      <button matButton="outlined" type="button" (click)="onExport()">Export</button>
+      <button matButton="outlined" type="button" (click)="onExport()">
+        <mat-icon>file_download</mat-icon>Export
+      </button>
     </div>
     <div id="table">
       <table mat-table [dataSource]="expensesDataSource" class="mat-shadow-2 expensesTable">
@@ -117,7 +117,7 @@
         [pageSizeOptions]="[5, 10, 25, 100]"
         pageSize="10"
         showFirstLastButtons
-        aria-label="Válassz oldalt"
+        aria-label="Choose page"
       >
       </mat-paginator>
     </div>

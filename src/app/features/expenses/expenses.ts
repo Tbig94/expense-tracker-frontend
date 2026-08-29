@@ -60,8 +60,8 @@ export class Expenses implements OnInit {
 
   form = new FormGroup({
     description: new FormControl(''),
-    minDate: new FormControl('2026-01-01'),
-    maxDate: new FormControl('2026-12-31'),
+    minDate: new FormControl(''),
+    maxDate: new FormControl(''),
     minAmount: new FormControl(''),
     maxAmount: new FormControl(''),
     categoryName: new FormControl(''),
@@ -89,14 +89,7 @@ export class Expenses implements OnInit {
       next: ({ expenses, categories }) => {
         this.ngZone.run(() => {
           this.expenses = [...expenses];
-
-          const rawData = [
-            { id: 1, date: new Date(), description: 'Kávé', categoryName: 'Étel', amount: 800 },
-            // ... többi elem
-          ];
           this.expensesDataSource.data = expenses;
-          // this.expensesDataSource.data = rawData;
-
           this.categories = [...categories];
           this.isLoading = false;
           this.cdr.markForCheck();
@@ -209,7 +202,7 @@ export class Expenses implements OnInit {
       next: (data: ArrayBuffer) => {
         this.csvExportService.exportCsvFromByteArray(
           data,
-          `Kiadások - ${now.getFullYear()}-${now.getMonth() + 1}`,
+          `Expenses - ${now.getFullYear()}-${now.getMonth() + 1}`,
         );
       },
     });

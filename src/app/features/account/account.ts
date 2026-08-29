@@ -4,10 +4,11 @@ import { AccountDto } from '../../auth/login/login';
 import { Dialog } from '@angular/cdk/dialog';
 import { DeleteAccountDialog } from './delete-account/delete-account-dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-account',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, MatIcon],
   templateUrl: './account.html',
   styleUrl: './account.css',
 })
