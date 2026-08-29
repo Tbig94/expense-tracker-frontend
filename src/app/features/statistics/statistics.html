@@ -1,13 +1,12 @@
 <div class="statisticsPage">
   <div class="monthlyStats">
-    <div class="d-flex flex-row" id="buttons">
-      <button matButton="filled" type="button" (click)="switch('monthly')">Monthly</button>
-      <button matButton="filled" type="button" (click)="switch('yearly')">Yearly</button>
-    </div>
-    @if (isMonthly()) {
-      <app-monthly-statistics></app-monthly-statistics>
-    } @else {
-      <app-yearly-statistics></app-yearly-statistics>
-    }
+    <mat-tab-group mat-stretch-tabs="" mat-align-tabs="center" id="tab-group">
+      <mat-tab label="Monthly">
+        <app-monthly-statistics></app-monthly-statistics>
+      </mat-tab>
+      <mat-tab label="Yearly">
+        <app-yearly-statistics></app-yearly-statistics>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>
