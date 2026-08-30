@@ -11,6 +11,25 @@ app-root {
   height: auto;
 }
 
+.content-page {
+  min-height: 90%;
+  max-width: 2000px;
+  margin: auto;
+  background-color: rgb(25, 25, 25);
+  padding: 25px;
+}
+
+.dialog-window {
+  background-color: rgb(31, 30, 30);
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgb(70, 70, 70);
+  border-width: 2px;
+  min-height: 350px;
+  padding: 20px;
+  align-items: center;
+}
+
 .category-dot {
   display: inline-block;
   width: 10px;

@@ -20,8 +20,6 @@ export class Account implements OnInit {
   account: AccountDto | null | undefined;
 
   ngOnInit(): void {
-    console.log(`ngoninit`);
-
     this.authService.getAccountInfo().subscribe({
       next: (data) => {
         this.account = data;
@@ -32,7 +30,7 @@ export class Account implements OnInit {
 
   openDeleteDialog() {
     const dialogRef = this.dialog.open(DeleteAccountDialog, {
-      width: '600px',
+      width: '750px',
       panelClass: 'custom-dialog',
       backdropClass: 'my-dark-backdrop',
     });

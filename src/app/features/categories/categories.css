@@ -1,11 +1,3 @@
-.categoriesPage {
-  height: 90%;
-  max-width: 2000px;
-  margin: auto;
-  background: rgb(25, 25, 25);
-  padding: 25px;
-}
-
 #systemCategories,
 #userCategories {
   width: 100%;

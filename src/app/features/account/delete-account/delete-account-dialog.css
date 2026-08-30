@@ -1,17 +1,5 @@
-.dialog-window {
-  background-color: rgb(31, 30, 30);
-  border-style: solid;
-  border-radius: 10px;
-  border-color: rgb(70, 70, 70);
-  border-width: 2px;
-  min-height: 300px;
-  width: 80%;
-  padding: 20px;
-  align-items: center;
-}
-
 .dialog-header {
-  width: 65;
+  width: 65%;
   margin: auto;
 }
 
@@ -19,9 +7,6 @@
   width: 65%;
   margin: auto;
   padding: 10px;
-  border-style: solid;
-  border-color: rgb(100, 100, 100);
-  border-width: 2px;
 }
 
 .dialog-footer {
