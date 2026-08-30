@@ -8,7 +8,7 @@ import { throwError, timer } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 const MAX_RETRIES = 3;
-const RETRY_DELAY_MS = 20000;
+const RETRY_DELAY_MS = 15000;
 
 // Ezeket a státuszkódokat NEM próbálja újra (kliens oldali hibák)
 const NON_RETRYABLE_STATUS_CODES = [400, 401, 403, 404, 422];
