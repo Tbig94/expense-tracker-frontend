@@ -22,7 +22,7 @@ export class AuthService {
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
 
-  isLoggedIn = signal<boolean>(!!localStorage.getItem(this.TOKEN_KEY));
+  isLoggedIn = signal<boolean>(this.isTokenValid());
   userEmail = signal<string | null>(localStorage.getItem(this.EMAIL_KEY));
 
   public login(email: string, password: string): Observable<any> {
