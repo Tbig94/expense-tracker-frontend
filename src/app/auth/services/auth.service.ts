@@ -72,11 +72,15 @@ export class AuthService {
   }
 
   setToken(token: string, email: string): void {
+    this.isLoggedIn.set(true);
+    this.userEmail.set(email);
     localStorage.setItem(this.TOKEN_KEY, token);
     localStorage.setItem(this.EMAIL_KEY, email);
   }
 
   clearToken(): void {
+    this.isLoggedIn.set(false);
+    this.userEmail.set(null);
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.EMAIL_KEY);
   }
