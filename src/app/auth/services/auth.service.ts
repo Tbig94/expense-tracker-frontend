@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, timeout } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { jwtDecode } from 'jwt-decode';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -26,15 +26,21 @@ export class AuthService {
   userEmail = signal<string | null>(localStorage.getItem(this.EMAIL_KEY));
 
   public login(email: string, password: string): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/Auth/Login`, { email, password }).pipe(
-      tap({
-        next: () => this.isLoggedIn.set(true), // Csak sikeres kérés esetén fut le!
-      }),
-    );
+    return this.http
+      .post(`${environment.apiUrl}/Auth/Login`, { email, password }, { timeout: 90000 })
+      .pipe(
+        tap({
+          next: () => this.isLoggedIn.set(true), // Csak sikeres kérés esetén fut le!
+        }),
+      );
   }
 
   public register(name: string, email: string, password: string): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/Auth/Register`, { name, email, password });
+    return this.http.post(
+      `${environment.apiUrl}/Auth/Register`,
+      { name, email, password },
+      { timeout: 90000 },
+    );
   }
 
   public logout(): void {
