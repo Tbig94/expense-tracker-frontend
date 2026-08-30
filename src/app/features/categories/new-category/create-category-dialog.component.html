@@ -4,31 +4,49 @@
   </div>
   <br />
   <div class="dialog-content">
-    <div class="form-field full-width d-flex flex-column">
-      <label for="name">Category name</label>
-      <input id="name" type="text" [(ngModel)]="name" placeholder="e.g. Sport" />
-    </div>
-    <br />
-    <label>Color picker</label>
-    <div class="color-picker">
-      @for (color of colors; track color) {
-        <button
-          type="button"
-          class="color-btn"
-          [style.background-color]="color"
-          [class.selected]="selectedColor === color"
-          (click)="selectedColor = color"
-        ></button>
-      }
-    </div>
-    <br />
-    <div class="form-field full-width d-flex flex-column" id="colorPicker">
-      <label for="customColor">Or use unique hex code</label>
-      <input id="customColor" type="text" [(ngModel)]="selectedColor" placeholder="#00BCD4" />
-    </div>
-  </div>
-  <div class="dialog-footer d-flex">
-    <button matButton="outlined" (click)="cancel()">Cancel</button>
-    <button matButton="filled" (click)="create()">Ok</button>
+    <form [formGroup]="createCategoryForm" (ngSubmit)="create()" class="d-flex flex-column">
+      <mat-form-field appearance="fill">
+        <mat-label>Category name</mat-label>
+        <input
+          matInput
+          id="categoryName"
+          type="text"
+          placeholder="Name of category"
+          formControlName="categoryName"
+          minlength="3"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Color picker</mat-label>
+        <div class="color-picker">
+          @for (color of colors; track color) {
+            <button
+              type="button"
+              class="color-btn"
+              [style.background-color]="color"
+              [class.selected]="selectedColor === color"
+              (click)="selectedColor = color"
+            ></button>
+          }
+        </div>
+        <div class="form-field full-width d-flex flex-column" id="colorPicker">
+          <mat-label>Or use unique hex code</mat-label>
+          <input
+            matInput
+            id="customColor"
+            type="text"
+            [(ngModel)]="selectedColor"
+            placeholder="#00BCD4"
+            formControlName="categoryColor"
+          />
+        </div>
+      </mat-form-field>
+
+      <div class="dialog-footer d-flex">
+        <button matButton="outlined" type="button" (click)="cancel()">Cancel</button>
+        <button matButton="filled">Ok</button>
+      </div>
+    </form>
   </div>
 </div>

@@ -1,14 +1,31 @@
 import { Component, inject } from '@angular/core';
 import { CategoriesService } from '../categories.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+MatButton;
 
 @Component({
   selector: 'app-create-category-dialog',
-  imports: [CommonModule, FormsModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatInput,
+    MatFormFieldModule,
+    MatLabel,
+    ReactiveFormsModule,
+  ],
   templateUrl: './create-category-dialog.component.html',
   styleUrl: './create-category-dialog.component.css',
 })
@@ -16,6 +33,11 @@ export class CreateCategoryDialogComponent {
   private dialogRef = inject(DialogRef<CreateCategoryDialogComponent>);
   private categoriesService = inject(CategoriesService);
   private snackBar = inject(MatSnackBar);
+
+  createCategoryForm = new FormGroup({
+    categoryName: new FormControl<string>('', [Validators.required]),
+    categoryColor: new FormControl<string>('', [Validators.required]),
+  });
 
   name = '';
   selectedColor = '#00BCD4';
@@ -42,31 +64,30 @@ export class CreateCategoryDialogComponent {
   ];
 
   create(): void {
-    if (!this.name.trim()) {
-      alert('Category name is mandatory!');
-      return;
-    }
+    const formValue = this.createCategoryForm.value;
 
-    this.categoriesService.createCategory(this.name, this.selectedColor).subscribe({
-      next: (result) => {
-        this.snackBar.open('Category created successfully', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-success'],
-        });
+    this.categoriesService
+      .createCategory(formValue.categoryName!, formValue.categoryColor!)
+      .subscribe({
+        next: (result) => {
+          this.snackBar.open('Category created successfully', 'X', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+            panelClass: ['snackbar-success'],
+          });
 
-        this.dialogRef.close(result);
-      },
-      error: (err) => {
-        this.snackBar.open('Failed to create category!', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-error'],
-        });
-      },
-    });
+          this.dialogRef.close(result);
+        },
+        error: (err) => {
+          this.snackBar.open('Failed to create category!', 'X', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'bottom',
+            panelClass: ['snackbar-error'],
+          });
+        },
+      });
   }
 
   cancel(): void {

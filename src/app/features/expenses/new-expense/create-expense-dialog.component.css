@@ -4,39 +4,22 @@
   border-radius: 10px;
   border-color: rgb(70, 70, 70);
   border-width: 2px;
-  min-height: 300px;
-  width: 80%;
+  min-height: 350px;
   padding: 20px;
   align-items: center;
 }
 
 .dialog-header {
   margin: auto;
-  width: 40%;
+  width: 50%;
 }
 
 .dialog-content {
-  width: 40%;
+  width: 50%;
   margin: auto;
-  padding: 10px;
-  border-style: solid;
-  border-color: rgb(100, 100, 100);
-  border-width: 2px;
 }
 
 .dialog-footer {
-  margin: auto;
-  margin-top: 40px;
-  width: 40%;
+  margin-top: 20px;
   justify-content: space-between;
-}
-
-label {
-  color: rgb(201, 201, 201);
-}
-
-input,
-select {
-  background-color: rgb(66, 66, 66);
-  color: white;
 }

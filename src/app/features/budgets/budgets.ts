@@ -45,7 +45,8 @@ export class Budgets implements OnInit {
 
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(CreateBudgetDialogComponent, {
-      width: '900px',
+      width: '750px',
+      height: '600px',
       panelClass: 'custom-dialog',
       backdropClass: 'my-dark-backdrop',
     });

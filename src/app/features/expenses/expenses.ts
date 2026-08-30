@@ -160,7 +160,7 @@ export class Expenses implements OnInit {
 
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(CreateExpenseDialogComponent, {
-      width: '900px',
+      width: '750px',
       height: '600px',
       panelClass: 'custom-dialog',
       backdropClass: 'my-dark-backdrop',

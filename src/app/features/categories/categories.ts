@@ -38,7 +38,8 @@ export class Categories implements OnInit {
 
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(CreateCategoryDialogComponent, {
-      width: '600px',
+      width: '750px',
+      height: '600px',
       panelClass: 'custom-dialog',
       backdropClass: 'my-dark-backdrop',
     });

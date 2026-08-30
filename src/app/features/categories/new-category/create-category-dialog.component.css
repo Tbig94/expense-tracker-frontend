@@ -5,35 +5,23 @@
   border-color: rgb(100, 100, 100);
   border-width: 2px;
   min-height: 300px;
-  width: 80%;
   padding: 20px;
   align-items: center;
 }
 
 .dialog-header {
+  width: 40%;
   margin: auto;
-  width: 70%;
-  justify-content: center;
 }
 
 .dialog-content {
-  width: 70%;
+  width: 40%;
   margin: auto;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
   gap: 16px;
-  padding: 10px;
-  border-style: solid;
-  border-color: rgb(100, 100, 100);
-  border-width: 2px;
 }
 
 .dialog-footer {
-  margin: auto;
-  margin-top: 40px;
-  width: 70%;
-  gap: 8px;
+  margin-top: 20px;
   justify-content: space-between;
 }
 
@@ -64,14 +52,4 @@
 .color-btn.selected {
   border-color: #4d8fc9;
   box-shadow: 0 0 8px rgba(77, 143, 201, 0.5);
-}
-
-label {
-  color: rgb(201, 201, 201);
-}
-
-input,
-select {
-  background-color: rgb(66, 66, 66);
-  color: white;
 }

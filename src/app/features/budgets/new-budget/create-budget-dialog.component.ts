@@ -4,14 +4,30 @@ import { BudgetService } from '../budget.service';
 import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../../models/Category.model';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
+import { MatInput, MatLabel } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-create-budget-dialog',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatButton],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButton,
+    MatInput,
+    MatLabel,
+    MatSelectModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './create-budget-dialog.component.html',
   styleUrl: './create-budget-dialog.component.css',
 })
@@ -25,6 +41,11 @@ export class CreateBudgetDialogComponent implements OnInit {
   categories: Category[] = [];
   selectedCategory?: Category;
 
+  createBudgetForm = new FormGroup({
+    limit: new FormControl(0, [Validators.required]),
+    categoryName: new FormControl('', [Validators.required]),
+  });
+
   ngOnInit(): void {
     this.categoriesService.getCategories().subscribe({
       next: (result) => {
@@ -34,7 +55,10 @@ export class CreateBudgetDialogComponent implements OnInit {
   }
 
   create(): void {
-    this.budgetsService.createBudget(this.selectedCategory!.id, this.limit).subscribe({
+    const formValue = this.createBudgetForm.value;
+    this.selectedCategory = this.categories.find((x) => x.name === formValue.categoryName);
+
+    this.budgetsService.createBudget(this.selectedCategory!.id, formValue.limit!).subscribe({
       next: (result) => {
         this.snackBar.open('Budget created successfully', 'X', {
           duration: 5000,

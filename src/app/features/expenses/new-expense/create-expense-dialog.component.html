@@ -4,37 +4,50 @@
   </div>
   <br />
   <div class="dialog-content">
-    <div class="form-field full-width d-flex flex-column">
-      <label for="amount">Amount</label>
-      <input
-        id="amount"
-        type="number"
-        minlength="1"
-        maxlength="8"
-        min="1"
-        [(ngModel)]="amount"
-        placeholder="e.g. 10 000"
-      />
-    </div>
-    <br />
-    <div class="form-field full-width d-flex flex-column">
-      <label for="description">Description</label>
-      <input id="description" type="text" [(ngModel)]="description" placeholder="e.g. bills" />
-    </div>
-    <br />
-    <div class="form-field full-width d-flex flex-column">
-      <label for="category">Category</label>
-      <select id="category" [(ngModel)]="selectedCategory">
-        @for (category of categories; track category.id) {
-          <option [ngValue]="category">
-            {{ category.name }}
-          </option>
-        }
-      </select>
-    </div>
-  </div>
-  <div class="dialog-footer d-flex">
-    <button matButton="outlined" (click)="cancel()">Cancel</button>
-    <button matButton="filled" (click)="create()">Ok</button>
+    <form [formGroup]="createExpenseForm" (ngSubmit)="create()" class="d-flex flex-column">
+      <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input
+          matInput
+          id="amount"
+          type="number"
+          placeholder="Amount of expense"
+          formControlName="amount"
+          min="0"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          id="input"
+          type="text"
+          placeholder="Description"
+          formControlName="description"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="categoryName" placeholder="Choose a category">
+          @for (category of categories; track category.id) {
+            <mat-option [value]="category.name">{{ category.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="date" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <div class="dialog-footer d-flex flex-row">
+        <button matButton="outlined" type="button" (click)="cancel()">Cancel</button>
+        <button matButton="filled">Ok</button>
+      </div>
+    </form>
   </div>
 </div>
