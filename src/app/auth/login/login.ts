@@ -59,34 +59,36 @@ export class Login {
     this.isLoading.set(true);
     this.loginForm.disable();
 
-    this.authService.login(this.email?.value!, this.password?.value!).subscribe({
-      next: (data) => {
-        this.loginResult = data;
-        if (this.loginResult?.token !== null) {
-          this.snackBar.open('Logged in successfully', 'X', {
+    this.authService
+      .login(this.loginForm.get('email')?.value!, this.loginForm.get('password')?.value!)
+      .subscribe({
+        next: (data) => {
+          this.loginResult = data;
+          if (this.loginResult?.token !== null) {
+            this.snackBar.open('Logged in successfully', 'X', {
+              duration: 5000,
+              horizontalPosition: 'end',
+              verticalPosition: 'bottom',
+              panelClass: ['snackbar-success'],
+            });
+            this.authService.setToken(this.loginResult?.token!, this.loginResult?.email!);
+            this.authService.setLoggedInStatus();
+            this.router.navigate(['/dashboard']);
+          }
+          this.loginForm.enable();
+          this.isLoading.set(false);
+        },
+        error: (err: any) => {
+          this.snackBar.open('Failed to log in!', 'X', {
             duration: 5000,
             horizontalPosition: 'end',
             verticalPosition: 'bottom',
-            panelClass: ['snackbar-success'],
+            panelClass: ['snackbar-error'],
           });
-          localStorage.setItem(this.TOKEN_KEY, this.loginResult?.token!);
-          localStorage.setItem(this.EMAIL_KEY, this.loginResult?.email!);
-          this.router.navigate(['/dashboard']);
-        }
-        this.loginForm.enable();
-        this.isLoading.set(false);
-      },
-      error: (err: any) => {
-        this.snackBar.open('Failed to log in!', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-error'],
-        });
-        this.isLoading.set(false);
-        this.loginForm.enable();
-      },
-    });
+          this.isLoading.set(false);
+          this.loginForm.enable();
+        },
+      });
   }
 
   clickEvent(event: MouseEvent) {

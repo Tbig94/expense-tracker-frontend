@@ -67,6 +67,10 @@ export class AuthService {
     return localStorage.getItem(this.TOKEN_KEY);
   }
 
+  getEmail(): string | null {
+    return localStorage.getItem(this.EMAIL_KEY);
+  }
+
   setToken(token: string, email: string): void {
     localStorage.setItem(this.TOKEN_KEY, token);
     localStorage.setItem(this.EMAIL_KEY, email);
@@ -75,6 +79,10 @@ export class AuthService {
   clearToken(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.EMAIL_KEY);
+  }
+
+  setLoggedInStatus(): void {
+    this.isLoggedIn.set(!!localStorage.getItem(this.TOKEN_KEY));
   }
 
   isTokenValid(): boolean {

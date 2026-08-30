@@ -3,8 +3,8 @@ export class DashboardDto {
   monthlySummary: MonthlySummary = new MonthlySummary();
   categoryBreakdowns: CategoryBreakdownDto[] = [];
   budgets: BudgetDashboardDto[] = [];
-  recentExpenses: Expense[] = [];
-  topExpenses: Expense[] = [];
+  recentExpenses: DashboardExpense[] = [];
+  topExpenses: DashboardExpense[] = [];
   budgetWarnings: BudgetDashboardDto[] = [];
   numberOfTransactions: number = 0;
 }
@@ -37,7 +37,7 @@ export class BudgetDashboardDto {
   state: string = '';
 }
 
-export class Expense {
+export class DashboardExpense {
   description: string = '';
   amount: number = 0;
   date: Date = new Date();

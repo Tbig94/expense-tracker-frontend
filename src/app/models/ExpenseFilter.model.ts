@@ -1,4 +1,4 @@
-export class Expense {
+export class ExpenseFilter {
   text: string;
   minDate: Date;
   maxDate: Date;

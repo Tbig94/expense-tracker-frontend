@@ -24,9 +24,6 @@ export class DashboardLargeCards implements OnInit {
   public budgetChart: any;
   public categoryChart: any;
 
-  @ViewChild('budgetChart') budgetChartRef!: ElementRef;
-  @ViewChild('categoryChart') categoryChartRef!: ElementRef;
-
   ngOnInit(): void {
     this.dashboardChartData = [];
     this.dashboardData()!.budgets.forEach((b) => {

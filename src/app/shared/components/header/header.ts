@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -12,26 +12,10 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header implements OnInit {
-  private readonly TOKEN_KEY = 'userToken';
-  private readonly EMAIL_KEY = 'userEmail';
+export class Header {
   private router = inject(Router);
   private activatedRoute = inject(ActivatedRoute);
   authService = inject(AuthService);
-
-  isLoggedIn = false;
-
-  userEmail: string | null = '';
-
-  ngOnInit(): void {
-    let token = localStorage.getItem(this.TOKEN_KEY);
-    if (token != null) {
-      this.isLoggedIn = true;
-      this.userEmail = localStorage.getItem(this.EMAIL_KEY);
-    } else {
-      this.isLoggedIn = false;
-    }
-  }
 
   private title$ = this.router.events.pipe(
     filter((event) => event instanceof NavigationEnd),
@@ -42,16 +26,12 @@ export class Header implements OnInit {
       }
       return route;
     }),
-    map((route) => (route.snapshot.data['headerText'] as string) || 'Alapértelmezett Cím'),
+    map((route) => (route.snapshot.data['headerText'] as string) || 'Default Address'),
   );
 
   onLogout() {
     this.authService.logout();
   }
 
-  protected title = toSignal(this.title$, { initialValue: 'Betöltés...' });
-
-  btnClick(): any {
-    this.router.navigateByUrl('/login');
-  }
+  protected title = toSignal(this.title$, { initialValue: 'Loading...' });
 }

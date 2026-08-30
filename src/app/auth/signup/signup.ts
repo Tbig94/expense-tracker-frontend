@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
@@ -27,7 +27,6 @@ export class Signup {
   private readonly authService = inject(AuthService);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
-  private cdr = inject(ChangeDetectorRef);
 
   isLoading = signal(false);
 
@@ -96,12 +95,6 @@ export class Signup {
     this.hide.set(!this.hide());
     event.stopPropagation();
   }
-}
-
-interface SignupData {
-  name: string;
-  email: string;
-  password: string;
 }
 
 interface LoginResultDto {

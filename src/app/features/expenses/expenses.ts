@@ -67,8 +67,6 @@ export class Expenses implements OnInit {
     minAmount: new FormControl(''),
     maxAmount: new FormControl(''),
     categoryName: new FormControl(''),
-    edit: new FormControl(''),
-    delete: new FormControl(''),
   });
 
   isLoading = false;
