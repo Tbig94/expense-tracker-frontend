@@ -27,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-expenses',
@@ -44,6 +45,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatDatepickerModule,
     MatPaginatorModule,
+    NgxSkeletonLoaderComponent,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './expenses.html',
@@ -72,6 +74,7 @@ export class Expenses implements OnInit {
   isLoading = false;
   expenses: Expense[] = [];
   expensesDataSource = new MatTableDataSource<any>([]);
+  skeletonData = Array(10).fill({}); // 5 soros skeleton váz
   categories: Category[] = [];
   selected = signal('');
 
@@ -80,6 +83,7 @@ export class Expenses implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
+    this.expensesDataSource.data = this.skeletonData;
     this.isLoading = true;
 
     forkJoin({
