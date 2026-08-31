@@ -72,8 +72,7 @@ export class Login {
           this.loginForm.enable();
           this.isLoading.set(false);
         },
-        error: (err: any) => {
-          this.snackbarService.error('Failed to log in!');
+        error: (err) => {
           this.isLoading.set(false);
           this.loginForm.enable();
         },

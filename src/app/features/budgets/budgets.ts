@@ -62,9 +62,6 @@ export class Budgets implements OnInit {
         this.snackbarService.success('Budget deleted successfully');
         this.loadBudgets();
       },
-      error: (err) => {
-        this.snackbarService.error('Failed to delete budget!');
-      },
     });
   }
 

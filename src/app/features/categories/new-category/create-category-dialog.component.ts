@@ -73,9 +73,6 @@ export class CreateCategoryDialogComponent {
           this.snackbarService.success('Category created successfully');
           this.dialogRef.close(result);
         },
-        error: (err) => {
-          this.snackbarService.error('Failed to create category!');
-        },
       });
   }
 

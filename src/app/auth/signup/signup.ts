@@ -73,7 +73,6 @@ export class Signup {
           this.signupForm.enable();
         },
         error: (err) => {
-          this.snackbarService.error('Failed to sign up!');
           this.isLoading.set(false);
           this.signupForm.enable();
         },

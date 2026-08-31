@@ -63,9 +63,6 @@ export class CreateBudgetDialogComponent implements OnInit {
         this.snackbarService.success('Budget created successfully');
         this.dialogRef.close();
       },
-      error: (err) => {
-        this.snackbarService.error('Failed to create budget!');
-      },
     });
   }
 

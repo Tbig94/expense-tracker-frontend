@@ -79,9 +79,6 @@ export class CreateExpenseDialogComponent implements OnInit {
           this.snackbarService.success('Expense created successfully');
           this.dialogRef.close(result);
         },
-        error: (err) => {
-          this.snackbarService.error('Failed to create expense!');
-        },
       });
   }
 

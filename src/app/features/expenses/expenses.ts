@@ -181,9 +181,6 @@ export class Expenses implements OnInit {
         this.snackbarService.success('Expense deleted successfully');
         this.loadExpenses();
       },
-      error: (err) => {
-        this.snackbarService.error('Failed to delete expense!');
-      },
     });
   }
 

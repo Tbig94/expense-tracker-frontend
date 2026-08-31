@@ -55,9 +55,6 @@ export class Categories implements OnInit {
         this.snackbarService.success('Category deleted successfully');
         this.loadCategories();
       },
-      error: (err) => {
-        this.snackbarService.error('Failed to delete category!');
-      },
     });
   }
 

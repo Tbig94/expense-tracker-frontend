@@ -21,9 +21,6 @@ export class DeleteAccountDialog {
         this.dialogRef.close();
         this.authService.logout();
       },
-      error: (err) => {
-        alert('Failed to delete account!');
-      },
     });
   }
 

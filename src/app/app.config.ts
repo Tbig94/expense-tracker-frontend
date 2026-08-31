@@ -7,6 +7,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { registerLocaleData } from '@angular/common';
 import { retryInterceptor } from './core/interceptors/retry.interceptor';
+import { errorInterceptor } from './core/interceptors/error.interceptor';
 
 registerLocaleData(localeHu);
 
@@ -14,7 +15,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor, retryInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, retryInterceptor, errorInterceptor])),
     { provide: LOCALE_ID, useValue: 'hu-HU' },
   ],
 };
