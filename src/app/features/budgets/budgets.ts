@@ -6,9 +6,9 @@ import { Dialog } from '@angular/cdk/dialog';
 import { CategoriesService } from '../categories/categories.service';
 import { Category } from '../../models/Category.model';
 import { CreateBudgetDialogComponent } from './new-budget/create-budget-dialog.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-budgets',
@@ -19,9 +19,9 @@ import { MatIcon } from '@angular/material/icon';
 export class Budgets implements OnInit {
   private readonly budgetsService = inject(BudgetService);
   private readonly categoriesService = inject(CategoriesService);
+  private readonly snackbarService = inject(SnackbarService);
   private cdr = inject(ChangeDetectorRef);
   private dialog = inject(Dialog);
-  private snackBar = inject(MatSnackBar);
 
   isLoading = false;
   budgets: Budget[] = [];
@@ -59,21 +59,11 @@ export class Budgets implements OnInit {
   handleDeleteBudget(id: string): void {
     this.budgetsService.deleteBudget(id).subscribe({
       next: (data) => {
-        this.snackBar.open('Budget deleted successfully', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-success'],
-        });
+        this.snackbarService.success('Budget deleted successfully');
         this.loadBudgets();
       },
       error: (err) => {
-        this.snackBar.open('Failed to delete budget!', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-error'],
-        });
+        this.snackbarService.error('Failed to delete budget!');
       },
     });
   }

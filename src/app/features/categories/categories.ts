@@ -4,9 +4,9 @@ import { Category } from '../../models/Category.model';
 import { CreateCategoryDialogComponent } from './new-category/create-category-dialog.component';
 import { CategoryCard } from './category-card/category-card';
 import { Dialog } from '@angular/cdk/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-categories',
@@ -16,9 +16,9 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class Categories implements OnInit {
   private readonly categoriesService = inject(CategoriesService);
+  private readonly snackbarService = inject(SnackbarService);
   private cdr = inject(ChangeDetectorRef);
   private dialog = inject(Dialog);
-  private snackBar = inject(MatSnackBar);
 
   isLoading = false;
   systemCategories: Category[] = [];
@@ -52,21 +52,11 @@ export class Categories implements OnInit {
   handleDeleteCategory(id: string): void {
     this.categoriesService.deleteCategory(id).subscribe({
       next: (data) => {
-        this.snackBar.open('Category deleted successfully', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-success'],
-        });
+        this.snackbarService.success('Category deleted successfully');
         this.loadCategories();
       },
       error: (err) => {
-        this.snackBar.open('Failed to delete category!', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-error'],
-        });
+        this.snackbarService.error('Failed to delete category!');
       },
     });
   }

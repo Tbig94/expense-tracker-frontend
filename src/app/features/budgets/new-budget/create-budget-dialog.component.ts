@@ -11,10 +11,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import { MatInput, MatLabel } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { SnackbarService } from '../../../shared/components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-create-budget-dialog',
@@ -32,10 +32,10 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './create-budget-dialog.component.css',
 })
 export class CreateBudgetDialogComponent implements OnInit {
-  private dialogRef = inject(DialogRef<CreateBudgetDialogComponent>);
-  private budgetsService = inject(BudgetService);
-  private categoriesService = inject(CategoriesService);
-  private snackBar = inject(MatSnackBar);
+  private readonly dialogRef = inject(DialogRef<CreateBudgetDialogComponent>);
+  private readonly budgetsService = inject(BudgetService);
+  private readonly categoriesService = inject(CategoriesService);
+  private readonly snackbarService = inject(SnackbarService);
 
   limit = 0;
   categories: Category[] = [];
@@ -60,21 +60,11 @@ export class CreateBudgetDialogComponent implements OnInit {
 
     this.budgetsService.createBudget(this.selectedCategory!.id, formValue.limit!).subscribe({
       next: (result) => {
-        this.snackBar.open('Budget created successfully', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-success'],
-        });
+        this.snackbarService.success('Budget created successfully');
         this.dialogRef.close();
       },
       error: (err) => {
-        this.snackBar.open('Failed to create budget!', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-error'],
-        });
+        this.snackbarService.error('Failed to create budget!');
       },
     });
   }

@@ -12,10 +12,21 @@ const RETRY_DELAY_MS = 15000;
 
 const NON_RETRYABLE_STATUS_CODES = [400, 401, 403, 404, 422];
 
+// Végpontok, amikre engedélyezni szeretnénk a retry-t
+const ALLOWED_RETRY_ENDPOINTS = ['auth/login', 'auth/register'];
+
 export const retryInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn,
 ) => {
+  // Ellenőrizzük, hogy a kérés URL-je tartalmazza-e valamelyik engedélyezett végpontot
+  const shouldRetry = ALLOWED_RETRY_ENDPOINTS.some((endpoint) => req.url.includes(endpoint));
+
+  // Ha nem a megadott végpontok egyike, retry nélkül engedjük tovább
+  if (!shouldRetry) {
+    return next(req);
+  }
+
   return next(req).pipe(
     retry({
       count: MAX_RETRIES,

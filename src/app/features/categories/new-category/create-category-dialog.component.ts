@@ -9,10 +9,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { SnackbarService } from '../../../shared/components/snackbar/snackbar.service';
 MatButton;
 
 @Component({
@@ -30,9 +30,9 @@ MatButton;
   styleUrl: './create-category-dialog.component.css',
 })
 export class CreateCategoryDialogComponent {
-  private dialogRef = inject(DialogRef<CreateCategoryDialogComponent>);
-  private categoriesService = inject(CategoriesService);
-  private snackBar = inject(MatSnackBar);
+  private readonly dialogRef = inject(DialogRef<CreateCategoryDialogComponent>);
+  private readonly categoriesService = inject(CategoriesService);
+  private readonly snackbarService = inject(SnackbarService);
 
   createCategoryForm = new FormGroup({
     categoryName: new FormControl<string>('', [Validators.required]),
@@ -70,22 +70,11 @@ export class CreateCategoryDialogComponent {
       .createCategory(formValue.categoryName!, formValue.categoryColor!)
       .subscribe({
         next: (result) => {
-          this.snackBar.open('Category created successfully', 'X', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            panelClass: ['snackbar-success'],
-          });
-
+          this.snackbarService.success('Category created successfully');
           this.dialogRef.close(result);
         },
         error: (err) => {
-          this.snackBar.open('Failed to create category!', 'X', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            panelClass: ['snackbar-error'],
-          });
+          this.snackbarService.error('Failed to create category!');
         },
       });
   }

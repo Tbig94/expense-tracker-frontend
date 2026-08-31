@@ -28,6 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
+import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-expenses',
@@ -52,9 +53,10 @@ import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
   styleUrl: './expenses.css',
 })
 export class Expenses implements OnInit {
-  private expensesService = inject(ExpensesService);
-  private categoriesService = inject(CategoriesService);
-  private csvExportService = inject(CsvExportService);
+  private readonly expensesService = inject(ExpensesService);
+  private readonly categoriesService = inject(CategoriesService);
+  private readonly csvExportService = inject(CsvExportService);
+  private readonly snackbarService = inject(SnackbarService);
   private dialog = inject(Dialog);
   private cdr = inject(ChangeDetectorRef);
   private ngZone = inject(NgZone);
@@ -176,21 +178,11 @@ export class Expenses implements OnInit {
   handleDeleteExpense(id: string): void {
     this.expensesService.deleteExpense(id).subscribe({
       next: () => {
-        this.snackBar.open('Expense deleted successfully', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-success'],
-        });
+        this.snackbarService.success('Expense deleted successfully');
         this.loadExpenses();
       },
       error: (err) => {
-        this.snackBar.open('Failed to delete expense!', 'X', {
-          duration: 5000,
-          horizontalPosition: 'end',
-          verticalPosition: 'bottom',
-          panelClass: ['snackbar-error'],
-        });
+        this.snackbarService.error('Failed to delete expense!');
       },
     });
   }

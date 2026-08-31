@@ -11,13 +11,13 @@ import {
 import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../../models/Category.model';
 import { DialogRef } from '@angular/cdk/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { SnackbarService } from '../../../shared/components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-new-expense',
@@ -38,10 +38,10 @@ import { provideNativeDateAdapter } from '@angular/material/core';
   providers: [provideNativeDateAdapter()],
 })
 export class CreateExpenseDialogComponent implements OnInit {
+  private readonly expensesService = inject(ExpensesService);
+  private readonly categoriesService = inject(CategoriesService);
+  private readonly snackbarService = inject(SnackbarService);
   private dialogRef = inject(DialogRef<CreateExpenseDialogComponent>);
-  private expensesService = inject(ExpensesService);
-  private categoriesService = inject(CategoriesService);
-  private snackBar = inject(MatSnackBar);
 
   categoryControl = new FormControl<string | Category>('');
 
@@ -76,22 +76,11 @@ export class CreateExpenseDialogComponent implements OnInit {
       )
       .subscribe({
         next: (result) => {
-          this.snackBar.open('Expense created successfully', 'X', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            panelClass: ['snackbar-success'],
-          });
-
+          this.snackbarService.success('Expense created successfully');
           this.dialogRef.close(result);
         },
         error: (err) => {
-          this.snackBar.open('Failed to create expense!', 'X', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            panelClass: ['snackbar-error'],
-          });
+          this.snackbarService.error('Failed to create expense!');
         },
       });
   }

@@ -1,13 +1,13 @@
-import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -28,9 +28,8 @@ export class Login {
   private readonly EMAIL_KEY = 'userEmail';
 
   private readonly authService = inject(AuthService);
+  private readonly snackbarService = inject(SnackbarService);
   private router = inject(Router);
-  private snackBar = inject(MatSnackBar);
-  private cdr = inject(ChangeDetectorRef);
 
   hide = signal(true);
   isLoading = signal(false);
@@ -65,12 +64,7 @@ export class Login {
         next: (data) => {
           this.loginResult = data;
           if (this.loginResult?.token !== null) {
-            this.snackBar.open('Logged in successfully', 'X', {
-              duration: 5000,
-              horizontalPosition: 'end',
-              verticalPosition: 'bottom',
-              panelClass: ['snackbar-success'],
-            });
+            this.snackbarService.success('Logged in successfully');
             this.authService.setToken(this.loginResult?.token!, this.loginResult?.email!);
             this.authService.setLoggedInStatus();
             this.router.navigate(['/dashboard']);
@@ -79,12 +73,7 @@ export class Login {
           this.isLoading.set(false);
         },
         error: (err: any) => {
-          this.snackBar.open('Failed to log in!', 'X', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            panelClass: ['snackbar-error'],
-          });
+          this.snackbarService.error('Failed to log in!');
           this.isLoading.set(false);
           this.loginForm.enable();
         },

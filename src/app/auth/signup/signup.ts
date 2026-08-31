@@ -2,12 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-signup',
@@ -25,8 +25,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class Signup {
   private readonly authService = inject(AuthService);
+  private readonly snackbarService = inject(SnackbarService);
   private router = inject(Router);
-  private snackBar = inject(MatSnackBar);
 
   isLoading = signal(false);
 
@@ -67,23 +67,13 @@ export class Signup {
       )
       .subscribe({
         next: (data) => {
-          this.snackBar.open('Registered successfully', 'X', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            panelClass: ['snackbar-success'],
-          });
+          this.snackbarService.success('Registered successfully');
           this.router.navigate(['/login']);
           this.isLoading.set(false);
           this.signupForm.enable();
         },
         error: (err) => {
-          this.snackBar.open('Failed to sign up!', 'X', {
-            duration: 5000,
-            horizontalPosition: 'end',
-            verticalPosition: 'bottom',
-            panelClass: ['snackbar-error'],
-          });
+          this.snackbarService.error('Failed to sign up!');
           this.isLoading.set(false);
           this.signupForm.enable();
         },
