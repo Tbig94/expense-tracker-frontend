@@ -76,7 +76,7 @@ export class Expenses implements OnInit {
   categories: Category[] = [];
   selected = signal('');
 
-  displayedColumns: string[] = ['date', 'description', 'category', 'amount', 'action'];
+  displayedColumns: string[] = ['date', 'description', 'categoryName', 'amount', 'action'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
