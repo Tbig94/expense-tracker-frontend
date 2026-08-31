@@ -17,7 +17,6 @@ import { CsvExportService } from '../../shared/services/csvExport.service';
 import { CreateExpenseDialogComponent } from './new-expense/create-expense-dialog.component';
 import { Dialog } from '@angular/cdk/dialog';
 import { forkJoin } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -60,7 +59,6 @@ export class Expenses implements OnInit {
   private dialog = inject(Dialog);
   private cdr = inject(ChangeDetectorRef);
   private ngZone = inject(NgZone);
-  private snackBar = inject(MatSnackBar);
 
   form = new FormGroup({
     description: new FormControl(''),
@@ -71,7 +69,7 @@ export class Expenses implements OnInit {
     categoryName: new FormControl(''),
   });
 
-  isLoading = false;
+  isLoading = signal(false);
   expenses: Expense[] = [];
   expensesDataSource = new MatTableDataSource<any>([]);
   skeletonData = Array(10).fill({}); // 5 soros skeleton váz
@@ -84,7 +82,7 @@ export class Expenses implements OnInit {
 
   ngOnInit(): void {
     this.expensesDataSource.data = this.skeletonData;
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     forkJoin({
       expenses: this.expensesService.getExpenses(),
@@ -95,13 +93,13 @@ export class Expenses implements OnInit {
           this.expenses = [...expenses];
           this.expensesDataSource.data = expenses;
           this.categories = [...categories];
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.cdr.markForCheck();
         });
       },
       error: () => {
         this.ngZone.run(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.cdr.markForCheck();
         });
       },
@@ -123,19 +121,19 @@ export class Expenses implements OnInit {
     if (formValue.maxAmount) filter.MaxAmount = parseInt(formValue.maxAmount, 10);
     if (formValue.description) filter.Text = formValue.description;
 
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.expensesService.getExpensesByFilter(filter).subscribe({
       next: (data) => {
         this.ngZone.run(() => {
           this.expenses = [...data];
           this.expensesDataSource.data = data;
-          this.isLoading = false;
+          this.isLoading.set(true);
           this.cdr.markForCheck();
         });
       },
       error: () => {
         this.ngZone.run(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.cdr.markForCheck();
         });
       },
@@ -143,19 +141,19 @@ export class Expenses implements OnInit {
   }
 
   loadExpenses(): void {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.expensesService.getExpenses().subscribe({
       next: (data) => {
         this.ngZone.run(() => {
           this.expenses = [...data];
           this.expensesDataSource.data = data;
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.cdr.markForCheck();
         });
       },
       error: () => {
         this.ngZone.run(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.cdr.markForCheck();
         });
       },
@@ -168,6 +166,9 @@ export class Expenses implements OnInit {
       height: '600px',
       panelClass: 'custom-dialog',
       backdropClass: 'my-dark-backdrop',
+      data: {
+        categories: this.categories,
+      },
     });
 
     dialogRef.closed.subscribe(() => {

@@ -8,7 +8,7 @@ import { throwError, timer } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 const MAX_RETRIES = 4;
-const RETRY_DELAY_MS = 15000;
+const RETRY_DELAY_MS = 20000;
 
 const NON_RETRYABLE_STATUS_CODES = [400, 401, 403, 404, 422];
 

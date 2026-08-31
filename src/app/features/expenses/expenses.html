@@ -82,7 +82,7 @@
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef>Date</th>
           <td mat-cell *matCellDef="let element">
-            @if (isLoading) {
+            @if (isLoading()) {
               <ngx-skeleton-loader
                 [theme]="{ height: '16px', width: '30px', margin: '0' }"
               ></ngx-skeleton-loader>
@@ -95,7 +95,7 @@
         <ng-container matColumnDef="description">
           <th mat-header-cell *matHeaderCellDef>Description</th>
           <td mat-cell *matCellDef="let element">
-            @if (isLoading) {
+            @if (isLoading()) {
               <ngx-skeleton-loader
                 [theme]="{ height: '16px', width: '30px', margin: '0' }"
               ></ngx-skeleton-loader>
@@ -108,7 +108,7 @@
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef>Category</th>
           <td mat-cell *matCellDef="let element">
-            @if (isLoading) {
+            @if (isLoading()) {
               <ngx-skeleton-loader
                 [theme]="{ height: '16px', width: '30px', margin: '0' }"
               ></ngx-skeleton-loader>
@@ -121,7 +121,7 @@
         <ng-container matColumnDef="amount">
           <th mat-header-cell *matHeaderCellDef>Amount</th>
           <td mat-cell *matCellDef="let element">
-            @if (isLoading) {
+            @if (isLoading()) {
               <ngx-skeleton-loader
                 [theme]="{ height: '16px', width: '30px', margin: '0' }"
               ></ngx-skeleton-loader>

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ExpensesService } from '../expenses.service';
 import { CommonModule } from '@angular/common';
 import {
@@ -8,9 +8,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CategoriesService } from '../../categories/categories.service';
 import { Category } from '../../../models/Category.model';
-import { DialogRef } from '@angular/cdk/dialog';
+import { DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import { MatButton } from '@angular/material/button';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
@@ -37,11 +36,11 @@ import { SnackbarService } from '../../../shared/components/snackbar/snackbar.se
   styleUrl: './create-expense-dialog.component.css',
   providers: [provideNativeDateAdapter()],
 })
-export class CreateExpenseDialogComponent implements OnInit {
+export class CreateExpenseDialogComponent {
   private readonly expensesService = inject(ExpensesService);
-  private readonly categoriesService = inject(CategoriesService);
   private readonly snackbarService = inject(SnackbarService);
   private dialogRef = inject(DialogRef<CreateExpenseDialogComponent>);
+  date: Date = new Date();
 
   categoryControl = new FormControl<string | Category>('');
 
@@ -52,16 +51,10 @@ export class CreateExpenseDialogComponent implements OnInit {
     date: new FormControl<Date>(new Date(), [Validators.required]),
   });
 
-  categories: Category[] = [];
-  selectedCategory?: Category;
+  data = inject<{ categories: Category[] }>(DIALOG_DATA);
 
-  ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe({
-      next: (data) => {
-        this.categories = data;
-      },
-    });
-  }
+  categories: Category[] = this.data.categories;
+  selectedCategory?: Category;
 
   create(): void {
     const formValue = this.createExpenseForm.value;
