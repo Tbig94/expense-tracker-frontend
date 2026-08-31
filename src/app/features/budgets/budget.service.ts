@@ -23,7 +23,7 @@ export class BudgetService {
   public createBudget(
     categoryId: string,
     limitAmount: number,
-    month = new Date().getMonth(),
+    month = new Date().getMonth() + 1,
     year = new Date().getFullYear(),
   ): Observable<any> {
     return this.http.post(`${environment.apiUrl}/Budget/Create`, {
