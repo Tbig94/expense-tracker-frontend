@@ -127,7 +127,7 @@ export class Expenses implements OnInit {
         this.ngZone.run(() => {
           this.expenses = [...data];
           this.expensesDataSource.data = data;
-          this.isLoading.set(true);
+          this.isLoading.set(false);
           this.cdr.markForCheck();
         });
       },
