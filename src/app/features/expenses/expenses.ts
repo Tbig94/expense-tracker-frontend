@@ -6,6 +6,7 @@ import {
   OnInit,
   signal,
   ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import { Expense } from '../../models/Expense.model';
 import { DatePipe, CurrencyPipe } from '@angular/common';
@@ -51,7 +52,7 @@ import { SnackbarService } from '../../shared/components/snackbar/snackbar.servi
   templateUrl: './expenses.html',
   styleUrl: './expenses.css',
 })
-export class Expenses implements OnInit {
+export class Expenses implements OnInit, AfterViewInit {
   private readonly expensesService = inject(ExpensesService);
   private readonly categoriesService = inject(CategoriesService);
   private readonly csvExportService = inject(CsvExportService);
