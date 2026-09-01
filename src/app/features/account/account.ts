@@ -20,12 +20,8 @@ export class Account implements OnInit {
   account: AccountDto | null | undefined;
 
   ngOnInit(): void {
-    this.authService.getAccountInfo().subscribe({
-      next: (data) => {
-        this.account = data;
-        this.cdr.detectChanges();
-      },
-    });
+    this.account!.email = this.authService.currentUser()?.email;
+    this.account!.name = this.authService.currentUser()?.name;
   }
 
   openDeleteDialog() {

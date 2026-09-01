@@ -1,36 +1,54 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap, timeout } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { jwtDecode } from 'jwt-decode';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-interface JwtPayload {
-  exp: number; // Unix timestamp (másodperc)
-  [key: string]: any;
-}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly TOKEN_KEY = 'userToken';
-  private readonly EMAIL_KEY = 'userEmail';
-
   private http = inject(HttpClient);
   private router = inject(Router);
   private snackBar = inject(MatSnackBar);
 
-  isLoggedIn = signal<boolean>(this.isTokenValid());
-  userEmail = signal<string | null>(localStorage.getItem(this.EMAIL_KEY));
+  isLoggedIn = signal<boolean>(false);
+  currentUser = signal<UserProfile | null>(null);
+
+  constructor() {
+    this.checkAuthStatus().subscribe();
+  }
+
+  public checkAuthStatus(): Observable<UserProfile | null> {
+    return this.http
+      .get<UserProfile>(`${environment.apiUrl}/Auth/GetAccountInfo`, {
+        withCredentials: true,
+      })
+      .pipe(
+        tap((user) => {
+          this.currentUser.set(user);
+          this.isLoggedIn.set(true);
+        }),
+        catchError(() => {
+          this.currentUser.set(null);
+          this.isLoggedIn.set(false);
+          return of(null);
+        }),
+      );
+  }
 
   public login(email: string, password: string): Observable<any> {
     return this.http
-      .post(`${environment.apiUrl}/Auth/Login`, { email, password }, { timeout: 90000 })
+      .post<UserProfile>(
+        `${environment.apiUrl}/Auth/Login`,
+        { email, password },
+        { withCredentials: true, timeout: 90000 },
+      )
       .pipe(
-        tap({
-          next: () => this.isLoggedIn.set(true), // Csak sikeres kérés esetén fut le!
+        tap((user) => {
+          this.currentUser.set(user);
+          this.isLoggedIn.set(true);
         }),
       );
   }
@@ -39,68 +57,44 @@ export class AuthService {
     return this.http.post(
       `${environment.apiUrl}/Auth/Register`,
       { name, email, password },
-      { timeout: 90000 },
+      { withCredentials: true, timeout: 90000 },
     );
   }
 
   public logout(): void {
-    this.clearToken();
+    this.http.post(`${environment.apiUrl}/Auth/Logout`, {}, { withCredentials: true }).subscribe({
+      next: () => this.handleLogoutCleanup(),
+      error: (err) => {
+        console.error('Logout error on server', err);
+        this.handleLogoutCleanup();
+      },
+    });
+  }
+
+  private handleLogoutCleanup(): void {
     this.isLoggedIn.set(false);
+    this.currentUser.set(null);
+
     this.snackBar.open('Logged out successfully', 'X', {
       duration: 5000,
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
       panelClass: ['snackbar-success'],
     });
+
     this.router.navigate(['/login']);
   }
 
   public deleteAccount(): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/Auth/DeleteAccount`, {});
+    return this.http.post(
+      `${environment.apiUrl}/Auth/DeleteAccount`,
+      {},
+      { withCredentials: true },
+    );
   }
+}
 
-  public getAccountInfo(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/Auth/GetAccountInfo`);
-  }
-
-  getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
-  }
-
-  getEmail(): string | null {
-    return localStorage.getItem(this.EMAIL_KEY);
-  }
-
-  setToken(token: string, email: string): void {
-    this.isLoggedIn.set(true);
-    this.userEmail.set(email);
-    localStorage.setItem(this.TOKEN_KEY, token);
-    localStorage.setItem(this.EMAIL_KEY, email);
-  }
-
-  clearToken(): void {
-    this.isLoggedIn.set(false);
-    this.userEmail.set(null);
-    localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.EMAIL_KEY);
-  }
-
-  setLoggedInStatus(): void {
-    this.isLoggedIn.set(!!localStorage.getItem(this.TOKEN_KEY));
-  }
-
-  isTokenValid(): boolean {
-    const token = this.getToken();
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const decoded = jwtDecode<JwtPayload>(token);
-      const nowInSeconds = Date.now() / 1000;
-      return decoded.exp > nowInSeconds;
-    } catch {
-      return false;
-    }
-  }
+export interface UserProfile {
+  email: string;
+  name?: string;
 }

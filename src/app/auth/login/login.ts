@@ -65,8 +65,6 @@ export class Login {
           this.loginResult = data;
           if (this.loginResult?.token !== null) {
             this.snackbarService.success('Logged in successfully');
-            this.authService.setToken(this.loginResult?.token!, this.loginResult?.email!);
-            this.authService.setLoggedInStatus();
             this.router.navigate(['/dashboard']);
           }
           this.loginForm.enable();
