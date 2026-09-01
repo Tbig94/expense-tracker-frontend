@@ -10,10 +10,4 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class DashboardSmallCards {
   dashboardData = input<DashboardDto>();
-
-  hufFormazo = new Intl.NumberFormat('hu-HU', {
-    style: 'currency',
-    currency: 'HUF',
-    maximumFractionDigits: 0,
-  });
 }
