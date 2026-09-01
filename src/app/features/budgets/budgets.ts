@@ -9,6 +9,7 @@ import { CreateBudgetDialogComponent } from './new-budget/create-budget-dialog.c
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-budgets',
@@ -29,18 +30,8 @@ export class Budgets implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.budgetsService.getBudgets().subscribe({
-      next: (data) => {
-        this.budgets = data;
-        this.cdr.detectChanges();
-      },
-    });
-    this.categoriesService.getCategories().subscribe({
-      next: (data) => {
-        this.categories = data;
-        this.isLoading = false;
-      },
-    });
+
+    this.loadBudgets();
   }
 
   openCreateDialog(): void {
@@ -66,9 +57,17 @@ export class Budgets implements OnInit {
   }
 
   loadBudgets(): void {
-    this.budgetsService.getBudgets().subscribe({
-      next: (data) => {
-        this.budgets = data;
+    forkJoin({
+      categories: this.categoriesService.getCategories(),
+      budgets: this.budgetsService.getBudgets(),
+    }).subscribe({
+      next: ({ categories, budgets }) => {
+        this.categories = categories;
+        this.budgets = budgets;
+        this.budgets.forEach((b) => {
+          b.categoryName = this.categories.find((c) => c.id === b.categoryId)!.name;
+        });
+        this.isLoading = false;
         this.cdr.detectChanges();
       },
     });

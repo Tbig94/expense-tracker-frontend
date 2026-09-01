@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class BudgetCard implements OnInit {
   budgetItem = input<Budget>();
   onDelete = output<string>();
-  categoryName = input<string>();
+  // categoryName = input<string>();
 
   deleteBudget(id: string) {
     this.onDelete.emit(id);

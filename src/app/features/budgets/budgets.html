@@ -18,7 +18,6 @@
       @for (item of budgets; track item.id) {
         <app-budget-card
           [budgetItem]="item"
-          [categoryName]="categories.find((x) => x.id === item.categoryId)?.name"
           (onDelete)="handleDeleteBudget($event)"
         ></app-budget-card>
       }

@@ -3,8 +3,7 @@ export class Budget {
   categoryId: string;
   userId: string;
   limitAmount: number;
-  // month: number;
-  // year: number;
+  categoryName: string;
   validFrom: Date;
   validTo: Date;
 
@@ -15,6 +14,7 @@ export class Budget {
     limitAmount: number,
     validFrom: Date,
     validTo: Date,
+    categoryName: string,
   ) {
     this.id = id;
     this.categoryId = categoryId;
@@ -22,5 +22,6 @@ export class Budget {
     this.limitAmount = limitAmount;
     this.validFrom = validFrom;
     this.validTo = validTo;
+    this.categoryName = categoryName;
   }
 }
