@@ -90,7 +90,7 @@ interface LoginResultDto {
   email: string;
 }
 
-export interface AccountDto {
+export class AccountDto {
   email: string | null | undefined;
   name: string | null | undefined;
 }

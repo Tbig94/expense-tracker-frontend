@@ -17,11 +17,11 @@ export class Account implements OnInit {
   private cdr = inject(ChangeDetectorRef);
   private dialog = inject(Dialog);
 
-  account: AccountDto | null | undefined;
+  account: AccountDto = new AccountDto();
 
   ngOnInit(): void {
-    this.account!.email = this.authService.currentUser()?.email;
-    this.account!.name = this.authService.currentUser()?.name;
+    this.account.email = this.authService.currentUser()!.email;
+    this.account.name = this.authService.currentUser()!.name;
   }
 
   openDeleteDialog() {
