@@ -28,6 +28,9 @@ export class Dashboard implements OnInit {
         this.isLoading = false;
         this.cdr.detectChanges();
       },
+      error: (err) => {
+        this.isLoading = false;
+      },
     });
   }
 }
