@@ -12,7 +12,7 @@ import { Account } from './features/account/account';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'dashboard',
     pathMatch: 'prefix',
   },
   {

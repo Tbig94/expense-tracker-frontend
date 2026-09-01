@@ -16,10 +16,6 @@ export class AuthService {
   isLoggedIn = signal<boolean>(false);
   currentUser = signal<UserProfile | null>(null);
 
-  constructor() {
-    this.checkAuthStatus().subscribe();
-  }
-
   public checkAuthStatus(): Observable<UserProfile | null> {
     return this.http
       .get<UserProfile>(`${environment.apiUrl}/Auth/GetAccountInfo`, {
@@ -27,8 +23,10 @@ export class AuthService {
       })
       .pipe(
         tap((user) => {
-          this.currentUser.set(user);
-          this.isLoggedIn.set(true);
+          if (user !== null && user.email !== null) {
+            this.currentUser.set(user);
+            this.isLoggedIn.set(true);
+          }
         }),
         catchError(() => {
           this.currentUser.set(null);
