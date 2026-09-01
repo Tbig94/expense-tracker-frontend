@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { Category } from '../../../models/Category.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';

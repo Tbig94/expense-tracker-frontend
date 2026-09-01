@@ -6,7 +6,13 @@
     </div>
     <div class="card-right">
       @if (!isSystemCategory()) {
-        <button mat-mini-fab color="warn" id="deleteButton" (click)="deleteCategory(category.id)">
+        <button
+          mat-mini-fab
+          color="warn"
+          id="deleteButton"
+          (click)="deleteCategory(category.id)"
+          [disabled]="category.hasExpense"
+        >
           <mat-icon>delete</mat-icon>
         </button>
       }
