@@ -1,9 +1,14 @@
 <div class="d-flex flex-columns" id="budget-card">
   @if (budgetItem(); as budget) {
     <div class="cardInfo d-flex flex-column">
+      <span
+        ><b>{{ categoryName() }}</b></span
+      >
       <span>{{ budgetItem()?.limitAmount | currency: 'Ft' : 'symbol' : '1.0-0' }}</span>
-      <span>{{ categoryName() }}</span>
-      <span>{{ budgetItem()?.year }}.{{ budgetItem()?.month }}</span>
+      <span
+        >{{ budgetItem()?.validFrom | date: 'yyyy.MM.dd' }} -
+        {{ budgetItem()?.validTo | date: 'yyyy.MM.dd' }}</span
+      >
     </div>
     <div class="removeButton d-flex">
       <button mat-mini-fab color="warn" (click)="deleteBudget(budget.id)">

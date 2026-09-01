@@ -3,22 +3,24 @@ export class Budget {
   categoryId: string;
   userId: string;
   limitAmount: number;
-  month: number;
-  year: number;
+  // month: number;
+  // year: number;
+  validFrom: Date;
+  validTo: Date;
 
   constructor(
     id: string,
     categoryId: string,
     userId: string,
     limitAmount: number,
-    month: number,
-    year: number,
+    validFrom: Date,
+    validTo: Date,
   ) {
     this.id = id;
     this.categoryId = categoryId;
     this.userId = userId;
     this.limitAmount = limitAmount;
-    this.month = month;
-    this.year = year;
+    this.validFrom = validFrom;
+    this.validTo = validTo;
   }
 }
