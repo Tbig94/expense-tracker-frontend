@@ -24,9 +24,6 @@ import { SnackbarService } from '../../shared/components/snackbar/snackbar.servi
   styleUrl: './login.css',
 })
 export class Login {
-  private readonly TOKEN_KEY = 'userToken';
-  private readonly EMAIL_KEY = 'userEmail';
-
   private readonly authService = inject(AuthService);
   private readonly snackbarService = inject(SnackbarService);
   private router = inject(Router);
