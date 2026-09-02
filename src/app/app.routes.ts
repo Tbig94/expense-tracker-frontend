@@ -13,7 +13,7 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'prefix',
+    pathMatch: 'full',
   },
   {
     path: 'dashboard',

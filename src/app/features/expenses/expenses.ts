@@ -118,8 +118,8 @@ export class Expenses implements OnInit, AfterViewInit {
     if (formValue.categoryName) filter.CategoryName = formValue.categoryName;
     if (formValue.minDate) filter.MinDate = new Date(formValue.minDate).toISOString();
     if (formValue.maxDate) filter.MaxDate = new Date(formValue.maxDate).toISOString();
-    if (formValue.minAmount) filter.MinAmount = parseInt(formValue.minAmount, 10);
-    if (formValue.maxAmount) filter.MaxAmount = parseInt(formValue.maxAmount, 10);
+    if (formValue.minAmount) filter.MinAmount = parseFloat(formValue.minAmount);
+    if (formValue.maxAmount) filter.MaxAmount = parseFloat(formValue.maxAmount);
     if (formValue.description) filter.Text = formValue.description;
 
     this.isLoading.set(true);
