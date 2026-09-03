@@ -1,4 +1,6 @@
 header {
+  display: flex;
+  flex-direction: row;
   color: white;
   justify-content: space-between;
   margin-bottom: 20px;
@@ -9,6 +11,8 @@ header {
 }
 
 .header-right {
+  display: flex;
+  flex-direction: row;
   max-width: 450px;
   min-width: 350px;
   justify-content: space-between;
@@ -21,4 +25,5 @@ header {
 
 #userEmail {
   font-style: italic;
+  margin-right: 30px;
 }

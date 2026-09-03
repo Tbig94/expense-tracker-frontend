@@ -1,6 +1,6 @@
 <div class="login-form">
   <h4>Log In</h4>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="d-flex flex-column">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
       <input matInput type="email" placeholder="Enter your email address" formControlName="email" />
@@ -40,7 +40,7 @@
       }
     </mat-form-field>
 
-    <div class="bottom d-flex flex-rows">
+    <div class="bottom">
       <a matButton="outlined" routerLink="/signup" [disabled]="isLoading()"
         ><mat-icon>person-add</mat-icon>Register</a
       >

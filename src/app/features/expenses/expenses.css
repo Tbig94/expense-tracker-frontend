@@ -12,6 +12,8 @@
 }
 
 form {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
@@ -27,6 +29,10 @@ td {
   vertical-align: middle;
 }
 
+#expenses {
+  display: flex;
+}
+
 #expenses table th {
   position: sticky;
   top: 0;
@@ -34,6 +40,7 @@ td {
 }
 
 .searchButton {
+  display: flex;
   justify-content: end;
   align-items: center;
 }

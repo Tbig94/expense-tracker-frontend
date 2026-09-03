@@ -1,6 +1,9 @@
 #large-cards {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-top: 30px;
 }
 
 #budget-status-card {
@@ -20,6 +23,8 @@
 }
 
 #category-top {
+  display: flex;
+  flex-direction: row;
   margin-top: 20px;
   justify-content: space-between;
 }

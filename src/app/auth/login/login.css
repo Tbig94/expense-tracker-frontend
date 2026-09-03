@@ -8,13 +8,9 @@
 }
 
 form {
-  margin-top: 20px;
-}
-
-:host {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  margin-top: 20px;
 }
 
 #okButton {
@@ -23,6 +19,8 @@ form {
 }
 
 .bottom {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }

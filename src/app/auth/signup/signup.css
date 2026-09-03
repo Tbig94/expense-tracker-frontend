@@ -1,7 +1,6 @@
 .signup-form {
   width: 100%;
   max-width: 550px;
-  /* height: 400px; */
   margin: auto;
   background-color: rgb(25, 25, 25);
   padding: 25px;
@@ -9,6 +8,8 @@
 }
 
 form {
+  display: flex;
+  flex-direction: column;
   margin-top: 20px;
 }
 
@@ -24,6 +25,8 @@ form {
 }
 
 .bottom {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }

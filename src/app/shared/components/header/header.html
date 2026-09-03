@@ -1,7 +1,7 @@
-<header class="main-header d-flex flex-rows">
+<header class="main-header">
   <h4>{{ title() }}</h4>
   @if (authService.isLoggedIn()) {
-    <div class="header-right d-flex flex-rows">
+    <div class="header-right">
       <h4 id="userEmail">{{ authService.currentUser()?.email }}</h4>
       <button matButton="outlined" type="button" (click)="onLogout()">
         <mat-icon>logout</mat-icon>Sign out

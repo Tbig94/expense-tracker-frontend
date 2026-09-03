@@ -4,7 +4,7 @@
   </div>
   <br />
   <div class="dialog-content">
-    <form [formGroup]="createExpenseForm" (ngSubmit)="create()" class="d-flex flex-column">
+    <form [formGroup]="createExpenseForm" (ngSubmit)="create()">
       <mat-form-field appearance="fill">
         <mat-label>Amount</mat-label>
         <input
@@ -44,7 +44,7 @@
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
-      <div class="dialog-footer d-flex flex-row">
+      <div class="dialog-footer">
         <button matButton="outlined" type="button" (click)="cancel()">Cancel</button>
         <button matButton="filled">Ok</button>
       </div>

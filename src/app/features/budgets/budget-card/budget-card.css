@@ -1,4 +1,6 @@
 #budget-card {
+  display: flex;
+  flex-direction: row;
   width: 330px;
   height: 165px;
   justify-content: space-between;
@@ -8,6 +10,8 @@
 }
 
 .cardInfo {
+  display: flex;
+  flex-direction: column;
   width: 80%;
   padding: 20px;
   justify-content: center;
@@ -20,6 +24,7 @@
 }
 
 .removeButton {
+  display: flex;
   justify-content: center;
   align-items: center;
 }

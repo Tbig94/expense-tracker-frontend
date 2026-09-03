@@ -1,6 +1,6 @@
 <div class="content-page">
   <div id="expenseFilters">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex flex-row">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
         <mat-label>Description</mat-label>
         <input
@@ -58,14 +58,14 @@
         </mat-select>
       </mat-form-field>
 
-      <div class="searchButton d-flex">
+      <div class="searchButton">
         <button matButton="outlined"><mat-icon>search</mat-icon>Search</button>
       </div>
     </form>
   </div>
   <br />
 
-  <div class="d-flex" id="expenses">
+  <div id="expenses">
     <div class="sideButtons">
       <button matButton="filled" id="newButton" (click)="openCreateDialog()">
         <mat-icon>add</mat-icon>New expense

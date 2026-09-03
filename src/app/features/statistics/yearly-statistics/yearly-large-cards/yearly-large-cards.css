@@ -1,4 +1,6 @@
 #large-cards {
+  display: flex;
+  flex-direction: row;
   margin-top: 30px;
   min-width: 330px;
   justify-content: space-between;

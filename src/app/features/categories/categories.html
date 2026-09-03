@@ -1,8 +1,8 @@
 <div class="content-page">
   <mat-divider></mat-divider>
-  <div class="systemCategories">
+  <div class="systemCategoriesContainer">
     <h5>System categories</h5>
-    <div class="d-flex flex-columns" id="systemCategories">
+    <div id="systemCategories">
       @if (systemCategories.length > 0) {
         @for (item of systemCategories; track item.id) {
           <app-category-card
@@ -15,9 +15,9 @@
     </div>
   </div>
   <mat-divider></mat-divider>
-  <div class="userCategories">
+  <div class="userCategoriesContainer">
     <h5>Your categories</h5>
-    <div class="d-flex flex-columns" id="userCategories">
+    <div id="userCategories">
       @if (userCategories.length > 0) {
         @for (item of userCategories; track item.id) {
           <app-category-card

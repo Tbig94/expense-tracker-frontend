@@ -1,10 +1,10 @@
 <div class="content-page">
-  <div class="d-flex flex-columns" id="budgetsTop">
-    <div class="d-flex flex-columns" id="budgetsTopLeft">
+  <div id="budgetsTop">
+    <div id="budgetsTopLeft">
       <h5>Your budgets for the current month.</h5>
     </div>
 
-    <div class="d-flex flex-columns" id="budgetsTopRight">
+    <div id="budgetsTopRight">
       <p>
         <button matButton="filled" id="newButton" (click)="openCreateDialog()">
           <mat-icon>add</mat-icon>New budget
@@ -14,7 +14,7 @@
   </div>
 
   @if (budgets.length > 0) {
-    <div class="d-flex flex-columns" id="budgetCards">
+    <div id="budgetCards">
       @for (item of budgets; track item.id) {
         <app-budget-card
           [budgetItem]="item"

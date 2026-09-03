@@ -1,12 +1,23 @@
 #budgetsTop {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
+#budgetsTopLeft {
+  display: flex;
+  flex-direction: column;
+}
+
 #budgetsTopRight {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
 #budgetCards {
+  display: flex;
+  flex-direction: row;
   justify-content: left;
   flex-wrap: wrap;
   gap: 40px;

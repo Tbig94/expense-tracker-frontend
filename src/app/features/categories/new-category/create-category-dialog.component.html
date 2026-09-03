@@ -4,7 +4,7 @@
   </div>
   <br />
   <div class="dialog-content">
-    <form [formGroup]="createCategoryForm" (ngSubmit)="create()" class="d-flex flex-column">
+    <form [formGroup]="createCategoryForm" (ngSubmit)="create()">
       <mat-form-field appearance="fill">
         <mat-label>Category name</mat-label>
         <input
@@ -30,7 +30,7 @@
             ></button>
           }
         </div>
-        <div class="form-field full-width d-flex flex-column" id="colorPicker">
+        <div id="colorPicker">
           <mat-label>Or use unique hex code</mat-label>
           <input
             matInput
@@ -43,7 +43,7 @@
         </div>
       </mat-form-field>
 
-      <div class="dialog-footer d-flex">
+      <div class="dialog-footer">
         <button matButton="outlined" type="button" (click)="cancel()">Cancel</button>
         <button matButton="filled">Ok</button>
       </div>
