@@ -1,3 +1,8 @@
+.userCategories,
+.systemCategories {
+  margin: 20px 10px 20px 0px;
+}
+
 #systemCategories,
 #userCategories {
   width: 100%;

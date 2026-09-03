@@ -1,49 +1,46 @@
 @if (authService.isLoggedIn()) {
-  <nav id="sidebar" class="d-flex flex-column flex-shrink-0 p-3">
-    <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none">
-      <a class="navbar-brand" routerLink="/dashboard">Expense Tracker</a>
-    </a>
-    <hr style="border-color: rgba(255, 255, 255, 0.15)" />
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item navbar-item mb-2">
-        <a
-          class="nav-link"
-          routerLink="/dashboard"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <p><span class="navbar-dot dot1"></span>Dashboard</p>
-        </a>
-      </li>
-      <li class="nav-item navbar-item mb-2">
-        <a class="nav-link" routerLink="/expenses" routerLinkActive="active"
-          ><p><span class="navbar-dot dot2"></span>Expenses</p></a
-        >
-      </li>
+  <nav class="sidebar">
+    <a class="brand" routerLink="/dashboard"> Expense Tracker </a>
 
-      <li class="nav-item navbar-item mb-2">
-        <a class="nav-link" routerLink="/categories" routerLinkActive="active"
-          ><p><span class="navbar-dot dot3"></span>Categories</p></a
-        >
-      </li>
-      <li class="nav-item navbar-item mb-2">
-        <a class="nav-link" routerLink="/budgets" routerLinkActive="active"
-          ><p><span class="navbar-dot dot4"></span>Budgets</p></a
-        >
-      </li>
-      <li class="nav-item navbar-item mb-2">
-        <a class="nav-link" routerLink="/statistics" routerLinkActive="active"
-          ><p><span class="navbar-dot dot5"></span>Statistics (WIP)</p></a
-        >
-      </li>
-    </ul>
+    <mat-divider></mat-divider>
 
-    <ul class="nav nav-pills flex-column mb-0">
-      <li class="nav-item navbar-item mb-2">
-        <a class="nav-link" routerLink="/account" routerLinkActive="active"
-          ><p><span class="navbar-dot dot6"></span>Account</p></a
-        >
-      </li>
-    </ul>
+    <mat-nav-list class="main-nav">
+      <a
+        mat-list-item
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <span class="navbar-dot dot1"></span>
+        <span>Dashboard</span>
+      </a>
+
+      <a mat-list-item routerLink="/expenses" routerLinkActive="active">
+        <span class="navbar-dot dot2"></span>
+        <span>Expenses</span>
+      </a>
+
+      <a mat-list-item routerLink="/categories" routerLinkActive="active">
+        <span class="navbar-dot dot3"></span>
+        <span>Categories</span>
+      </a>
+
+      <a mat-list-item routerLink="/budgets" routerLinkActive="active">
+        <span class="navbar-dot dot4"></span>
+        <span>Budgets</span>
+      </a>
+
+      <a mat-list-item routerLink="/statistics" routerLinkActive="active">
+        <span class="navbar-dot dot5"></span>
+        <span>Statistics (WIP)</span>
+      </a>
+    </mat-nav-list>
+
+    <mat-nav-list class="bottom-nav">
+      <a mat-list-item routerLink="/account" routerLinkActive="active">
+        <span class="navbar-dot dot6"></span>
+        <span>Account</span>
+      </a>
+    </mat-nav-list>
   </nav>
 }
