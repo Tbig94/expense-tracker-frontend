@@ -1,7 +1,6 @@
 #large-cards {
   display: flex;
   flex-direction: row;
-  margin-top: 30px;
   min-width: 330px;
   justify-content: space-between;
 }
@@ -10,7 +9,7 @@
   width: 100%;
   padding: 20px;
   border-radius: 15px;
-  background-color: #2b2a2a;
+  background-color: rgb(35, 35, 35);
 }
 
 .yearlyChart-container {
