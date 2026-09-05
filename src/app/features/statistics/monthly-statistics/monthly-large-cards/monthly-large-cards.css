@@ -1,0 +1,49 @@
+#large-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#large-card {
+  width: 48%;
+  min-width: 330px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: rgb(35, 35, 35);
+}
+
+#large-card {
+  width: 48%;
+  min-width: 330px;
+  padding: 20px;
+  background-color: rgb(35, 35, 35);
+  border-radius: 15px;
+}
+
+#category-top {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.budgetChart-container {
+  width: 75%;
+  min-height: 250px;
+  margin: auto;
+}
+
+.categoryChart-container {
+  width: 40%;
+  height: 40%;
+}
+
+table {
+  width: 100%;
+  font-size: 18px;
+}
+
+.categoryList {
+  font-size: 18px;
+}

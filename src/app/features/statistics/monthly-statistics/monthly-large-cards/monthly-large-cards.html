@@ -1,1 +1,25 @@
-<p>monthly-large-cards works!</p>
+<div id="large-cards">
+  <div id="large-card">
+    <h4>Budgets</h4>
+    <div class="budgetChart-container">
+      <canvas id="BudgetChart">{{ budgetChart }}</canvas>
+    </div>
+  </div>
+
+  <div id="large-card">
+    <h4>Category breakdown</h4>
+    <div id="category-top">
+      <div class="categoryChart-container">
+        <canvas id="CategoryChart">{{ categoryChart }}</canvas>
+      </div>
+      <div class="categoryList">
+        @for (item of monthlyStats()?.categoryBreakdowns; track item.categoryName) {
+          <p>
+            <span class="category-dot" [style.background-color]="item.categoryColor"> </span>
+            {{ item.categoryName }}
+          </p>
+        }
+      </div>
+    </div>
+  </div>
+</div>

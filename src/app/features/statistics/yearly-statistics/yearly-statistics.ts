@@ -3,10 +3,11 @@ import { YearlySmallCards } from './yearly-small-cards/yearly-small-cards';
 import { YearlyLargeCards } from './yearly-large-cards/yearly-large-cards';
 import { StatisticsService } from '../statistics.service';
 import { YearlyStatisticsDto } from '../../../models/YearlyStatistics.model';
+import { MatDivider } from '@angular/material/divider';
 
 @Component({
   selector: 'app-yearly-statistics',
-  imports: [YearlySmallCards, YearlyLargeCards],
+  imports: [YearlySmallCards, YearlyLargeCards, MatDivider],
   templateUrl: './yearly-statistics.html',
   styleUrl: './yearly-statistics.css',
 })
