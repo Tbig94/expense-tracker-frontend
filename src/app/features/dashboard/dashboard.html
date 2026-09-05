@@ -1,6 +1,7 @@
 <div class="content-page">
   <app-dashboard-small-cards [dashboardData]="dashboardData"></app-dashboard-small-cards>
 
+  <mat-divider></mat-divider>
   @if (dashboardData) {
     <app-dashboard-large-cards [dashboardData]="dashboardData"></app-dashboard-large-cards>
   }

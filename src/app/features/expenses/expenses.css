@@ -5,7 +5,7 @@
   justify-content: space-between;
 }
 
-#table {
+#tableContainer {
   width: 60%;
   min-width: 650px;
   margin: auto;
@@ -20,6 +20,7 @@ form {
 thead,
 tbody {
   margin: 20px;
+  background-color: rgb(50, 50, 50);
 }
 
 th,
@@ -27,6 +28,7 @@ td {
   padding-left: 20px;
   padding-right: 20px;
   vertical-align: middle;
+  background-color: rgb(50, 50, 50);
 }
 
 #expenses {
@@ -58,6 +60,7 @@ td {
 .expensesTable th.mat-mdc-header-cell {
   font-size: 18px;
   font-weight: bold;
+  background-color: rgb(35, 35, 35);
 }
 
 .expensesTable td.mat-mdc-cell {
@@ -69,10 +72,9 @@ td {
 }
 
 .expensesTable tr.mat-mdc-row:hover {
-  background-color: #363636;
+  background-color: rgb(70, 70, 70);
 }
 
 #table {
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
+  border: 1px solid rgb(70, 70, 70);
 }

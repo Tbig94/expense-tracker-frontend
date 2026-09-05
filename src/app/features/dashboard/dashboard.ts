@@ -4,12 +4,13 @@ import { DashboardDto } from '../../models/Dashboard.model';
 import { Chart, registerables } from 'chart.js';
 import { DashboardSmallCards } from './dashboard-small-cards/dashboard-small-cards';
 import { DashboardLargeCards } from './dashboard-large-cards/dashboard-large-cards';
+import { MatDivider } from '@angular/material/divider';
 
 Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
-  imports: [DashboardSmallCards, DashboardLargeCards],
+  imports: [DashboardSmallCards, DashboardLargeCards, MatDivider],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
