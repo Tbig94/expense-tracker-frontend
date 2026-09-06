@@ -20,16 +20,18 @@ export class MonthlyLargeCards implements OnDestroy {
       const stats = this.monthlyStats()!;
 
       this.dashboardChartData = [];
-      stats!.budgets.forEach((b) => {
-        let dataChartItem: DataChart = {
-          categoryName: b.categoryName,
-          categoryColor: b.categoryColor,
-          categoryLimit: b.limitAmount,
-          categorySpent: b.spentAmount,
-        };
-        this.dashboardChartData.push(dataChartItem);
-      });
-      this.budgetChart = this.chartService.createBudgetChart1(this.dashboardChartData)!;
+      if (stats) {
+        stats!.budgets.forEach((b) => {
+          let dataChartItem: DataChart = {
+            categoryName: b.categoryName,
+            categoryColor: b.categoryColor,
+            categoryLimit: b.limitAmount,
+            categorySpent: b.spentAmount,
+          };
+          this.dashboardChartData.push(dataChartItem);
+        });
+        this.budgetChart = this.chartService.createBudgetChart1(this.dashboardChartData)!;
+      }
       this.chartService.createCategoryChart3(stats!);
     });
   }
