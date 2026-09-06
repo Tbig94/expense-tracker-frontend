@@ -1,13 +1,5 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './features/dashboard/dashboard';
-import { Expenses } from './features/expenses/expenses';
-import { Budgets } from './features/budgets/budgets';
-import { Statistics } from './features/statistics/statistics';
-import { Categories } from './features/categories/categories';
-import { Signup } from './auth/signup/signup';
-import { Login } from './auth/login/login';
 import { authGuard } from './core/guards/auth.guard';
-import { Account } from './features/account/account';
 
 export const routes: Routes = [
   {
@@ -17,48 +9,48 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: Dashboard,
+    loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
     data: { headerText: 'Dashboard' },
     canActivate: [authGuard],
   },
   {
     path: 'budgets',
-    component: Budgets,
+    loadComponent: () => import('./features/budgets/budgets').then((m) => m.Budgets),
     data: { headerText: 'Budgets' },
     canActivate: [authGuard],
   },
   {
     path: 'expenses',
-    component: Expenses,
+    loadComponent: () => import('./features/expenses/expenses').then((m) => m.Expenses),
     data: { headerText: 'Expenses' },
     canActivate: [authGuard],
   },
   {
     path: 'categories',
-    component: Categories,
+    loadComponent: () => import('./features/categories/categories').then((m) => m.Categories),
     data: { headerText: 'Categories' },
     canActivate: [authGuard],
   },
   {
     path: 'statistics',
-    component: Statistics,
+    loadComponent: () => import('./features/statistics/statistics').then((m) => m.Statistics),
     data: { headerText: 'Statistics' },
     canActivate: [authGuard],
   },
   {
     path: 'account',
-    component: Account,
+    loadComponent: () => import('./features/account/account').then((m) => m.Account),
     data: { headerText: 'Account' },
     canActivate: [authGuard],
   },
   {
     path: 'signup',
-    component: Signup,
+    loadComponent: () => import('./auth/signup/signup').then((m) => m.Signup),
     data: { headerText: 'Register' },
   },
   {
     path: 'login',
-    component: Login,
+    loadComponent: () => import('./auth/login/login').then((m) => m.Login),
     data: { headerText: 'Sign In' },
   },
   {
