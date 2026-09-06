@@ -1,20 +1,12 @@
-#expenses {
-  width: 100%;
-  max-height: 650px;
-  overflow-y: auto;
-  justify-content: space-between;
-}
-
-#tableContainer {
-  width: 60%;
-  min-width: 650px;
-  margin: auto;
-}
-
 form {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+#tableContainer {
+  min-width: 650px;
+  margin: auto;
 }
 
 thead,
@@ -33,6 +25,11 @@ td {
 
 #expenses {
   display: flex;
+  width: 70%;
+  min-width: 850px;
+  max-height: 650px;
+  overflow-y: auto;
+  justify-content: space-between;
 }
 
 #expenses table th {
@@ -47,7 +44,8 @@ td {
   align-items: center;
 }
 
-.sideButtons {
+#sideButtons {
+  width: 30%;
   position: sticky;
   top: 0;
   z-index: 2;
@@ -73,8 +71,4 @@ td {
 
 .expensesTable tr.mat-mdc-row:hover {
   background-color: rgb(70, 70, 70);
-}
-
-#table {
-  border: 1px solid rgb(70, 70, 70);
 }
