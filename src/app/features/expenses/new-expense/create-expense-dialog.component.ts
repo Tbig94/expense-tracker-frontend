@@ -40,9 +40,11 @@ export class CreateExpenseDialogComponent {
   private readonly expensesService = inject(ExpensesService);
   private readonly snackbarService = inject(SnackbarService);
   private dialogRef = inject(DialogRef<CreateExpenseDialogComponent>);
-  date: Date = new Date();
+  data = inject<{ categories: Category[] }>(DIALOG_DATA);
 
-  categoryControl = new FormControl<string | Category>('');
+  date: Date = new Date();
+  categories: Category[] = this.data.categories;
+  selectedCategory?: Category;
 
   createExpenseForm = new FormGroup({
     amount: new FormControl<number | null>(null, [Validators.required]),
@@ -50,11 +52,6 @@ export class CreateExpenseDialogComponent {
     categoryName: new FormControl<string>('', [Validators.required]),
     date: new FormControl<Date>(new Date(), [Validators.required]),
   });
-
-  data = inject<{ categories: Category[] }>(DIALOG_DATA);
-
-  categories: Category[] = this.data.categories;
-  selectedCategory?: Category;
 
   create(): void {
     const formValue = this.createExpenseForm.value;

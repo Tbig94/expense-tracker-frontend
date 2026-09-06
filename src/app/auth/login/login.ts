@@ -74,7 +74,7 @@ export class Login {
       });
   }
 
-  clickEvent(event: MouseEvent) {
+  togglePassword(event: MouseEvent) {
     this.hide.set(!this.hide());
     event.stopPropagation();
   }
@@ -85,9 +85,4 @@ interface LoginResultDto {
   expiresAt: Date;
   userId: string;
   email: string;
-}
-
-export class AccountDto {
-  email: string | null | undefined;
-  name: string | null | undefined;
 }

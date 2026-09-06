@@ -10,14 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './budget-card.html',
   styleUrl: './budget-card.css',
 })
-export class BudgetCard implements OnInit {
+export class BudgetCard {
   budgetItem = input<Budget>();
   onDelete = output<string>();
-  // categoryName = input<string>();
 
   deleteBudget(id: string) {
     this.onDelete.emit(id);
   }
-
-  ngOnInit(): void {}
 }

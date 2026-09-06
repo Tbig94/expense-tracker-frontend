@@ -69,6 +69,14 @@ export class AuthService {
     });
   }
 
+  public deleteAccount(): Observable<any> {
+    return this.http.post(
+      `${environment.apiUrl}/Auth/DeleteAccount`,
+      {},
+      { withCredentials: true },
+    );
+  }
+
   private handleLogoutCleanup(): void {
     this.isLoggedIn.set(false);
     this.currentUser.set(null);
@@ -82,17 +90,9 @@ export class AuthService {
 
     this.router.navigate(['/login']);
   }
-
-  public deleteAccount(): Observable<any> {
-    return this.http.post(
-      `${environment.apiUrl}/Auth/DeleteAccount`,
-      {},
-      { withCredentials: true },
-    );
-  }
 }
 
-export interface UserProfile {
+interface UserProfile {
   email: string;
   name?: string;
 }

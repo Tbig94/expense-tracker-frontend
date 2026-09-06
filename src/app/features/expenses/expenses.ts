@@ -12,7 +12,7 @@ import { Expense } from '../../models/Expense.model';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Category } from '../../models/Category.model';
-import { ExpenseFilter, ExpensesService } from './expenses.service';
+import { ExpensesService } from './expenses.service';
 import { CategoriesService } from '../categories/categories.service';
 import { CsvExportService } from '../../shared/services/csvExport.service';
 import { CreateExpenseDialogComponent } from './new-expense/create-expense-dialog.component';
@@ -29,6 +29,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
 import { SnackbarService } from '../../shared/components/snackbar/snackbar.service';
+import { ExpenseFilter } from '../../models/ExpenseFilter.model';
 
 @Component({
   selector: 'app-expenses',

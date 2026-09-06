@@ -28,10 +28,9 @@ export class Header {
     }),
     map((route) => (route.snapshot.data['headerText'] as string) || 'Default Address'),
   );
+  protected title = toSignal(this.title$, { initialValue: 'Waiting for the server to start...' });
 
   onLogout() {
     this.authService.logout();
   }
-
-  protected title = toSignal(this.title$, { initialValue: 'Waiting for the server to start...' });
 }

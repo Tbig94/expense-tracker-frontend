@@ -1,13 +1,8 @@
 export class ExpenseFilter {
-  text: string;
-  minDate: Date;
-  maxDate: Date;
-  categoryId: string;
-
-  constructor(text: string, minDate: Date, maxDate: Date, categoryId: string) {
-    this.text = text;
-    this.minDate = minDate;
-    this.maxDate = maxDate;
-    this.categoryId = categoryId;
-  }
+  Text: string | null | undefined;
+  MinDate: string | null | undefined;
+  MaxDate: string | null | undefined;
+  MinAmount: number | null | undefined;
+  MaxAmount: number | null | undefined;
+  CategoryName: string | null | undefined;
 }

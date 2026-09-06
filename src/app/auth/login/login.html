@@ -4,7 +4,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
       <input matInput type="email" placeholder="Enter your email address" formControlName="email" />
-      @if (email?.invalid && (email?.dirty || email?.touched)) {
+      @if (email?.invalid && (email?.dirty! || email?.touched)) {
         <div class="error-message text-danger">
           @if (email?.errors?.['required']) {
             <small>Email is required.</small>
@@ -21,7 +21,7 @@
       <button
         matIconButton
         matSuffix
-        (click)="clickEvent($event)"
+        (click)="togglePassword($event)"
         [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hide()"
         type="button"

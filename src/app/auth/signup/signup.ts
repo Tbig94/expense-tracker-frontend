@@ -29,6 +29,7 @@ export class Signup {
   private router = inject(Router);
 
   isLoading = signal(false);
+  hidePassword = signal(true);
 
   loginResult?: LoginResultDto;
 
@@ -79,9 +80,8 @@ export class Signup {
       });
   }
 
-  hide = signal(true);
-  clickEvent(event: MouseEvent) {
-    this.hide.set(!this.hide());
+  togglePassword(event: MouseEvent) {
+    this.hidePassword.set(!this.hidePassword());
     event.stopPropagation();
   }
 }

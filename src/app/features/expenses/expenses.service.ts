@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Expense } from '../../models/Expense.model';
 import { environment } from '../../../environments/environment';
+import { ExpenseFilter } from '../../models/ExpenseFilter.model';
 
 @Injectable({ providedIn: 'root' })
 export class ExpensesService {
@@ -44,13 +45,4 @@ export class ExpensesService {
   public deleteExpense(id: string): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/Expense/Delete`, { params: { id } });
   }
-}
-
-export class ExpenseFilter {
-  Text: string | null | undefined;
-  MinDate: string | null | undefined;
-  MaxDate: string | null | undefined;
-  MinAmount: number | null | undefined;
-  MaxAmount: number | null | undefined;
-  CategoryName: string | null | undefined;
 }

@@ -1,21 +1,23 @@
 <div id="small-cards">
-  <div id="dashboard-small-card">
-    <h6>Total spendings</h6>
-    <h3>{{ monthlyStats()?.totalSpendings | currency: 'Ft' : 'code' : '1.0-0' }}</h3>
-  </div>
-  <div id="dashboard-small-card">
-    <h6>Average daily spendings</h6>
-    <h3>
-      {{ monthlyStats()?.averageDailySpendings | currency: 'Ft' : 'code' : '1.0-0' }}
-    </h3>
-  </div>
-  <div id="dashboard-small-card">
-    <h6>Active budgets</h6>
-    <h3>{{ monthlyStats()?.budgets?.length }}</h3>
-  </div>
-  <div id="dashboard-small-card">
-    <h6>Number of transactions</h6>
-    <h3>{{ monthlyStats()?.numberOfTransactions }}</h3>
-    <h3></h3>
-  </div>
+  @if (monthlyStats()) {
+    <div id="dashboard-small-card">
+      <h6>Total spendings</h6>
+      <h3>{{ monthlyStats()?.totalSpendings | currency: 'Ft' : 'code' : '1.0-0' }}</h3>
+    </div>
+    <div id="dashboard-small-card">
+      <h6>Average daily spendings</h6>
+      <h3>
+        {{ monthlyStats()?.averageDailySpendings | currency: 'Ft' : 'code' : '1.0-0' }}
+      </h3>
+    </div>
+    <div id="dashboard-small-card">
+      <h6>Active budgets</h6>
+      <h3>{{ monthlyStats()?.budgets?.length }}</h3>
+    </div>
+    <div id="dashboard-small-card">
+      <h6>Number of transactions</h6>
+      <h3>{{ monthlyStats()?.numberOfTransactions }}</h3>
+      <h3></h3>
+    </div>
+  }
 </div>

@@ -17,15 +17,13 @@ export class YearlyLargeCards implements AfterViewInit {
   currentYear: number = new Date().getFullYear();
 
   constructor() {
-    // Az effect automatikusan lefut, amikor a yearlyStats signal értéke megérkezik/megváltozik
     effect(() => {
       const stats = this.yearlyStats();
 
-      // Csak akkor frissítjük a chartot, ha a chart már inicializálva van ÉS vannak adatok
       if (this.chart && stats?.monthlySpendingTrend?.length) {
         const monthlyAmounts = stats.monthlySpendingTrend.map((item) => item.amount);
         this.chart.data.datasets[0].data = monthlyAmounts;
-        this.chart.update(); // Újrarajzolja a diagramot az új adatokkal
+        this.chart.update();
       }
     });
   }
@@ -38,7 +36,6 @@ export class YearlyLargeCards implements AfterViewInit {
     const ctx = this.yearlyChart.nativeElement.getContext('2d');
     if (!ctx) return;
 
-    // Biztonságos lekérés: ha még nincsenek adatok, üres tömbbel/nullákkal indít
     const stats = this.yearlyStats();
     const monthlyAmounts = stats?.monthlySpendingTrend?.map((item) => item.amount) ?? [];
 

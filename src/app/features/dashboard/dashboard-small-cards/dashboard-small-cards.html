@@ -1,23 +1,25 @@
 <div id="small-cards">
-  <div id="dashboard-small-card">
-    <h6>Current month expenses</h6>
-    <h3>{{ dashboardData()?.monthlySummary?.totalAmount! | currency: 'Ft' : 'code' : '1.0-0' }}</h3>
-  </div>
-  <div id="dashboard-small-card">
-    <h6>Last month expenses</h6>
-    <h3>
-      {{
-        dashboardData()?.monthlySummary?.previousMonthAmount! | currency: 'Ft' : 'code' : '1.0-0'
-      }}
-    </h3>
-  </div>
-  <div id="dashboard-small-card">
-    <h6>Active budgets</h6>
-    <h3>{{ dashboardData()?.budgets?.length }}</h3>
-  </div>
-  <div id="dashboard-small-card">
-    <h6>Number of transactions</h6>
-    <h3>{{ dashboardData()?.numberOfTransactions }}</h3>
-    <h3></h3>
-  </div>
+  @if (dashboardData()) {
+    <div id="dashboard-small-card">
+      <h6>Current month expenses</h6>
+      <h3>{{ dashboardData()!.monthlySummary.totalAmount | currency: 'Ft' : 'code' : '1.0-0' }}</h3>
+    </div>
+    <div id="dashboard-small-card">
+      <h6>Last month expenses</h6>
+      <h3>
+        {{
+          dashboardData()!.monthlySummary.previousMonthAmount! | currency: 'Ft' : 'code' : '1.0-0'
+        }}
+      </h3>
+    </div>
+    <div id="dashboard-small-card">
+      <h6>Active budgets</h6>
+      <h3>{{ dashboardData()!.budgets.length! }}</h3>
+    </div>
+    <div id="dashboard-small-card">
+      <h6>Number of transactions</h6>
+      <h3>{{ dashboardData()!.numberOfTransactions }}</h3>
+      <h3></h3>
+    </div>
+  }
 </div>

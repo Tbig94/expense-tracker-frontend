@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/services/auth.service';
-import { AccountDto } from '../../auth/login/login';
 import { Dialog } from '@angular/cdk/dialog';
 import { DeleteAccountDialog } from './delete-account/delete-account-dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { AccountDto } from '../../shared/models/AccountDto.model';
 
 @Component({
   selector: 'app-account',
@@ -13,8 +13,7 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './account.css',
 })
 export class Account implements OnInit {
-  authService = inject(AuthService);
-  private cdr = inject(ChangeDetectorRef);
+  private authService = inject(AuthService);
   private dialog = inject(Dialog);
 
   account: AccountDto = new AccountDto();
