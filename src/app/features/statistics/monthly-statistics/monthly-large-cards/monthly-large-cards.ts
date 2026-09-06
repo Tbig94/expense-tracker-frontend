@@ -30,9 +30,9 @@ export class MonthlyLargeCards implements OnDestroy {
           };
           this.dashboardChartData.push(dataChartItem);
         });
-        this.budgetChart = this.chartService.createBudgetChart1(this.dashboardChartData)!;
+        this.budgetChart = this.chartService.createBudgetChart(this.dashboardChartData)!;
       }
-      this.chartService.createCategoryChart3(stats!);
+      this.chartService.createCategoryChart(stats!);
     });
   }
 

@@ -36,8 +36,8 @@ export class DashboardLargeCards implements AfterViewInit, OnDestroy {
       this.dashboardChartData.push(dataChartItem);
     });
 
-    this.chartService.createBudgetChart(this.budgetChart, this.dashboardChartData);
-    this.chartService.createCategoryChart(this.categoryChart, this.dashboardData()!);
+    this.chartService.createBudgetChart(this.dashboardChartData);
+    this.chartService.createCategoryChart(this.dashboardData()!);
 
     this.cdr.detectChanges();
   }
