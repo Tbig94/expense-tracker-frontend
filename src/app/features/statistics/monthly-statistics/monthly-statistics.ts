@@ -6,8 +6,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { DashboardService } from '../../dashboard/dashboard.service';
-import { DashboardDto } from '../../../models/Dashboard.model';
 import { StatisticsService } from '../statistics.service';
 import { MonthlyStatisticsDto } from '../../../models/MonthlyStatistics.model';
 import { MonthlySmallCards } from './monthly-small-cards/monthly-small-cards';
@@ -31,7 +29,6 @@ import { MatDivider } from '@angular/material/divider';
 })
 export class MonthlyStatistics implements OnInit {
   private cdr = inject(ChangeDetectorRef);
-  private dashboardService = inject(DashboardService);
   private statisticsService = inject(StatisticsService);
 
   months = [
@@ -72,7 +69,7 @@ export class MonthlyStatistics implements OnInit {
   monthlyStats: MonthlyStatisticsDto | undefined;
 
   form = new FormGroup({
-    month: new FormControl(''),
+    month: new FormControl(this.selected()),
   });
 
   constructor() {
