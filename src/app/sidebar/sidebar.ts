@@ -13,4 +13,13 @@ import { MatDividerModule } from '@angular/material/divider';
 })
 export class Sidebar {
   authService = inject(AuthService);
+  isMenuOpen = false;
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
 }

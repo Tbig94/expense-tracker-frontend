@@ -1,6 +1,10 @@
 @if (authService.isLoggedIn()) {
-  <nav class="sidebar">
-    <a class="brand" routerLink="/dashboard"> Expense Tracker </a>
+  <button class="hamburger-btn" (click)="toggleMenu()">&#9776;</button>
+
+  <div class="sidebar-overlay" [class.visible]="isMenuOpen" (click)="closeMenu()"></div>
+
+  <nav class="sidebar" [class.open]="isMenuOpen">
+    <a class="brand" routerLink="/dashboard" (click)="closeMenu()"> Expense Tracker </a>
 
     <mat-divider></mat-divider>
 
@@ -10,34 +14,31 @@
         routerLink="/dashboard"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
+        (click)="closeMenu()"
       >
         <span class="navbar-dot dot1"></span>
         <span>Dashboard</span>
       </a>
-
-      <a mat-list-item routerLink="/expenses" routerLinkActive="active">
+      <a mat-list-item routerLink="/expenses" routerLinkActive="active" (click)="closeMenu()">
         <span class="navbar-dot dot2"></span>
         <span>Expenses</span>
       </a>
-
-      <a mat-list-item routerLink="/categories" routerLinkActive="active">
+      <a mat-list-item routerLink="/categories" routerLinkActive="active" (click)="closeMenu()">
         <span class="navbar-dot dot3"></span>
         <span>Categories</span>
       </a>
-
-      <a mat-list-item routerLink="/budgets" routerLinkActive="active">
+      <a mat-list-item routerLink="/budgets" routerLinkActive="active" (click)="closeMenu()">
         <span class="navbar-dot dot4"></span>
         <span>Budgets</span>
       </a>
-
-      <a mat-list-item routerLink="/statistics" routerLinkActive="active">
+      <a mat-list-item routerLink="/statistics" routerLinkActive="active" (click)="closeMenu()">
         <span class="navbar-dot dot5"></span>
         <span>Statistics</span>
       </a>
     </mat-nav-list>
 
     <mat-nav-list class="bottom-nav">
-      <a mat-list-item routerLink="/account" routerLinkActive="active">
+      <a mat-list-item routerLink="/account" routerLinkActive="active" (click)="closeMenu()">
         <span class="navbar-dot dot6"></span>
         <span>Account</span>
       </a>
