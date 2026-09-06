@@ -16,7 +16,7 @@ export class AuthService {
   isLoggedIn = signal<boolean>(false);
   currentUser = signal<UserProfile | null>(null);
 
-  public checkAuthStatus(): Observable<UserProfile | null> {
+  public checkAuthStatus(): Observable<any> {
     return this.http
       .get<UserProfile>(`${environment.apiUrl}/Auth/GetAccountInfo`, {
         withCredentials: true,
@@ -28,10 +28,9 @@ export class AuthService {
             this.isLoggedIn.set(true);
           }
         }),
-        catchError(() => {
+        catchError((err): any => {
           this.currentUser.set(null);
           this.isLoggedIn.set(false);
-          return of(null);
         }),
       );
   }
