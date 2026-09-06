@@ -13,7 +13,7 @@
   border-radius: 15px;
   padding: 25px;
   width: 48%;
-  height: 45%;
+  height: 35vh;
   background-color: rgb(35, 35, 35);
 }
 
@@ -25,14 +25,14 @@
   border-radius: 15px;
   padding: 25px;
   width: 48%;
-  height: 45%;
+  height: 35vh;
   background-color: rgb(35, 35, 35);
 }
 
 .deleteAccountCard {
   margin-top: 30px;
   border-radius: 15px;
-  background-color: rgb(25, 25, 25);
+  background-color: rgb(20, 20, 20);
   padding: 15px;
   width: 50%;
 }

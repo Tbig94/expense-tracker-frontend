@@ -134,7 +134,12 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Action</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-mini-fab="outlined" type="button" (click)="handleDeleteExpense(element.id)">
+            <button
+              mat-mini-fab="outlined"
+              type="button"
+              class="btn-delete"
+              (click)="handleDeleteExpense(element.id)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </td>

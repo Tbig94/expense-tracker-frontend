@@ -72,3 +72,28 @@ app-root {
 .snackbar-info .mat-simple-snackbar {
   color: #ffffff !important;
 }
+
+/* --- TÖRLÉS GOMB (Piros) --- */
+button.btn-delete {
+  background-color: #d32f2f !important;
+  color: #ffffff !important;
+}
+
+/* --- MINI FAB TÖRLÉS GOMB (Piros) --- */
+button.btn-delete-fab {
+  background-color: #d32f2f !important;
+  color: #ffffff !important;
+}
+
+.sidebar {
+  .mat-mdc-list-item-title,
+  .mdc-list-item__primary-text {
+    font-size: 20px !important;
+    font-weight: 350;
+  }
+
+  a.brand {
+    font-size: 24px !important;
+    font-weight: 600;
+  }
+}

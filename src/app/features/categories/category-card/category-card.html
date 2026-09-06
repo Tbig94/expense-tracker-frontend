@@ -8,10 +8,11 @@
       @if (!isSystemCategory()) {
         <button
           mat-mini-fab
-          color="warn"
           id="deleteButton"
-          (click)="deleteCategory(category.id)"
+          [ngClass]="{ 'btn-delete': !category.hasExpense }"
+          type="button"
           [disabled]="category.hasExpense"
+          (click)="deleteCategory(category.id)"
         >
           <mat-icon>delete</mat-icon>
         </button>
