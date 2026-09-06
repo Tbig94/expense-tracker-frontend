@@ -31,6 +31,7 @@ export class AuthService {
         catchError((err): any => {
           this.currentUser.set(null);
           this.isLoggedIn.set(false);
+          return of(null);
         }),
       );
   }
