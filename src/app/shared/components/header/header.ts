@@ -33,5 +33,5 @@ export class Header {
     this.authService.logout();
   }
 
-  protected title = toSignal(this.title$, { initialValue: 'Loading...' });
+  protected title = toSignal(this.title$, { initialValue: 'Waiting for the server to start...' });
 }
