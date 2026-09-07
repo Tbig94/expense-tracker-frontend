@@ -8,6 +8,7 @@ import { ExpenseFilter } from '../../models/ExpenseFilter.model';
 @Injectable({ providedIn: 'root' })
 export class ExpensesService {
   private http = inject(HttpClient);
+  readonly API_URL: string = `${environment.apiUrl}/Expense`;
 
   public getExpensesByFilter(filter: ExpenseFilter): Observable<Expense[]> {
     let params = new HttpParams();
@@ -21,11 +22,11 @@ export class ExpensesService {
       });
     }
 
-    return this.http.get<Expense[]>(`${environment.apiUrl}/Expense/GetByFilter`, { params });
+    return this.http.get<Expense[]>(`${this.API_URL}/GetByFilter`, { params });
   }
 
   public getExpenses(): Observable<Expense[]> {
-    return this.http.get<Expense[]>(`${environment.apiUrl}/Expense/GetAll`);
+    return this.http.get<Expense[]>(this.API_URL);
   }
 
   public createExpense(
@@ -34,7 +35,7 @@ export class ExpensesService {
     amount: number,
     description: string,
   ): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/Expense/Create`, {
+    return this.http.post(this.API_URL, {
       categoryId,
       date,
       amount,
@@ -43,6 +44,6 @@ export class ExpensesService {
   }
 
   public deleteExpense(id: string): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/Expense/Delete`, { params: { id } });
+    return this.http.delete(this.API_URL, { params: { id } });
   }
 }

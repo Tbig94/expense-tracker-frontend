@@ -9,16 +9,17 @@ import { environment } from '../../../environments/environment';
 })
 export class CategoriesService {
   private http = inject(HttpClient);
+  readonly API_URL: string = `${environment.apiUrl}/Category`;
 
   public getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${environment.apiUrl}/Category/GetAll`);
+    return this.http.get<Category[]>(this.API_URL);
   }
 
   public createCategory(name: string, color: string): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/Category/Create`, { name, color });
+    return this.http.post(this.API_URL, { name, color });
   }
 
   public deleteCategory(id: string): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/Category/Delete?id=${id}`);
+    return this.http.delete(`${this.API_URL}?id=${id}`);
   }
 }

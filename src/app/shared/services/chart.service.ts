@@ -9,6 +9,20 @@ export class ChartService {
     const canvas = this.destroyExistingChart('BudgetChart');
     if (!canvas) return null;
 
+    // --- DINAMIKUS MAGASSÁG BEÁLLÍTÁSA ---
+    const rowCount = dashboardChartData.length;
+    const rowHeight = 45; // pixel / sor (ez kényelmesen elég a sávnak és a felette lévő szövegnek)
+    const minHeight = 200; // minimális magasság kevés elem esetén
+    const padding = 30; // alsó-felső margó a tengelyeknek/paddingnak
+
+    const calculatedHeight = Math.max(minHeight, rowCount * rowHeight + padding);
+
+    // A szülő elem ( .budgetChart-container ) magasságának beállítása
+    if (canvas.parentElement) {
+      canvas.parentElement.style.height = `${calculatedHeight}px`;
+    }
+    // -------------------------------------
+
     const customLabelsPlugin = {
       id: 'customLabelsPlugin',
       afterDatasetsDraw: (chart: any) => {

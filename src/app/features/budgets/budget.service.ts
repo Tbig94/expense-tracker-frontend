@@ -9,13 +9,14 @@ import { Budget } from '../../models/Budget.model';
 })
 export class BudgetService {
   private http = inject(HttpClient);
+  readonly API_URL: string = `${environment.apiUrl}/Budget`;
 
   public getBudgets(): Observable<Budget[]> {
-    return this.http.get<Budget[]>(`${environment.apiUrl}/Budget/GetAll`);
+    return this.http.get<Budget[]>(this.API_URL);
   }
 
   public deleteBudget(id: string): Observable<any> {
-    return this.http.delete<void>(`${environment.apiUrl}/Budget/Delete`, {
+    return this.http.delete<void>(this.API_URL, {
       params: { id },
     });
   }
@@ -26,7 +27,7 @@ export class BudgetService {
     month = new Date().getMonth() + 1,
     year = new Date().getFullYear(),
   ): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/Budget/Create`, {
+    return this.http.post(this.API_URL, {
       categoryId,
       limitAmount,
       month,

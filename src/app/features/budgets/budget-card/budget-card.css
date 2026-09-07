@@ -28,3 +28,14 @@
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 768px) {
+  #budget-card {
+    width: 300px;
+  }
+
+  .cardInfo {
+    padding: 10px;
+    font-size: 16px;
+  }
+}

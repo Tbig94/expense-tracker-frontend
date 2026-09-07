@@ -19,10 +19,28 @@ header {
 
 .header-right-simple {
   width: 250px;
+  max-width: 25%;
   justify-content: right;
 }
 
 #userEmail {
-  font-style: italic;
-  margin-right: 30px;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  #userEmail {
+    display: block;
+    font-style: italic;
+    margin-right: 30px;
+  }
+  .header-right-simple {
+    max-width: 25%;
+    justify-content: right;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    margin-left: 50px;
+  }
 }
